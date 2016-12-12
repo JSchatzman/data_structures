@@ -14,6 +14,13 @@ class LinkedList(object):
         self.head_node = Node(contents, self.head_node)
         self.length += 1
 
+    def pop(self):
+        """Remove and return the current head node."""
+        old_head_node = self.head_node
+        self.head_node = self.head_node.next_node
+        self.length -= 1
+        return old_head_node
+
 
 class Node(object):
     """Class representation of linked list node."""
