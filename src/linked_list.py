@@ -48,6 +48,15 @@ class LinkedList(object):
         current_node.next_node = current_node.next_node.next_node
         self.length -= 1
 
+    def display(self):
+        """Return the tuple of all values in linked list."""
+        new_list = [self.head_node.contents]
+        current_node = self.head_node
+        while current_node.next_node is not None:
+            current_node = current_node.next_node
+            new_list.append(current_node.contents)
+        return tuple(new_list)
+
 
 class Node(object):
     """Class representation of linked list node."""

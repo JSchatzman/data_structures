@@ -28,6 +28,8 @@ bin/
 lib64
 pyvenv.cfg
 share/
+pip-selfcheck.json
+tox.ini
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
