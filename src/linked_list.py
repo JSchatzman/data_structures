@@ -7,9 +7,9 @@ class LinkedList(object):
     def __init__(self, head_node):
         """Instantiate linked list."""
         self.head_node = head_node
-        self.length = 0
+        self.length = 1
 
-    def add_node(self, contents):
+    def push(self, contents):
         """Add node to this linked list."""
         self.head_node = Node(contents, self.head_node)
         self.length += 1
