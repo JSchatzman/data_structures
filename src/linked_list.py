@@ -36,6 +36,18 @@ class LinkedList(object):
             current_node = current_node.next_node
         return current_node
 
+    def remove(self, remove_node):
+        """Remove a node from linked list."""
+        if remove_node == self.head_node:
+            self.head_node = self.head_node.next_node
+        current_node = self.head_node
+        while current_node.next_node != remove_node:
+            if current_node.next_node is None:
+                raise ValueError("Provided value not in list.")
+            current_node = current_node.next_node
+        current_node.next_node = current_node.next_node.next_node
+        self.length -= 1
+
 
 class Node(object):
     """Class representation of linked list node."""
