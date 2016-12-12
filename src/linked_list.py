@@ -21,6 +21,21 @@ class LinkedList(object):
         self.length -= 1
         return old_head_node
 
+    def size(self):
+        """Return the current size of this linked list."""
+        return self.length
+
+    def search(self, search_value):
+        """Return the node with the searched contents if found."""
+        if search_value == self.head_node.contents:
+            return self.head_node
+        current_node = self.head_node
+        while current_node.contents != search_value:
+            if current_node.next_node is None:
+                return None
+            current_node = current_node.next_node
+        return current_node
+
 
 class Node(object):
     """Class representation of linked list node."""
