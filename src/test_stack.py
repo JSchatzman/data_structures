@@ -34,13 +34,9 @@ def test_stack_push():
 def test_stack_pop():
     """Test for Stack pop."""
     from stack import Node, Stack
-    empty = Stack()
-    try:
-        empty.pop()
-    except NameError:
-        assert True
-    new_stack = Stack(('a', 'b', 'c', 'd', 'e'))
-    assert new_stack.pop().contents == 'e'
-    assert new_stack.head_node.contents == 'd'
-    assert new_stack.length == 4
-
+    new_node = Node(34, None)
+    new_llist = Stack(new_node)
+    new_llist.push(1)
+    new_llist.pop()
+    assert new_llist.head_node.contents == 34
+    assert new_llist.length == 1
