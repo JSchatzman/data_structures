@@ -20,12 +20,15 @@ class Stack(object):
             self.head_node = Node(contents, None)
         self.length += 1
 
-    # def pop(self):
-    #     """Remove and return the current head node."""
-    #     old_head_node = self.head_node
-    #     self.head_node = self.head_node.next_node
-    #     self.length -= 1
-    #     return old_head_node
+
+    def pop(self):
+        """Remove and return the current head node."""
+        if not self.head_node:
+            raise NameError('Stack is empty, cannot pop!')
+        old_head_node = self.head_node
+        self.head_node = self.head_node.next_node
+        self.length -= 1
+        return old_head_node
 
 
 class Node(object):
