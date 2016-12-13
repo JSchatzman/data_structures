@@ -40,10 +40,12 @@ class LinkedList(object):
         """Remove a node from linked list."""
         if remove_node == self.head_node:
             self.head_node = self.head_node.next_node
+            self.length -= 1
+            return None
+        elif remove_node is None:
+            raise ValueError("Provided value not in list.")
         current_node = self.head_node
         while current_node.next_node != remove_node:
-            if current_node.next_node is None:
-                raise ValueError("Provided value not in list.")
             current_node = current_node.next_node
         current_node.next_node = current_node.next_node.next_node
         self.length -= 1

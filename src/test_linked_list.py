@@ -64,6 +64,7 @@ def test_linkedlist_search():
     new_llist.push('test3')
     new_llist.push('test4')
     assert new_llist.search('test4').contents == 'test4'
+    assert new_llist.search('test2').contents == 'test2'
     assert new_llist.search('test100') is None
 
 
@@ -79,6 +80,18 @@ def test_linkedlist_remove():
     new_llist.remove(new_llist.search('test2'))
     assert new_llist.size() == 4
     assert new_llist.search('test1').next_node.contents == 'test3'
+    new_node2 = Node('Test5', None)
+    new_llist2 = LinkedList(new_node2)
+    new_llist2.push('test4')
+    new_llist2.push('test3')
+    new_llist2.push('test2')
+    new_llist2.push('test1')
+    new_llist2.remove(new_llist2.search('test1'))
+    assert new_llist2.head_node.contents == 'test2'
+    try:
+        new_llist.remove(new_llist.search('blah'))
+    except ValueError:
+        assert True
 
 
 def test_linkedlist_display():
