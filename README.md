@@ -4,3 +4,6 @@
 
 
 ##### 1.  Linked List (src/linked_list.py)
+
+##### 2. Stack (src/stack.py)
+
