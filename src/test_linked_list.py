@@ -4,61 +4,51 @@
 def test_node_init():
     """Test node class init."""
     from linked_list import Node
-    new_node = Node(1, None)
-    assert new_node.contents == 1 and new_node.next_node is None
+    new_node = Node(0, None)
+    assert new_node.contents == 0 and new_node.next_node is None
 
 
 def test_linkedlist_init():
     """Test for LinkedList init."""
-    from linked_list import Node, LinkedList
-    new_node = Node(34, None)
-    new_llist = LinkedList(new_node)
-    assert new_llist.length == 1
-    assert new_llist.head_node == new_node
+    from linked_list import LinkedList
+    new_llist = LinkedList()
+    assert new_llist.length == 0
+    assert new_llist.head_node is None
 
 
 def test_linkedlist_push():
     """Test for LinkedList push."""
-    from linked_list import Node, LinkedList
-    new_node = Node(34, None)
-    new_llist = LinkedList(new_node)
-    new_llist.push(1)
-    assert new_llist.length == 2
-    assert new_llist.head_node.contents == 1
+    from linked_list import LinkedList
+    new_llist = LinkedList()
+    new_llist.push("new")
+    assert new_llist.length == 1
+    assert new_llist.head_node.contents == "new"
 
 
 def test_linkedlist_pop():
     """Test for LinkedList pop."""
-    from linked_list import Node, LinkedList
-    new_node = Node(34, None)
-    new_llist = LinkedList(new_node)
+    from linked_list import LinkedList
+    new_llist = LinkedList()
+    new_llist.push(34)
     new_llist.push(1)
-    new_llist.pop()
+    assert new_llist.pop().contents == 1
     assert new_llist.head_node.contents == 34
     assert new_llist.length == 1
+    assert new_llist.pop().contents == 34
+    assert new_llist.pop() is None
 
 
 def test_linkedlist_size():
     """Test for LinkedList size."""
-    from linked_list import Node, LinkedList
-    new_node = Node(34, None)
-    new_llist = LinkedList(new_node)
-    new_llist.push(1)
-    new_llist.pop()
-    new_llist.push('test1')
-    new_llist.push('test2')
-    new_llist.push('test3')
-    new_llist.push('test4')
-    assert new_llist.size() == 5
+    from linked_list import LinkedList
+    new_llist = LinkedList(('test1', 'test2', 'test3', 'test4'))
+    assert new_llist.size() == 4
 
 
 def test_linkedlist_search():
     """Test for LinkedList search."""
-    from linked_list import Node, LinkedList
-    new_node = Node(34, None)
-    new_llist = LinkedList(new_node)
-    new_llist.push(1)
-    new_llist.pop()
+    from linked_list import LinkedList
+    new_llist = LinkedList()
     new_llist.push('test1')
     new_llist.push('test2')
     new_llist.push('test3')
@@ -70,24 +60,16 @@ def test_linkedlist_search():
 
 def test_linkedlist_remove():
     """Test for LinkedList remove."""
-    from linked_list import Node, LinkedList
-    new_node = Node('Test5', None)
-    new_llist = LinkedList(new_node)
-    new_llist.push('test4')
-    new_llist.push('test3')
-    new_llist.push('test2')
-    new_llist.push('test1')
+    from linked_list import LinkedList
+    new_llist = LinkedList(('test1', 'test2', 'test3', 'test4'))
     new_llist.remove(new_llist.search('test2'))
-    assert new_llist.size() == 4
-    assert new_llist.search('test1').next_node.contents == 'test3'
-    new_node2 = Node('Test5', None)
-    new_llist2 = LinkedList(new_node2)
-    new_llist2.push('test4')
-    new_llist2.push('test3')
-    new_llist2.push('test2')
-    new_llist2.push('test1')
+    assert new_llist.size() == 3
+    assert new_llist.search('test3').next_node.contents == 'test1'
+    new_llist2 = LinkedList(('test1', 'test2', 'test3', 'test4'))
+    new_llist2.remove(new_llist2.search('test4'))
+    assert new_llist2.head_node.contents == 'test3'
     new_llist2.remove(new_llist2.search('test1'))
-    assert new_llist2.head_node.contents == 'test2'
+    assert new_llist2.search('test2').next_node is None
     try:
         new_llist.remove(new_llist.search('blah'))
     except ValueError:
@@ -96,13 +78,8 @@ def test_linkedlist_remove():
 
 def test_linkedlist_display():
     """Test for LinkedList remove."""
-    from linked_list import Node, LinkedList
-    new_node = Node('test5', None)
-    new_llist = LinkedList(new_node)
-    new_llist.push('test4')
-    new_llist.push('test3')
-    new_llist.push('test2')
-    new_llist.push('test1')
-    new_llist2 = LinkedList(new_node)
-    assert new_llist.display() == ('test1', 'test2', 'test3', 'test4', 'test5')
+    from linked_list import LinkedList
+    new_llist = LinkedList(('test1', 'test2', 'test3', 'test4'))
+    new_llist2 = LinkedList(('test5',))
+    assert new_llist.display() == ('test4', 'test3', 'test2', 'test1')
     assert new_llist2.display() == ('test5',)

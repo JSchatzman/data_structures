@@ -4,10 +4,16 @@
 class LinkedList(object):
     """Class representation of linked list."""
 
-    def __init__(self, head_node):
+    def __init__(self, iterable=None):
         """Instantiate linked list."""
-        self.head_node = head_node
-        self.length = 1
+        self.head_node = None
+        self.length = 0
+        try:
+            for item in iterable:
+                self.push(item)
+        except TypeError:
+            if iterable:
+                print("Please only enter iterable values")
 
     def push(self, contents):
         """Add node to this linked list."""
@@ -16,6 +22,9 @@ class LinkedList(object):
 
     def pop(self):
         """Remove and return the current head node."""
+        if not self.head_node:
+            print("Linked list is already empty")
+            return
         old_head_node = self.head_node
         self.head_node = self.head_node.next_node
         self.length -= 1
