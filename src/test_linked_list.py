@@ -68,6 +68,8 @@ def test_linkedlist_remove():
     new_llist2 = LinkedList(('test1', 'test2', 'test3', 'test4'))
     new_llist2.remove(new_llist2.search('test4'))
     assert new_llist2.head_node.contents == 'test3'
+    new_llist2.remove(new_llist2.search('test1'))
+    assert new_llist2.search('test2').next_node is None
     try:
         new_llist.remove(new_llist.search('blah'))
     except ValueError:
