@@ -41,3 +41,10 @@ def test_linkedlist_append():
     new_dll.append("second")
     assert new_dll.length == 2
     assert new_dll.tail_node.contents == "second"
+
+
+def test_linkedlist_pop():
+    """Test for LinkedList pop."""
+    from dll import DoublyLinkedList
+    new_dll = DoublyLinkedList([1, 2, 3, 4, 5])
+    assert new_dll.pop().contents == 5

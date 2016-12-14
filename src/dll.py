@@ -36,8 +36,13 @@ class DoublyLinkedList(object):
 
     def pop(self):
         """Remove and return the current head node."""
-
-
+        if not self.head_node:
+            print("Linked list is already empty")
+            return
+        old_head_node = self.head_node
+        self.head_node = self.head_node.next_node
+        self.length -= 1
+        return old_head_node
 
 class Node(object):
     """Class representation of doubly linked list node."""
@@ -47,4 +52,3 @@ class Node(object):
         self.contents = contents
         self.next_node = next_node
         self.previous_node = previous_node
-
