@@ -5,7 +5,7 @@ import pytest
 
 @pytest.fixture
 def sample_stack():
-    """Create testing dlls."""
+    """Create testing stacks."""
     from stack import Stack
     one_stack = Stack([1])
     empty_stack = Stack()
@@ -19,14 +19,14 @@ def test_stack_empty_length():
     assert empty_stack.length == 0
 
 
-def test_stack_init_length_head_node():
-    """Test for empty Stack head node."""
+def test_stack_empty_head_node():
+    """Test for empty stack head node."""
     one_stack, empty_stack, new_stack = sample_stack()
     assert empty_stack.head_node is None
 
 
 def test_stack_new_length():
-    """Test for new Stack length."""
+    """Test for new stack length."""
     one_stack, empty_stack, new_stack = sample_stack()
     assert new_stack.length == 5
 

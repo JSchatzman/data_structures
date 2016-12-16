@@ -23,11 +23,13 @@ class Queue(object):
         """Add new head node."""
         self.dll.push(contents)
         self.head_node = self.dll.head_node
+        self.tail_node = self.dll.tail_node
 
     def dequeue(self):
         """Remove last node."""
         old_tail_node_contents = self.dll.shift()
         self.tail_node = self.dll.tail_node
+        self.head_node = self.dll.head_node
         return old_tail_node_contents
 
     def peek(self):

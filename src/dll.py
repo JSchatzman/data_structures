@@ -47,6 +47,8 @@ class DoublyLinkedList(object):
         """Remove the end of the dll."""
         if not self.tail_node:
             raise ValueError("Linked list is already empty")
+        if self.length == 1:
+            self.head_node = None
         old_tail_node_value = self.tail_node.contents
         self.tail_node = self.tail_node.previous_node
         self.length -= 1
