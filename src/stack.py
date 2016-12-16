@@ -19,6 +19,6 @@ class Stack(object):
 
     def pop(self):
         """Remove and return the current head node."""
-        old_head_node = self.linked_list.pop()
+        old_head_node_value = self.linked_list.pop()
         self.head_node = self.linked_list.head_node
-        return old_head_node
+        return old_head_node_value
