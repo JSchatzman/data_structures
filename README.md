@@ -7,3 +7,6 @@
 
 ##### 2. Stack (src/stack.py)
 
+##### 3. Doubly Linked List (src/dll.py)
+
+##### 4. Queue (src/queue.py)
