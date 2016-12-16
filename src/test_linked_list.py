@@ -73,7 +73,8 @@ def test_linkedlist_push_val():
 def test_linkedlist_pop_empty():
     """Test for Linked List pop on empty."""
     one_llist, empty_llist, new_llist = sample_linked_list()
-    assert empty_llist.pop() is None
+    with pytest.raises(AttributeError):
+        empty_llist.pop()
 
 
 def test_linkedlist_pop_one():
@@ -86,19 +87,6 @@ def test_linkedlist_pop_list():
     """Test for Linked List pop on multi-item list."""
     one_llist, empty_llist, new_llist = sample_linked_list()
     assert new_llist.pop() == 5
-
-
-def test_linkedlist_search():
-    """Test for LinkedList search."""
-    from linked_list import LinkedList
-    new_llist = LinkedList()
-    new_llist.push('test1')
-    new_llist.push('test2')
-    new_llist.push('test3')
-    new_llist.push('test4')
-    assert new_llist.search('test4').contents == 'test4'
-    assert new_llist.search('test2').contents == 'test2'
-    assert new_llist.search('test100') is None
 
 
 def test_linkedlist_search_list():

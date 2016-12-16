@@ -13,7 +13,7 @@ class LinkedList(object):
                 self.push(item)
         except TypeError:
             if iterable:
-                print("Please only enter iterable values")
+                raise TypeError("Please only enter iterable values")
 
     def push(self, contents):
         """Add node to this linked list."""
@@ -23,8 +23,7 @@ class LinkedList(object):
     def pop(self):
         """Remove and return the current head node."""
         if not self.head_node:
-            print("Linked list is already empty")
-            return
+            raise AttributeError("List is empty")
         old_head_node = self.head_node
         self.head_node = self.head_node.next_node
         self.length -= 1
