@@ -14,7 +14,7 @@ class DoublyLinkedList(object):
                 self.push(item)
         except TypeError:
             if iterable:
-                print("Please only enter iterable values")
+                return "Please only enter iterable values"
 
     def push(self, contents):
         """Add node to this dll."""
@@ -37,8 +37,7 @@ class DoublyLinkedList(object):
     def pop(self):
         """Remove and return the current head node."""
         if not self.head_node:
-            print("Linked list is already empty")
-            return
+            raise ValueError("Linked list is already empty")
         old_head_node = self.head_node
         self.head_node = self.head_node.next_node
         self.length -= 1
@@ -47,8 +46,12 @@ class DoublyLinkedList(object):
     def shift(self):
         """Remove the end of the dll."""
         if not self.tail_node:
+<<<<<<< HEAD
             print("Linked list is already empty")
             return
+=======
+            raise ValueError("Linked list is already empty")
+>>>>>>> f925959442ddffceee78e37688362eb5fff2dfc6
         old_tail_node = self.tail_node
         self.tail_node = self.tail_node.previous_node
         self.length -= 1
