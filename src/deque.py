@@ -3,7 +3,7 @@
 from dll import DoublyLinkedList
 
 
-class Queue(object):
+class Deque(object):
     """Class implementation of queue.
 
     1.  Enqueue: Add new head node.
@@ -41,5 +41,13 @@ class Queue(object):
         return self.dll.length
 
     def append(self, contents):
+        """Add value to the end of the deque."""
         self.dll.append(contents)
-        
+        self.head_node = self.dll.head_node
+        self.tail_node = self.dll_tail_node
+
+    def appendleft(self, contents):
+        """Adds value to the front of the deque."""
+        self.dll.shift(contents)
+        self.head_node = self.dll.head_node
+        self.tail_node = self.dll_tail_node
