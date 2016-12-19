@@ -47,7 +47,15 @@ class Deque(object):
         self.tail_node = self.dll_tail_node
 
     def appendleft(self, contents):
-        """Adds value to the front of the deque."""
-        self.dll.shift(contents)
+        """Add value to the front of the deque."""
+        self.dll.push(contents)
         self.head_node = self.dll.head_node
         self.tail_node = self.dll_tail_node
+
+    def pop(self):
+        """Remove and return the current tail node."""
+        return self.dll.shift()
+
+    def popleft(self):
+        """Remove and return the current head node."""
+        return self.dll.pop()
