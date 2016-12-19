@@ -19,38 +19,13 @@ class Deque(object):
         self.head_node = self.dll.head_node
         self.tail_node = self.dll.tail_node
 
-    def enqueue(self, contents):
-        """Add new head node."""
-        self.dll.push(contents)
-        self.head_node = self.dll.head_node
-        self.tail_node = self.dll.tail_node
-
-    def dequeue(self):
-        """Remove last node."""
-        old_tail_node_contents = self.dll.shift()
-        self.tail_node = self.dll.tail_node
-        self.head_node = self.dll.head_node
-        return old_tail_node_contents
-
-    def peek(self):
-        """Display but don't remove the contents of tail node."""
-        return self.dll.tail_node.contents
-
-    def size(self):
-        """Return Queue length."""
-        return self.dll.length
-
     def append(self, contents):
         """Add value to the end of the deque."""
         self.dll.append(contents)
-        self.head_node = self.dll.head_node
-        self.tail_node = self.dll_tail_node
 
     def appendleft(self, contents):
         """Add value to the front of the deque."""
         self.dll.push(contents)
-        self.head_node = self.dll.head_node
-        self.tail_node = self.dll_tail_node
 
     def pop(self):
         """Remove and return the current tail node."""
@@ -59,3 +34,10 @@ class Deque(object):
     def popleft(self):
         """Remove and return the current head node."""
         return self.dll.pop()
+
+    def peek(self):
+        """Display but don't remove the contents of tail node."""
+        return self.dll.tail_node.contents
+
+    def peekleft(self):
+        pass
