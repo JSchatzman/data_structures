@@ -72,37 +72,42 @@ Our queue implementation supports the following methods:
 
 #Testing Coverage:
 ```
-Name                           Stmts   Miss  Cover   Missing
-------------------------------------------------------------
-src/doublelinkedlist.py           68      0   100%
-src/linked_list.py                58      0   100%
-src/queue.py                      17      0   100%
-src/stack.py                       8      0   100%
-src/test_doublelinkedlist.py     103      0   100%
-src/test_linked_list.py           82      0   100%
-src/test_queue.py                 55      0   100%
-src/test_stack.py                 29      0   100%
-------------------------------------------------------------
-TOTAL                            420      0   100%
+---------- coverage: platform darwin, python 2.7.11-final-0 ----------
+Name                      Stmts   Miss  Cover   Missing
+-------------------------------------------------------
+src/deque.py                 33      6    82%   49-51, 56-58
+src/dll.py                   70      1    99%   17
+src/linked_list.py           58      3    95%   16, 26, 34
+src/queue.py                 19      0   100%
+src/stack.py                 13      0   100%
+src/test_deque.py            68      0   100%
+src/test_dll.py              82      0   100%
+src/test_linked_list.py      74      0   100%
+src/test_queue.py            64      0   100%
+src/test_stack.py            48      3    94%   88-90
+-------------------------------------------------------
+TOTAL                       529     13    98%
 
 
-========================== 66 passed in 0.22 seconds 
+========================== 78 passed in 0.21 seconds 
 
 
 ---------- coverage: platform darwin, python 3.5.2-final-0 -----------
-Name                           Stmts   Miss  Cover   Missing
-------------------------------------------------------------
-src/doublelinkedlist.py           68      0   100%
-src/linked_list.py                58      0   100%
-src/queue.py                      17      0   100%
-src/stack.py                       8      0   100%
-src/test_doublelinkedlist.py     103      0   100%
-src/test_linked_list.py           82      0   100%
-src/test_queue.py                 55      0   100%
-src/test_stack.py                 29      0   100%
-------------------------------------------------------------
-TOTAL                            420      0   100%
+Name                      Stmts   Miss  Cover   Missing
+-------------------------------------------------------
+src/deque.py                 33      6    82%   49-51, 56-58
+src/dll.py                   70      1    99%   17
+src/linked_list.py           58      3    95%   16, 26, 34
+src/queue.py                 19      0   100%
+src/stack.py                 13      0   100%
+src/test_deque.py            68      0   100%
+src/test_dll.py              82      0   100%
+src/test_linked_list.py      74      0   100%
+src/test_queue.py            64      0   100%
+src/test_stack.py            48      3    94%   88-90
+-------------------------------------------------------
+TOTAL                       529     13    98%
 
 
-========================== 66 passed in 0.21 seconds
+========================== 78 passed in 0.27 seconds
 ```
