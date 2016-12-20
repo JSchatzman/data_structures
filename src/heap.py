@@ -6,7 +6,7 @@ class Heap(object):
 
     def __init__(self, iterable=None):
         """Instantiate a heap."""
-        self.heap = [5, 9, 11, 14, 18,
+        self.data = [5, 9, 11, 14, 18,
                      19, 21, 33, 17, 27]
 
     def find_parent_index(self, index):
@@ -21,15 +21,15 @@ class Heap(object):
     def swap_nodes(self, index, parent_index):
         """Swap parent and child nodes if greater."""
         parent_index = self.find_parent_index(index)
-        old_parent = self.heap[parent_index]
-        self.heap[parent_index] = self.heap[index]
-        self.heap[index] = old_parent
+        old_parent = self.data[parent_index]
+        self.data[parent_index] = self.data[index]
+        self.data[index] = old_parent
         return parent_index
 
     def push(self, contents):
-        """Add value to the end of the heap."""
-        self.heap.append(contents)
-        index = len(self.heap) - 1
+        """Add value to the end of the data."""
+        self.data.append(contents)
+        index = len(self.data) - 1
         parent_index = self.find_parent_index(index)
         while (self.heap[index] < self.heap[parent_index]) and ((index // 2) - 1 > 0):
             index = self.swap_nodes(index, parent_index)
