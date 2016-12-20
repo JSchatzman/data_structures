@@ -31,6 +31,12 @@ class Heap(object):
         self.data.append(contents)
         index = len(self.data) - 1
         parent_index = self.find_parent_index(index)
-        while self.data[index] < self.data[parent_index]:
+        while (self.data[index] < self.data[parent_index]) and ((index // 2) > 0):
             index = self.swap_nodes(index, parent_index)
             parent_index = self.find_parent_index(index)
+        if index in (1, 2) and self.data[index] < self.data[0]:
+            self.swap_nodes(index, 0)
+
+test = Heap()
+test.push(-10)
+print (test.data)
