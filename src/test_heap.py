@@ -39,4 +39,7 @@ def test_push_sorts_order(sample_heap):
     assert sample_heap.data == [5, 6, 11, 14, 9, 19, 21, 33, 17, 27, 18]
 
 
-
+def test_push_sorts_order_to_head(sample_heap):
+    """Test if push creates the right order of heap."""
+    sample_heap.push(2)
+    assert sample_heap.data == [2, 5, 11, 14, 9, 19, 21, 33, 17, 27, 18]
