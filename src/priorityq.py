@@ -12,24 +12,24 @@ class Priorityq(object):
 
     def __init__(self, val=None):
         """Initialize the priorityq."""
-        self.data = []
+        self.data = {}
         self.length = 0
         if val:
             for i in val:
                 self.insert(i[1], i[0])
 
-    def insert(self, val, priority=0):
-        """Insert and item into the queue."""
-        self.data.append((priority, val))
-        self.length += 1
+    def insert(self, value, priority=0):
+        """Insert new value into priorityq."""
+        if priority in self.data:
+            self.data[priority].append(value)
+        self.data[priority] = [value]
 
-    def _sort(self):
-        """Helper function to sort queue based on priority."""
-        self.data = sorted(self.data, key=lambda index: index[0])
+    def peek(self):
+        """Return but don't remove the highest priority value."""
+        min_priority = min(self.data.keys())
+        return self.data[min_priority][-1]
 
-
-q = Priorityq([(2, 3), (4, 5), (5, 'hey'), (2, 'hello'),
-                        (2, 3), (2, 2), (2, 'jordan'), (10, 50), (0, -5), (5, 100)])
-
-q._sort()
-print (q.data)
+    def pop(self):
+        """Return and remove the highest priority value."""
+        min_priority = min(self.data.keys())
+        return self.data[min_priority].pop()
