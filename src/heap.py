@@ -8,7 +8,7 @@ class Heap(object):
     pop(): removes the top value in the heap,
     """
 
-    def __init__(self, iterable=None):
+    def __init__(self):
         """Instantiate a heap."""
         self.data = []
 
@@ -42,11 +42,12 @@ class Heap(object):
         if index in (1, 2) and self.data[index] < self.data[0]:
             self.swap_nodes(index, 0)
 
-
     def pop(self):
         """Remove head of the heap."""
+        if len(self.data) == 0:
+            raise IndexError('Cannot pop a empty heap!')
         val = self.data[0]
-        self.data[0] = self.data[len(self.data)-1]
+        self.data[0] = self.data[len(self.data) - 1]
         self.data.pop()
         index = 0
         while (index * 2 + 1) < len(self.data):
@@ -58,7 +59,6 @@ class Heap(object):
             index = min_child
         return val
 
-
     def find_min_child(self, index):
         """Find minimum child."""
         if index * 2 + 1 > len(self.data):
@@ -68,5 +68,3 @@ class Heap(object):
                 return index * 2 + 1
             else:
                 return index * 2 + 2
-
-
