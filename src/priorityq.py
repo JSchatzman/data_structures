@@ -20,9 +20,10 @@ class Priorityq(object):
 
     def insert(self, value, priority=0):
         """Insert new value into priorityq."""
-        if priority in self.data:
+        if priority in self.data.keys():
             self.data[priority].append(value)
-        self.data[priority] = [value]
+        else:
+            self.data[priority] = [value]
 
     def peek(self):
         """Return but don't remove the highest priority value."""
@@ -31,5 +32,8 @@ class Priorityq(object):
 
     def pop(self):
         """Return and remove the highest priority value."""
-        min_priority = min(self.data.keys())
-        return self.data[min_priority].pop()
+        try:
+            min_priority = max(self.data.keys())
+            return self.data[min_priority].pop()
+        except ValueError:
+            raise IndexError("You can't pop and empty list.")
