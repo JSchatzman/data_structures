@@ -2,7 +2,11 @@
 
 
 class Heap(object):
-    """Create heap class."""
+    """Create heap class.
+
+    push(): puts a new value into the heap,
+    pop(): removes the top value in the heap,
+    """
 
     def __init__(self, iterable=None):
         """Instantiate a heap."""
@@ -37,6 +41,30 @@ class Heap(object):
         if index in (1, 2) and self.data[index] < self.data[0]:
             self.swap_nodes(index, 0)
 
-test = Heap()
-test.push(-10)
-print (test.data)
+    def pop(self):
+        """Remove head of the heap."""
+        val = self.data[0]
+        self.data[0] = self.data[len(self.data)-1]
+        self.data.pop()
+        index = 0
+        while (index * 2 + 1) < len(self.data):
+            min_child = self.find_min_child(index)
+            if self.data[index] > self.data[min_child]:
+                old_parent = self.data[index]
+                self.data[index] = self.data[min_child]
+                self.data[min_child] = old_parent
+            index = min_child
+        return val
+
+
+    def find_min_child(self, index):
+        """Find minimum child."""
+        if index * 2 + 1 > len(self.data):
+            return index * 2
+        else:
+            if self.data[index * 2 + 1] < self.data[index * 2 + 2]:
+                return index * 2 + 1
+            else:
+                return index * 2 + 2
+
+
