@@ -6,8 +6,7 @@ class Heap(object):
 
     def __init__(self, iterable=None):
         """Instantiate a heap."""
-        self.data = [5, 9, 11, 14, 18,
-                     19, 21, 33, 17, 27]
+        self.data = []
 
     def find_parent_index(self, index):
         """Find parent index of given index."""
@@ -28,6 +27,8 @@ class Heap(object):
 
     def push(self, contents):
         """Add value to the end of the data."""
+        if len(self.data) < 1:
+            return self.data.append(contents)
         self.data.append(contents)
         index = len(self.data) - 1
         parent_index = self.find_parent_index(index)
@@ -36,7 +37,3 @@ class Heap(object):
             parent_index = self.find_parent_index(index)
         if index in (1, 2) and self.data[index] < self.data[0]:
             self.swap_nodes(index, 0)
-
-test = Heap()
-test.push(-10)
-print (test.data)
