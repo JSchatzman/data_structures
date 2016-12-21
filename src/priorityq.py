@@ -16,9 +16,9 @@ class Priorityq(object):
         self.length = 0
         if val:
             for i in val:
-                self.insert((i[1], i[0]))
+                self.insert(i[1], i[0])
 
-    def insert(self, val, priority=None):
+    def insert(self, val, priority=0):
         """Insert and item into the queue."""
         self.data.append((priority, val))
         self.length += 1
@@ -26,3 +26,10 @@ class Priorityq(object):
     def _sort(self):
         """Helper function to sort queue based on priority."""
         self.data = sorted(self.data, key=lambda index: index[0])
+
+
+q = Priorityq([(2, 3), (4, 5), (5, 'hey'), (2, 'hello'),
+                        (2, 3), (2, 2), (2, 'jordan'), (10, 50), (0, -5), (5, 100)])
+
+q._sort()
+print (q.data)
