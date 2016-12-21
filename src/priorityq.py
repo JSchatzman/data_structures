@@ -14,8 +14,9 @@ class Priorityq(object):
         """Initialize the priorityq."""
         self.data = []
         self.length = 0
-        for i in val:
-            self.data.insert(i)
+        if val:
+            for i in val:
+                self.insert((i[1], i[0]))
 
     def insert(self, val, priority=None):
         """Insert and item into the queue."""
