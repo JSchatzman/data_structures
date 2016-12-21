@@ -2,7 +2,7 @@
 
 
 class Priorityq(object):
-    """Initialise priorityq data structure.
+    """Initialize priorityq data structure.
 
     Priorityq has the following methods:
     insert(item): inserts an item into the queue.
@@ -10,10 +10,12 @@ class Priorityq(object):
     peek(): returns the most important item without removing it from the queue.
     """
 
-    def __init__(self, val=None, priority=None):
+    def __init__(self, val=None):
         """Initialize the priorityq."""
-        self.data = [(priority, val)]
+        self.data = [(val[0], val[1])]
         self.length = 0
+        for i in val:
+            self.data.insert(i)
 
     def insert(self, val, priority=None):
         """Insert and item into the queue."""
