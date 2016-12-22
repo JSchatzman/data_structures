@@ -35,6 +35,7 @@ class Heap(object):
         """Pop it."""
         if not len(self.data):
             raise IndexError('Cannot pop a empty heap!')
-        self.data.pop(0)
+        val = self.data.pop(0)
         if len(self.data) > 1:
             self.sort()
+        return val
