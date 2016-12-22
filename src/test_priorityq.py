@@ -65,3 +65,33 @@ def test_multi_pop_priorityq(sample_priorityq):
     """Test pop data on long queue."""
     return_val = sample_priorityq[2].pop()
     assert return_val == 50
+
+
+def test_multi_pop_priorityq_multiple_times(sample_priorityq):
+    """Test pop data on long queue."""
+    pq = sample_priorityq[2]
+    pq.pop()
+    pq.pop()
+    pq.pop()
+    assert pq.pop() == 5
+
+
+def test_multi_peek_priorityq(sample_priorityq):
+    """Test peek data on long queue."""
+    assert sample_priorityq[2].peek() == 50
+
+
+def test_multi_peek_priorityq(sample_priorityq):
+    """Test peek data on long queue."""
+    assert sample_priorityq[2].peek() == 50
+
+
+def test_one_peek_priorityq(sample_priorityq):
+    """Test peek data on one queue."""
+    assert sample_priorityq[1].peek() == 3
+
+
+def test_empty_peek_priorityq(sample_priorityq):
+    """Test peek data on empty queue."""
+    with pytest.raises(IndexError):
+        sample_priorityq[0].peek()

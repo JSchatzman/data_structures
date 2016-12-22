@@ -27,13 +27,19 @@ class Priorityq(object):
 
     def peek(self):
         """Return but don't remove the highest priority value."""
-        min_priority = min(self.data.keys())
-        return self.data[min_priority][-1]
+        try:
+            max_priority = max(self.data.keys())
+        except(ValueError):
+            raise IndexError('You ')
+        return self.data[max_priority][-1]
 
     def pop(self):
         """Return and remove the highest priority value."""
         try:
-            min_priority = max(self.data.keys())
-            return self.data[min_priority].pop()
+            max_priority = max(self.data.keys())
+            value = self.data[max_priority].pop()
+            if len(self.data[max_priority]) == 0:
+                del self.data[max_priority]
+            return value
         except ValueError:
             raise IndexError("You can't pop and empty list.")
