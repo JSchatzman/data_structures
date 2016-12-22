@@ -70,3 +70,9 @@ def test_pop_on_empty(sample_heap):
     """Test for pop on empty heap."""
     with pytest.raises(IndexError):
         sample_heap[0].pop()
+
+
+def test_pop_returns_a_value(sample_heap):
+    """Test pop returns a value."""
+    val = sample_heap[2].pop()
+    assert val == 5
