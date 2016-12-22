@@ -80,45 +80,62 @@ Our queue implementation supports the following methods:
 - **pop()** - removes the “top” value in the heap, maintaining the heap property.
 
 
+##Priorityq
+- **Module:** priorityq.py
+- **Tests:** test_priorityq.py
+- **Resources Used** https://en.wikipedia.org/wiki/Priority_queue
+
+- **insert(value)** - inserts a value into the queue. Takes an optional argument for that value’s priority, set by default to whatever your lowest priority is (i.e. 0, -99, whatever).
+- **pop()** - removes the most important item from the queue.
+- **peek()** - returns the most important item without removing it from the queue.
+
+
 #Testing Coverage:
 ```
+
 ---------- coverage: platform darwin, python 2.7.11-final-0 ----------
 Name                      Stmts   Miss  Cover   Missing
 -------------------------------------------------------
 src/deque.py                 33      6    82%   49-51, 56-58
 src/dll.py                   70      1    99%   17
-src/heap.py                  47      2    96%   18, 65
+src/heap.py                  24      2    92%   15-16
 src/linked_list.py           58      3    95%   16, 26, 34
+src/priorityq.py             26      0   100%
 src/queue.py                 19      0   100%
 src/stack.py                 13      0   100%
 src/test_deque.py            68      0   100%
 src/test_dll.py              82      0   100%
 src/test_heap.py             34      0   100%
 src/test_linked_list.py      74      0   100%
+src/test_priorityq.py        50      1    98%   81
 src/test_queue.py            64      0   100%
 src/test_stack.py            48      3    94%   88-90
 -------------------------------------------------------
-TOTAL                       610     15    98%
+TOTAL                       663     16    98%
 
 
-======================================================= 88 passed in 0.43 seconds 
+========================== 100 passed in 0.38 seconds ==========================
+
 ---------- coverage: platform darwin, python 3.5.2-final-0 -----------
 Name                      Stmts   Miss  Cover   Missing
 -------------------------------------------------------
 src/deque.py                 33      6    82%   49-51, 56-58
 src/dll.py                   70      1    99%   17
-src/heap.py                  47      2    96%   18, 65
+src/heap.py                  24      2    92%   15-16
 src/linked_list.py           58      3    95%   16, 26, 34
+src/priorityq.py             26      0   100%
 src/queue.py                 19      0   100%
 src/stack.py                 13      0   100%
 src/test_deque.py            68      0   100%
 src/test_dll.py              82      0   100%
 src/test_heap.py             34      0   100%
 src/test_linked_list.py      74      0   100%
+src/test_priorityq.py        50      1    98%   81
 src/test_queue.py            64      0   100%
 src/test_stack.py            48      3    94%   88-90
 -------------------------------------------------------
-TOTAL                       610     15    98%
+TOTAL                       663     16    98%
 
 
-======================================================= 88 passed in 0.50 seconds ===
+========================== 100 passed in 0.40 seconds 
+```
