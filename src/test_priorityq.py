@@ -81,11 +81,6 @@ def test_multi_peek_priorityq(sample_priorityq):
     assert sample_priorityq[2].peek() == 50
 
 
-def test_multi_peek_priorityq(sample_priorityq):
-    """Test peek data on long queue."""
-    assert sample_priorityq[2].peek() == 50
-
-
 def test_one_peek_priorityq(sample_priorityq):
     """Test peek data on one queue."""
     assert sample_priorityq[1].peek() == 3
