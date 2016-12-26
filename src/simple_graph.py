@@ -30,6 +30,12 @@ class Graph(object):
      and n2, False if not, raises an error if either of the supplied nodes
      are not in g
 
+
+
+    References:
+    https://www.python.org/doc/essays/graphs/
+    https://medium.freecodecamp.com/a-gentle-introduction-to-data-structures-how-graphs-work-a223d9ef8837#.6xbpr1l6q
+    http://stackoverflow.com/questions/19472530/representing-graphs-data-structure-in-python
     """
 
     def __init__(self, data=None):
