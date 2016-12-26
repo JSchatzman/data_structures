@@ -46,6 +46,10 @@ class Graph(object):
         """Return a list of all nodes in graph."""
         return [key for key in self.graph.keys()]
 
+    def edges(self):
+        """Return a list of all edges in the graph."""
+        return [val for val in self.graph.values()]
+
     def add_node(self, node):
         """Add a new node to graph."""
         self.graph.setdefault(node, [])
