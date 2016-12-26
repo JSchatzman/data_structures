@@ -35,7 +35,7 @@ class Graph(object):
     def __init__(self, data=None):
         """Initialize a graph instance.
 
-        Data is the key of the dict and edges are held in a list.
+        Data is the key of the dict and edges are held in a list of names.
         """
         self.graph = {}
         if data:
@@ -59,3 +59,41 @@ class Graph(object):
         self.graph.setdefault(node1, [])
         self.graph.setdefault(node2, [])
         self.graph[node1].append(node2)
+
+
+    # del_node:
+        # try:
+        #   delete key in dict
+        #   if node in self.edges():
+                 # delete any references in list of edges for other keys
+        # except ValueError:
+            # raise value error if not there
+
+
+    # del_edge(node1, node2):
+        # find node1 in keys of dictionary
+        # delete node 2 in list --> list remove function
+        # raise value error if not there
+
+
+    # has_node(node):
+        # return node in self.nodes()
+        # should return true if in list and false if not
+
+
+    # neighbours(node):
+        # return edges for input node
+            # return self.graph[node]
+        # else: raise value error?
+
+
+    # adjacent(node1, node2):
+        # find node 1 key and check if node2 is in value list
+            # try:
+                # return node2 in self.graph[node1]
+            # except ValueError:
+                # raise ValueError('node is not in the graph')
+
+
+
+
