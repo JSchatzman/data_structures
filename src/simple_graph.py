@@ -48,7 +48,7 @@ class Graph(object):
 
     def edges(self):
         """Return a list of all edges in the graph."""
-        return [val for val in self.graph.values()]
+        return [val for val in self.graph.values() if len(val) > 0]
 
     def add_node(self, node):
         """Add a new node to graph."""
@@ -58,7 +58,8 @@ class Graph(object):
         """Add an edge between node1 and node2."""
         self.graph.setdefault(node1, [])
         self.graph.setdefault(node2, [])
-        self.graph[node1].append(node2)
+        if node2 not in self.graph[node1]:
+            self.graph[node1].append(node2)
 
 
     # del_node:
