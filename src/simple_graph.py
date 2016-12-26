@@ -42,6 +42,10 @@ class Graph(object):
             for i in data:
                 self.add_node(i)
 
+    def nodes(self):
+        """Return a list of all nodes in graph."""
+        return [key for key in self.graph.keys()]
+
     def add_node(self, node):
         """Add a new node to graph."""
         self.graph.setdefault(node, [])
