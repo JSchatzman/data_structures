@@ -82,3 +82,12 @@ def test_list_of_multiple_nodes_is_displayed(sample_graph):
     many_nodes = sample_graph[2].nodes()
     many_nodes.sort()
     assert many_nodes == ['A', 'B', 'C', 'D']
+
+
+def test_edges_are_displayed(sample_graph):
+    """Test all edges are displayed in a list."""
+    sample_graph[2].add_edge('A', 'B')
+    sample_graph[2].add_edge('C', 'A')
+    sample_graph[2].add_edge('C', 'B')
+    all_edges = sample_graph[2].edges()
+    assert sorted(all_edges) == [['A', 'B'], ['B']]
