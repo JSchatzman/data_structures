@@ -85,7 +85,7 @@ def test_linkedlist_search_list(sample_linked_list):
     assert sample_linked_list[2].search(2).contents == 2
 
 
-def tst_linkedlist_search_empty():
+def test_linkedlist_search_empty():
     """Test for LinkedList search empty list."""
     one_llist, empty_llist, new_llist = sample_linked_list()
     assert empty_llist.search(2) is None
