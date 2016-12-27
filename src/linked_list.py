@@ -53,7 +53,7 @@ class LinkedList(object):
             self.head_node = self.head_node.next_node
             self.length -= 1
             return None
-        elif self.lenth == 0:
+        elif self.length == 0:
             raise IndexError("The list is already empty.")
         current_node = self.head_node
         while current_node.next_node != remove_node:
