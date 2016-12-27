@@ -47,19 +47,20 @@ class LinkedList(object):
         else:
             return None
 
-    def remove(self, remove_node):
+    def remove(self, remove_value):
         """Remove a node from linked list."""
-        if remove_node == self.head_node:
-            self.head_node = self.head_node.next_node
-            self.length -= 1
-            return None
-        elif self.length == 0:
-            raise IndexError("The list is already empty.")
+        last_node = None
         current_node = self.head_node
-        while current_node.next_node != remove_node:
+        while current_node:
+            if current_node.contents == remove_value:
+                if last_node:
+                    last_node.next_node = current_node.next_node
+                else:
+                    self.head_node = current_node.next_node
+                self.length -= 1
+                return
+            last_node = current_node
             current_node = current_node.next_node
-        current_node.next_node = current_node.next_node.next_node
-        self.length -= 1
 
     def display(self):
         """Return the tuple of all values in linked list."""
@@ -81,3 +82,8 @@ class Node(object):
         """Instantiate linked list node."""
         self.contents = contents
         self.next_node = next_node
+
+
+test = LinkedList([4,3,'blah',1])
+test.remove(1)
+print (test.display())
