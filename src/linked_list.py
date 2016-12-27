@@ -23,7 +23,7 @@ class LinkedList(object):
     def pop(self):
         """Remove and return the current head node."""
         if not self.head_node:
-            raise IndexError("List is empty")
+            raise IndexError("List is already empty")
         old_head_node = self.head_node
         self.head_node = self.head_node.next_node
         self.length -= 1
@@ -53,8 +53,8 @@ class LinkedList(object):
             self.head_node = self.head_node.next_node
             self.length -= 1
             return None
-        elif remove_node is None:
-            raise ValueError("Provided value not in list.")
+        elif self.lenth == 0:
+            raise IndexError("The list is already empty.")
         current_node = self.head_node
         while current_node.next_node != remove_node:
             current_node = current_node.next_node
