@@ -5,7 +5,7 @@ class DoublyLinkedList(object):
     """Class representation of doubly linked list."""
 
     def __init__(self, iterable=None):
-        """Instantiate linked list."""
+        """Instantiate doubly linked list."""
         self.head_node = None
         self.tail_node = None
         self.length = 0
@@ -14,19 +14,19 @@ class DoublyLinkedList(object):
                 self.push(item)
         except TypeError:
             if iterable:
-                return "Please only enter iterable values"
+                raise TypeError("Please only enter iterable values")
 
     def push(self, contents):
-        """Add node to this dll."""
+        """Add node to the head of this dll."""
         if self.length == 0:
-            self.head_node = Node(contents, None, None)
+            self.head_node, self.tail_node = Node(contents, None, None)
             self.tail_node = self.head_node
         else:
             self.head_node = Node(contents, self.head_node, None)
         self.length += 1
 
     def append(self, contents):
-        """Add node to this dll."""
+        """Add node to the tail of this dll."""
         if self.length == 0:
             self.tail_node = Node(contents, None, None)
             self.head_node = self.tail_node
@@ -90,3 +90,11 @@ class Node(object):
         self.contents = contents
         self.next_node = next_node
         self.previous_node = previous_node
+
+
+test = DoublyLinkedList('abcdef')
+print(test.head_node.contents)
+# print(test.head_node.next_node.contents)
+# print(test.head_node.next_node.next_node.contents)
+# print(test.head_node.next_node.next_node.next_node.contents)
+# print(test.head_node.next_node.next_node.next_node.next_node.next_node.contents)
