@@ -16,25 +16,22 @@ class Queue(object):
     def __init__(self, iterable=None):
         """Instatiate Queue."""
         self.dll = DoublyLinkedList(iterable)
-        self.head_node = self.dll.head_node
-        self.tail_node = self.dll.tail_node
 
     def enqueue(self, contents):
         """Add new head node."""
         self.dll.push(contents)
-        self.head_node = self.dll.head_node
-        self.tail_node = self.dll.tail_node
 
     def dequeue(self):
         """Remove last node."""
         old_tail_node_contents = self.dll.shift()
-        self.tail_node = self.dll.tail_node
-        self.head_node = self.dll.head_node
         return old_tail_node_contents
 
     def peek(self):
         """Display but don't remove the contents of tail node."""
-        return self.dll.tail_node.contents
+        try:
+            return self.dll.tail_node.contents
+        except AttributeError:
+            return None
 
     def size(self):
         """Return Queue length."""
