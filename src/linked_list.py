@@ -81,4 +81,4 @@ class Node(object):
     def __init__(self, contents, next_node):
         """Instantiate linked list node."""
         self.contents = contents
-self.next_node = next_node
+        self.next_node = next_node
