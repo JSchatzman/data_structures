@@ -7,7 +7,7 @@ class Queue(object):
     """Class implementation of queue.
 
     1.  Enqueue: Add new head node.
-    2.  Dequeue: Remove tail node.
+    2.  Dequeue: Remove and return tail node value.
     3.  Peek: Display tail node,
     4.  Size: Display queue length.
 
@@ -22,7 +22,7 @@ class Queue(object):
         self.dll.push(contents)
 
     def dequeue(self):
-        """Remove last node."""
+        """Remove and return last node value."""
         try:
             old_tail_node_contents = self.dll.shift()
             return old_tail_node_contents
