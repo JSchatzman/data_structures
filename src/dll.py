@@ -23,6 +23,7 @@ class DoublyLinkedList(object):
             self.tail_node = self.head_node
         else:
             self.head_node = Node(contents, self.head_node, None)
+            self.head_node.next_node.previous_node = self.head_node
         self.length += 1
 
     def append(self, contents):
