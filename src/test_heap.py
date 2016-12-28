@@ -20,12 +20,10 @@ HEAP_POP_CHECKER = [
 def sample_heap():
     """Create testing heap."""
     from heap import Heap
-    test_heap = Heap()
-    test_heap.data = [5, 9, 11, 14, 18,
-                      19, 21, 33, 17, 27]
+    test_heap = Heap([5, 9, 11, 14, 18,
+                      19, 21, 33, 17, 27])
     empty_heap = Heap()
-    one_heap = Heap()
-    one_heap.data = [5]
+    one_heap = Heap(5)
     return empty_heap, one_heap, test_heap
 
 
