@@ -13,11 +13,7 @@ class LinkedList(object):
                 self.push(item)
         except TypeError:
             if iterable:
-<<<<<<< HEAD
-                return "Please only enter iterable values"
-=======
                 raise TypeError("Please only enter iterable values")
->>>>>>> dc108d412a8573f34ccce20cb471d8f2ed2f1fcd
 
     def push(self, contents):
         """Add node to this linked list."""
@@ -27,11 +23,7 @@ class LinkedList(object):
     def pop(self):
         """Remove and return the current head node."""
         if not self.head_node:
-<<<<<<< HEAD
-            return "Linked list is already empty"
-=======
             raise IndexError("List is already empty")
->>>>>>> dc108d412a8573f34ccce20cb471d8f2ed2f1fcd
         old_head_node = self.head_node
         self.head_node = self.head_node.next_node
         self.length -= 1
@@ -80,11 +72,7 @@ class LinkedList(object):
             while current_node.next_node is not None:
                 current_node = current_node.next_node
                 new_list.append(current_node.contents)
-<<<<<<< HEAD
-            return tuple(new_list)
-=======
             return str(tuple(new_list))
->>>>>>> dc108d412a8573f34ccce20cb471d8f2ed2f1fcd
 
 
 class Node(object):
@@ -93,4 +81,4 @@ class Node(object):
     def __init__(self, contents, next_node):
         """Instantiate linked list node."""
         self.contents = contents
-        self.next_node = next_node
+self.next_node = next_node
