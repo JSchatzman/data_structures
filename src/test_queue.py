@@ -28,26 +28,26 @@ def test_queue_one_init():
 
 
 def test_queue_init():
-    """Test for queue init."""
+    """Test for new queue init."""
     one_queue, empty_queue, new_queue = sample_queue()
     assert new_queue.head_node.contents == 5
     assert new_queue.tail_node.contents == 1
 
 
 def test_queue_init_head():
-    """Test for empty queue head node."""
+    """Test for new queue head node."""
     one_queue, empty_queue, new_queue = sample_queue()
     assert new_queue.head_node.contents == 5
 
 
 def test_queue_init_tail():
-    """Test for empty queue tail node."""
+    """Test for new queue tail node."""
     one_queue, empty_queue, new_queue = sample_queue()
     assert new_queue.tail_node.contents == 1
 
 
 def test_queue_enqueue():
-    """Test for enqueue on queue."""
+    """Test for enqueue on new queue."""
     one_queue, empty_queue, new_queue = sample_queue()
     new_queue.enqueue("hey")
     assert new_queue.head_node.contents == "hey"
@@ -61,13 +61,13 @@ def test_queue_enqueue_on_empty():
 
 
 def test_queue_dequeue():
-    """Test for enqueue on queue."""
+    """Test for dequeue on new queue."""
     one_queue, empty_queue, new_queue = sample_queue()
     assert new_queue.dequeue() == 1
 
 
 def test_queue_dequeue_on_empty():
-    """Test for enqueue on empty queue."""
+    """Test for dequeue on empty queue."""
     one_queue, empty_queue, new_queue = sample_queue()
     with pytest.raises(ValueError):
         empty_queue.dequeue()
@@ -82,7 +82,7 @@ def test_queue_one_dequeue():
 
 
 def test_queue_peek():
-    """Test peek on queue."""
+    """Test peek on new queue."""
     one_queue, empty_queue, new_queue = sample_queue()
     assert new_queue.peek() == 1
 
@@ -94,7 +94,25 @@ def test_one_queue_peek():
 
 
 def test_empty_queue_peek():
-    """Test peek on queue."""
+    """Test peek on empty queue."""
     one_queue, empty_queue, new_queue = sample_queue()
     with pytest.raises(AttributeError):
         empty_queue.peek()
+
+
+def test_one_queue_size():
+    """Test size on queue with one item."""
+    one_queue, empty_queue, new_queue = sample_queue()
+    assert one_queue.size() == 1
+
+
+def test_empty_queue_size():
+    """Test size on empty queue."""
+    one_queue, empty_queue, new_queue = sample_queue()
+    assert empty_queue.size() == 0
+
+
+def test_new_queue_size():
+    """Test peek on new queue."""
+    one_queue, empty_queue, new_queue = sample_queue()
+    assert new_queue.size() == 5
