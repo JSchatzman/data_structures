@@ -82,8 +82,3 @@ class Node(object):
         """Instantiate linked list node."""
         self.contents = contents
         self.next_node = next_node
-
-
-test = LinkedList([4,3,'blah',1])
-test.remove(1)
-print (test.display())
