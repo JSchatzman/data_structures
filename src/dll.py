@@ -5,19 +5,19 @@ class DoublyLinkedList(object):
     """Class representation of doubly linked list."""
 
     def __init__(self, iterable=None):
-        """Instantiate linked list."""
+        """Instantiate doubly linked list."""
         self.head_node = None
         self.tail_node = None
         self.length = 0
-        try:
-            for item in iterable:
-                self.push(item)
-        except TypeError:
-            if iterable:
-                return "Please only enter iterable values"
+        if iterable:
+            try:
+                for item in iterable:
+                    self.push(item)
+            except TypeError:
+                raise TypeError("Please only enter iterable values")
 
     def push(self, contents):
-        """Add node to this dll."""
+        """Add node to the head of this dll."""
         if self.length == 0:
             self.head_node = Node(contents, None, None)
             self.tail_node = self.head_node
@@ -26,7 +26,7 @@ class DoublyLinkedList(object):
         self.length += 1
 
     def append(self, contents):
-        """Add node to this dll."""
+        """Add node to the tail of this dll."""
         if self.length == 0:
             self.tail_node = Node(contents, None, None)
             self.head_node = self.tail_node
@@ -37,7 +37,7 @@ class DoublyLinkedList(object):
     def pop(self):
         """Remove and return the current head node."""
         if not self.head_node:
-            raise ValueError("Linked list is already empty")
+            raise IndexError("Linked list is already empty")
         old_head_node_value = self.head_node.contents
         self.head_node = self.head_node.next_node
         self.length -= 1
@@ -46,9 +46,7 @@ class DoublyLinkedList(object):
     def shift(self):
         """Remove the end of the dll."""
         if not self.tail_node:
-            raise ValueError("Linked list is already empty")
-        if self.length == 1:
-            self.head_node = None
+            raise IndexError("Linked list is already empty")
         old_tail_node_value = self.tail_node.contents
         self.tail_node = self.tail_node.previous_node
         self.length -= 1
