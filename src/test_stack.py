@@ -72,7 +72,7 @@ def test_stack_one_pop_contents(sample_stack):
     assert sample_stack[1].head_node is None
 
 
-def tst_stack_empty_pop(sample_stack):
+def test_stack_empty_pop(sample_stack):
     """Test that pop empty stack throws correct error."""
-    with pytest.raises(TypeError):
+    with pytest.raises(IndexError):
         sample_stack[0].pop()
