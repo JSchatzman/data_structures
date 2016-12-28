@@ -67,40 +67,37 @@ class Graph(object):
         if node2 not in self.graph[node1]:
             self.graph[node1].append(node2)
 
+    def del_node(self, node):
+        """Delete the inputted node from the graph."""
+        if node not in self.graph:
+            raise IndexError('The input node is not in the graph')
+        del self.graph[node]
+        for edge_list in self.graph.values():
+            if node in edge_list:
+                edge_list.remove(node)
 
-    # del_node:
-        # try:
-        #   delete key in dict
-        #   if node in self.edges():
-                 # delete any references in list of edges for other keys
-        # except ValueError:
-            # raise value error if not there
+    def del_edge(self, node1, node2):
+        """Delete the edge connecting node1 to node 2 if it exists."""
+        if node2 not in self.graph[node1]:
+            raise IndexError('This edge does not exist.')
+        self.graph[node1].remove(node2)
 
+    def has_node(self, node):
+        """Return true if the input node is in the graph, else False."""
+        if node in self.graph:
+            return True
+        return False
 
-    # del_edge(node1, node2):
-        # find node1 in keys of dictionary
-        # delete node 2 in list --> list remove function
-        # raise value error if not there
+    def neighbours(self, node):
+        """Return the list of nodes connected to the input node."""
+        if node not in self.graph:
+            raise IndexError('The input node is not in the graph')
+        return self.graph[node]
 
-
-    # has_node(node):
-        # return node in self.nodes()
-        # should return true if in list and false if not
-
-
-    # neighbours(node):
-        # return edges for input node
-            # return self.graph[node]
-        # else: raise value error?
-
-
-    # adjacent(node1, node2):
-        # find node 1 key and check if node2 is in value list
-            # try:
-                # return node2 in self.graph[node1]
-            # except ValueError:
-                # raise ValueError('node is not in the graph')
-
-
-
-
+    def adjacent(self, node1, node2):
+        """Return True if there is an edge connecting n1 and n2."""
+        if node1 not in self.graph or node2 not in self.graph:
+            raise IndexError()
+        if node2 in self.graph[node1]:
+            return True
+        return False
