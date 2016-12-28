@@ -9,17 +9,17 @@ class DoublyLinkedList(object):
         self.head_node = None
         self.tail_node = None
         self.length = 0
-        try:
-            for item in iterable:
-                self.push(item)
-        except TypeError:
-            if iterable:
+        if iterable:
+            try:
+                for item in iterable:
+                    self.push(item)
+            except TypeError:
                 raise TypeError("Please only enter iterable values")
 
     def push(self, contents):
         """Add node to the head of this dll."""
         if self.length == 0:
-            self.head_node, self.tail_node = Node(contents, None, None)
+            self.head_node = Node(contents, None, None)
             self.tail_node = self.head_node
         else:
             self.head_node = Node(contents, self.head_node, None)
@@ -37,7 +37,7 @@ class DoublyLinkedList(object):
     def pop(self):
         """Remove and return the current head node."""
         if not self.head_node:
-            raise ValueError("Linked list is already empty")
+            raise IndexError("Linked list is already empty")
         old_head_node_value = self.head_node.contents
         self.head_node = self.head_node.next_node
         self.length -= 1
@@ -46,7 +46,7 @@ class DoublyLinkedList(object):
     def shift(self):
         """Remove the end of the dll."""
         if not self.tail_node:
-            raise ValueError("Linked list is already empty")
+            raise IndexError("Linked list is already empty")
         old_tail_node_value = self.tail_node.contents
         self.tail_node = self.tail_node.previous_node
         self.length -= 1
@@ -90,11 +90,3 @@ class Node(object):
         self.contents = contents
         self.next_node = next_node
         self.previous_node = previous_node
-
-
-test = DoublyLinkedList('abcdef')
-print(test.head_node.contents)
-# print(test.head_node.next_node.contents)
-# print(test.head_node.next_node.next_node.contents)
-# print(test.head_node.next_node.next_node.next_node.contents)
-# print(test.head_node.next_node.next_node.next_node.next_node.next_node.contents)
