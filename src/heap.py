@@ -8,12 +8,15 @@ class Heap(object):
     pop(): removes the top value in the heap,
     """
 
-    def __init__(self, val=None):
+    def __init__(self, val=''):
         """Instantiate a heap."""
         self.data = []
-        if val:
+        try:
             for item in val:
-                self.push(val)
+                self.push(item)
+        except TypeError:
+            self.data.append(val)
+
 
     def sort(self):
         """Organize the binary heap according to the heaps rules."""
