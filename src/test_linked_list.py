@@ -70,7 +70,7 @@ def test_linkedlist_pop_empty(sample_linked_list):
         sample_linked_list[0].pop()
 
 
-def tesst_linkedlist_pop_one(sample_linked_list):
+def test_linkedlist_pop_one(sample_linked_list):
     """Test for Linked List pop on list with one item."""
     assert sample_linked_list[1].pop() == 1
 
@@ -85,53 +85,49 @@ def test_linkedlist_search_list(sample_linked_list):
     assert sample_linked_list[2].search(2).contents == 2
 
 
-def test_linkedlist_search_empty():
+def test_linkedlist_search_empty(sample_linked_list):
     """Test for LinkedList search empty list."""
-    one_llist, empty_llist, new_llist = sample_linked_list()
-    assert empty_llist.search(2) is None
+    assert sample_linked_list[1].search(2) is None
 
 
-def tst_linkedlist_search_list_false():
+def test_linkedlist_search_list_false(sample_linked_list):
     """Test for LinkedList search list when search value is not in list."""
-    one_llist, empty_llist, new_llist = sample_linked_list()
-    assert new_llist.search(100) is None
+    assert sample_linked_list[2].search(100) is None
 
 
-def tst_linkedlist_remove():
-    """Test LinkedList remove() on a list."""
-    one_llist, empty_llist, new_llist = sample_linked_list()
-    new_llist.remove(new_llist.search(3))
-    assert new_llist.search(3) is None
-    assert new_llist.search(4).next_node.contents == 2
+def test_linkedlist_remove(sample_linked_list):
+    """Test that removed value is gone after remove()."""
+    sample_linked_list[2].remove(3)
+    assert sample_linked_list[2].search(3) is None
 
 
-def tst_linkedlist_remove_head():
+def test_linkedlist_remove_pointers(sample_linked_list):
+    """Test that previous node points to correct node after remove()."""
+    sample_linked_list[2].remove(3)
+    assert sample_linked_list[2].search(4).next_node.contents == 2
+
+
+def test_linkedlist_remove_head(sample_linked_list):
     """Test LinkedList remove() the head on a list."""
-    one_llist, empty_llist, new_llist = sample_linked_list()
-    new_llist.remove(new_llist.search(5))
-    assert new_llist.head_node.contents == 4
+    sample_linked_list[2].remove(5)
+    assert sample_linked_list[2].head_node.contents == 4
 
 
-def tst_linkedlist_remove_empty():
-    """Test LinkedList remove() on a list list."""
-    one_llist, empty_llist, new_llist = sample_linked_list()
-    with pytest.raises(ValueError):
-        new_llist.remove(new_llist.search(100))
+def test_linkedlist_remove_empty(sample_linked_list):
+    """Test LinkedList remove() on an empty linked list."""
+    sample_linked_list[1].remove(5) is None
 
 
-def tst_linkedlist_display():
+def test_linkedlist_display(sample_linked_list):
     """Test for LinkedList display."""
-    one_llist, empty_llist, new_llist = sample_linked_list()
-    assert new_llist.display() == (5, 4, 3, 2, 1)
+    assert sample_linked_list[2].display() == '(5, 4, 3, 2, 1)'
 
 
-def tst_linkedlist_display_one():
+def test_linkedlist_display_one(sample_linked_list):
     """Test for LinkedList display on single item list."""
-    one_llist, empty_llist, new_llist = sample_linked_list()
-    assert one_llist.display() == (1,)
+    assert sample_linked_list[1].display() == '(1,)'
 
 
-def est_linkedlist_display_empty():
+def test_linkedlist_display_empty(sample_linked_list):
     """Test for LinkedList display on empty list."""
-    one_llist, empty_llist, new_llist = sample_linked_list()
-    assert empty_llist.display() is None
+    assert sample_linked_list[0].display() is None
