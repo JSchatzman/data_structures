@@ -22,3 +22,9 @@ class Stack(object):
         old_head_node_value = self.linked_list.pop()
         self.head_node = self.linked_list.head_node
         return old_head_node_value
+
+test = Stack([1,2,3])
+print (test.pop())
+print (test.pop())
+print (test.pop())
+print (test.pop())

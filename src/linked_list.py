@@ -13,7 +13,11 @@ class LinkedList(object):
                 self.push(item)
         except TypeError:
             if iterable:
+<<<<<<< HEAD
                 return "Please only enter iterable values"
+=======
+                raise TypeError("Please only enter iterable values")
+>>>>>>> dc108d412a8573f34ccce20cb471d8f2ed2f1fcd
 
     def push(self, contents):
         """Add node to this linked list."""
@@ -23,7 +27,11 @@ class LinkedList(object):
     def pop(self):
         """Remove and return the current head node."""
         if not self.head_node:
+<<<<<<< HEAD
             return "Linked list is already empty"
+=======
+            raise IndexError("List is already empty")
+>>>>>>> dc108d412a8573f34ccce20cb471d8f2ed2f1fcd
         old_head_node = self.head_node
         self.head_node = self.head_node.next_node
         self.length -= 1
@@ -47,19 +55,20 @@ class LinkedList(object):
         else:
             return None
 
-    def remove(self, remove_node):
+    def remove(self, remove_value):
         """Remove a node from linked list."""
-        if remove_node == self.head_node:
-            self.head_node = self.head_node.next_node
-            self.length -= 1
-            return None
-        elif remove_node is None:
-            raise ValueError("Provided value not in list.")
+        last_node = None
         current_node = self.head_node
-        while current_node.next_node != remove_node:
+        while current_node:
+            if current_node.contents == remove_value:
+                if last_node:
+                    last_node.next_node = current_node.next_node
+                else:
+                    self.head_node = current_node.next_node
+                self.length -= 1
+                return
+            last_node = current_node
             current_node = current_node.next_node
-        current_node.next_node = current_node.next_node.next_node
-        self.length -= 1
 
     def display(self):
         """Return the tuple of all values in linked list."""
@@ -71,7 +80,11 @@ class LinkedList(object):
             while current_node.next_node is not None:
                 current_node = current_node.next_node
                 new_list.append(current_node.contents)
+<<<<<<< HEAD
             return tuple(new_list)
+=======
+            return str(tuple(new_list))
+>>>>>>> dc108d412a8573f34ccce20cb471d8f2ed2f1fcd
 
 
 class Node(object):
