@@ -23,8 +23,11 @@ class Queue(object):
 
     def dequeue(self):
         """Remove last node."""
-        old_tail_node_contents = self.dll.shift()
-        return old_tail_node_contents
+        try:
+            old_tail_node_contents = self.dll.shift()
+            return old_tail_node_contents
+        except IndexError:
+            raise IndexError('Queue is already empty.')
 
     def peek(self):
         """Display but don't remove the contents of tail node."""
