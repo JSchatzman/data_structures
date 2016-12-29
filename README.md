@@ -69,12 +69,12 @@ Our dequeue implementation supports the following methods:
 - **size()** - returns the count of items in the queue (returns 0 if the queue is empty)
 
 
-##Heap
+##Binary Heap - Minimum
 - **Module:** heap.py
 - **Tests:** test_heap.py
 - **Resources Used** https://interactivepython.org/runestone/static/pythonds/Trees/BinaryHeapImplementation.html
 
-Our queue implementation supports the following methods:
+Our binary heap implementation supports the following methods:
 
 - **push()** - puts a new value into the heap, maintaining the heap property.
 - **pop()** - removes the “top” value in the heap, maintaining the heap property.
@@ -87,18 +87,21 @@ Name                      Stmts   Miss  Cover   Missing
 -------------------------------------------------------
 src/deque.py                 33      6    82%   49-51, 56-58
 src/dll.py                   70      1    99%   17
-src/heap.py                  47      2    96%   18, 65
+src/heap.py                  38      0   100%
 src/linked_list.py           58      3    95%   16, 26, 34
 src/queue.py                 19      0   100%
 src/stack.py                 13      0   100%
 src/test_deque.py            68      0   100%
 src/test_dll.py              82      0   100%
-src/test_heap.py             34      0   100%
+src/test_heap.py             54      0   100%
 src/test_linked_list.py      74      0   100%
 src/test_queue.py            64      0   100%
 src/test_stack.py            48      3    94%   88-90
 -------------------------------------------------------
-TOTAL                       610     15    98%
+TOTAL                       621     13    98%
+
+
+========================== 93 passed in 0.29 seconds ==
 
 
 ======================================================= 88 passed in 0.43 seconds 
@@ -107,18 +110,19 @@ Name                      Stmts   Miss  Cover   Missing
 -------------------------------------------------------
 src/deque.py                 33      6    82%   49-51, 56-58
 src/dll.py                   70      1    99%   17
-src/heap.py                  47      2    96%   18, 65
+src/heap.py                  38      0   100%
 src/linked_list.py           58      3    95%   16, 26, 34
 src/queue.py                 19      0   100%
 src/stack.py                 13      0   100%
 src/test_deque.py            68      0   100%
 src/test_dll.py              82      0   100%
-src/test_heap.py             34      0   100%
+src/test_heap.py             54      0   100%
 src/test_linked_list.py      74      0   100%
 src/test_queue.py            64      0   100%
 src/test_stack.py            48      3    94%   88-90
 -------------------------------------------------------
-TOTAL                       610     15    98%
+TOTAL                       621     13    98%
 
 
-======================================================= 88 passed in 0.50 seconds ===
+========================== 93 passed in 0.43 seconds 
+```
