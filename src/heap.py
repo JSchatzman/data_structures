@@ -8,7 +8,7 @@ class Heap(object):
     pop(): removes the top value in the heap,
     """
 
-    def __init__(self):
+    def __init__(self, data=''):
         """Instantiate a heap."""
         self.data = []
 
