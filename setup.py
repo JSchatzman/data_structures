@@ -1,13 +1,13 @@
-"""The setup for Mailroom distribution."""
+"""The setup for data structures."""
 
 from setuptools import setup
 
 setup(
     name='data_structures',
-    description='Implementation of Data Structures.',
+    description='Implementation of Data Structures in Python.',
     version=0.1,
-    author='Jordan Schatzman, Julien Wilson',
-    author_email='j.schatzman@outlook.com, julienawilson@gmail.com',
+    author='Jordan Schatzman, Julien Wilson, Claire Gatenby',
+    author_email='j.schatzman@outlook.com, julienawilson@gmail.com, clairejgatenby@gmail.com',
     license='MIT',
     package_dir={'': 'src'},
     py_modules=['linked_list', 'stack'],
