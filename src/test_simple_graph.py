@@ -96,3 +96,105 @@ def test_edges_are_displayed(sample_graph):
 def test_edges_when_there_are_none(sample_graph):
     """Test no edges are displayed when there are none."""
     assert sample_graph[2].edges() == []
+
+
+def test_delete_invalid_node(sample_graph):
+    """Test deletion of node when it does not exist."""
+    with pytest.raises(IndexError):
+        assert sample_graph[2].del_node('X')
+
+
+def test_delete_from_empty_graph(sample_graph):
+    """Test deletion from empty graph."""
+    with pytest.raises(IndexError):
+        assert sample_graph[0].del_node('X')
+
+
+def test_delete_node_from_sample_graph(sample_graph):
+    """Test deletion from sample graph."""
+    test_graph = sample_graph[2]
+    test_graph.add_edge('A', 'B')
+    test_graph.add_edge('A', 'C')
+    test_graph.add_edge('A', 'D')
+    test_graph.del_node('B')
+    assert 'B' not in test_graph.graph
+    assert 'B' not in test_graph.graph['A']
+
+
+def test_delete_edge(sample_graph):
+    """Test deletion of edge from graph."""
+    test_graph = sample_graph[2]
+    test_graph.add_edge('A', 'B')
+    test_graph.add_edge('A', 'C')
+    test_graph.add_edge('A', 'D')
+    test_graph.del_edge('A', 'B')
+    assert test_graph.graph['A'] == ['C', 'D']
+
+
+def test_delete_invalid_edge(sample_graph):
+    """Test deletion of invalid edge from graph."""
+    test_graph = sample_graph[2]
+    test_graph.add_edge('A', 'B')
+    test_graph.add_edge('A', 'C')
+    test_graph.add_edge('A', 'D')
+    with pytest.raises(IndexError):
+        assert test_graph.del_edge('A', 'X')
+
+
+def test_had_valid_node(sample_graph):
+    """Test that has_node works correctly for valid node."""
+    assert sample_graph[2].has_node('A')
+
+
+def test_had_invalid_node(sample_graph):
+    """Test that has_node works correctly for invalid node."""
+    assert not sample_graph[2].has_node('X')
+
+
+def test_neighbors_invalid(sample_graph):
+    """Test that neighbors throws error if invalid node."""
+    with pytest.raises(IndexError):
+        assert sample_graph[2].neighbours('X')
+
+
+def test_neighbors_invalid_empty(sample_graph):
+    """Test that neighbors throws error on empty graph."""
+    with pytest.raises(IndexError):
+        assert sample_graph[0].neighbours('X')
+
+
+def test_neighbors_valid(sample_graph):
+    """Test that neighbors returns node connections."""
+    test_graph = sample_graph[2]
+    test_graph.add_edge('A', 'B')
+    test_graph.add_edge('A', 'C')
+    test_graph.add_edge('A', 'D')
+    assert test_graph.neighbours('A') == ['B', 'C', 'D']
+
+
+def test_adjacent_invalid(sample_graph):
+    """Test that adjacent throws error if invalid node."""
+    test_graph = sample_graph[2]
+    test_graph.add_edge('A', 'B')
+    test_graph.add_edge('A', 'C')
+    test_graph.add_edge('A', 'D')
+    with pytest.raises(IndexError):
+        assert test_graph.adjacent('X', 'A')
+    with pytest.raises(IndexError):
+        assert test_graph.adjacent('B', 'X')
+
+
+def test_adjacent_for_invalid_edge(sample_graph):
+    """Test that adjacent returns False if edge does not exist."""
+    test_graph = sample_graph[2]
+    test_graph.add_edge('A', 'B')
+    test_graph.add_edge('A', 'C')
+    assert not test_graph.adjacent('A', 'D')
+
+
+def test_adjacent_for_valid_edge(sample_graph):
+    """Test that adjacent returns True for existing edgge."""
+    test_graph = sample_graph[2]
+    test_graph.add_edge('A', 'B')
+    test_graph.add_edge('A', 'C')
+    assert test_graph.adjacent('A', 'C')

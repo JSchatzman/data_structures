@@ -97,7 +97,7 @@ class Graph(object):
     def adjacent(self, node1, node2):
         """Return True if there is an edge connecting n1 and n2."""
         if node1 not in self.graph or node2 not in self.graph:
-            raise IndexError()
+            raise IndexError('One or both of these nodes is not in the graph.')
         if node2 in self.graph[node1]:
             return True
         return False
