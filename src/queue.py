@@ -5,12 +5,10 @@ from dll import DoublyLinkedList
 
 class Queue(object):
     """Class implementation of queue.
-
     1.  Enqueue: Add new head node.
     2.  Dequeue: Remove and return tail node value.
     3.  Peek: Display tail node,
     4.  Size: Display queue length.
-
     """
 
     def __init__(self, iterable=None):

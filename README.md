@@ -102,17 +102,26 @@ TOTAL                       610     15    98%
 
 
 ======================================================= 88 passed in 0.43 seconds 
+=======
+TOTAL                       529     13    98%
+
+
+========================== 78 passed in 0.21 seconds 
+
+
 ---------- coverage: platform darwin, python 3.5.2-final-0 -----------
 Name                      Stmts   Miss  Cover   Missing
 -------------------------------------------------------
 src/deque.py                 33      6    82%   49-51, 56-58
 src/dll.py                   70      1    99%   17
+<<<<<<< HEAD
 src/heap.py                  47      2    96%   18, 65
 src/linked_list.py           58      3    95%   16, 26, 34
 src/queue.py                 19      0   100%
 src/stack.py                 13      0   100%
 src/test_deque.py            68      0   100%
 src/test_dll.py              82      0   100%
+<<<<<<< HEAD
 src/test_heap.py             34      0   100%
 src/test_linked_list.py      74      0   100%
 src/test_queue.py            64      0   100%
@@ -122,3 +131,9 @@ TOTAL                       610     15    98%
 
 
 ======================================================= 88 passed in 0.50 seconds ===
+=======
+TOTAL                       529     13    98%
+
+
+========================== 78 passed in 0.27 seconds
+```

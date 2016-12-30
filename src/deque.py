@@ -25,47 +25,43 @@ class Deque(object):
     def __init__(self, iterable=None):
         """Instatiate Queue."""
         self.dll = DoublyLinkedList(iterable)
-        self.head_node = self.dll.head_node
-        self.tail_node = self.dll.tail_node
-        self.length = self.dll.length
 
     def append(self, contents):
         """Add value to the end of the deque."""
         self.dll.append(contents)
-        self.head_node = self.dll.head_node
-        self.tail_node = self.dll.tail_node
-        self.length = self.dll.length
 
     def appendleft(self, contents):
         """Add value to the front of the deque."""
         self.dll.push(contents)
-        self.head_node = self.dll.head_node
-        self.tail_node = self.dll.tail_node
-        self.length = self.dll.length
 
     def pop(self):
         """Remove and return the current tail node."""
-        return self.dll.shift()
-        self.head_node = self.dll.head_node
-        self.tail_node = self.dll.tail_node
-        self.length = self.dll.length
+        try:
+            return self.dll.shift()
+        except(IndexError):
+            raise AttributeError('The deque is already empty.')
 
     def popleft(self):
         """Remove and return the current head node."""
-        return self.dll.pop()
-        self.head_node = self.dll.head_node
-        self.tail_node = self.dll.tail_node
-        self.length = self.dll.length
+        try:
+            return self.dll.pop()
+        except(IndexError):
+            raise AttributeError('The deque is already empty.')
 
     def peek(self):
         """Display but don't remove the contents of tail node."""
-        return self.dll.tail_node.contents
+        try:
+            return self.dll.tail_node.contents
+        except AttributeError:
+            return
 
     def peekleft(self):
         """Display but don't remove the contents of head node."""
-        return self.dll.head_node.contents
+        try:
+            return self.dll.head_node.contents
+        except AttributeError:
+            return
 
     def size(self):
         """Return the count of items in the queue."""
-        return self.length
-
+        return self.dll.length
