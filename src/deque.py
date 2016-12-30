@@ -39,14 +39,14 @@ class Deque(object):
         try:
             return self.dll.shift()
         except(IndexError):
-            raise IndexError('The deque is already empty.')
+            raise AttributeError('The deque is already empty.')
 
     def popleft(self):
         """Remove and return the current head node."""
         try:
             return self.dll.pop()
         except(IndexError):
-            raise IndexError('The deque is already empty.')
+            raise AttributeError('The deque is already empty.')
 
     def peek(self):
         """Display but don't remove the contents of tail node."""
