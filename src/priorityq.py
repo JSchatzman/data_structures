@@ -16,7 +16,7 @@ class Priorityq(object):
         self.length = 0
         if val:
             for i in val:
-                self.insert(i[1], i[0])
+                self.insert(i[0], i[1])
 
     def insert(self, value, priority=0):
         """Insert new value into priorityq."""
@@ -37,7 +37,7 @@ class Priorityq(object):
         """Return and remove the highest priority value."""
         try:
             max_priority = max(self.data.keys())
-            value = self.data[max_priority].pop()
+            value = self.data[max_priority].pop(0)
             if len(self.data[max_priority]) == 0:
                 del self.data[max_priority]
             return value
