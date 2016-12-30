@@ -1,4 +1,4 @@
-"""Implementation of Queue."""
+"""Implementation of Deque."""
 
 from dll import DoublyLinkedList
 
