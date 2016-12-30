@@ -30,7 +30,7 @@ class Priorityq(object):
         try:
             max_priority = max(self.data.keys())
         except(ValueError):
-            raise IndexError('You ')
+            return None
         return self.data[max_priority][-1]
 
     def pop(self):
