@@ -33,7 +33,7 @@ def test_queue_empty_head_init(empty_queue):
 
 
 def test_queue_empty_tail_init(empty_queue):
-    """Test for empty tail after queue init."""    
+    """Test for empty tail after queue init."""
     assert empty_queue.dll.tail_node is None
 
 
