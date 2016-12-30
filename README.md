@@ -74,66 +74,77 @@ Our dequeue implementation supports the following methods:
 - **Tests:** test_heap.py
 - **Resources Used** https://interactivepython.org/runestone/static/pythonds/Trees/BinaryHeapImplementation.html
 
-Our queue implementation supports the following methods:
+Our Binary Heap implementation supports the following methods:
 
 - **push()** - puts a new value into the heap, maintaining the heap property.
 - **pop()** - removes the “top” value in the heap, maintaining the heap property.
 
 
+##Graph
+- **Module:** simple_graph.py
+- **Tests:** test_simple_graph.py
+- **Resources Used** https://interactivepython.org/runestone/static/pythonds/Trees/BinaryHeapImplementation.html
+
+Our simple graph implementation supports the following methods:
+
+- **nodes()** - return a list of all nodes in the graph.
+- **edges()** - return a list of all edges in the graph.
+- **add_node(n)** - adds a new node n to the graph.
+- **add_edge(n1, n2)** - adds a new edge to the graph connecting n1 and n2,
+if either n1 or n2 are not already present in the graph, they should be added.
+- **del_node(n)** - deletes the node n from the graph, raises an error if no such node exists
+- **del_edge(n1, n2)** - deletes the edge connecting n1 and n2 from the graph, raises an error if no such edge exists
+- **has_node(n)** - True if node n is contained in the graph, False if not.
+- **neighbors(n)** - returns the list of all nodes connected to n by edges, raises an error if n is not in g
+- **adjacent(n1, n2)** - returns True if there is an edge connecting n1 and n2, False if not, raises an error if either of the supplied nodes are not in g
+
+
 #Testing Coverage:
 ```
 ---------- coverage: platform darwin, python 2.7.11-final-0 ----------
-Name                      Stmts   Miss  Cover   Missing
--------------------------------------------------------
-src/deque.py                 33      6    82%   49-51, 56-58
-src/dll.py                   70      1    99%   17
-src/heap.py                  47      2    96%   18, 65
-src/linked_list.py           58      3    95%   16, 26, 34
-src/queue.py                 19      0   100%
-src/stack.py                 13      0   100%
-src/test_deque.py            68      0   100%
-src/test_dll.py              82      0   100%
-src/test_heap.py             34      0   100%
-src/test_linked_list.py      74      0   100%
-src/test_queue.py            64      0   100%
-src/test_stack.py            48      3    94%   88-90
--------------------------------------------------------
-TOTAL                       610     15    98%
+Name                       Stmts   Miss  Cover   Missing
+--------------------------------------------------------
+src/deque.py                  30      0   100%
+src/dll.py                    77      2    97%   16-17
+src/heap.py                   25      2    92%   15-16
+src/linked_list.py            58      3    95%   16, 26, 34
+src/queue.py                  19      0   100%
+src/simple_graph.py           42      0   100%
+src/stack.py                  13      0   100%
+src/test_deque.py             82      0   100%
+src/test_dll.py               82      0   100%
+src/test_heap.py              37      0   100%
+src/test_linked_list.py       74      0   100%
+src/test_queue.py             60      0   100%
+src/test_simple_graph.py     112      0   100%
+src/test_stack.py             48      3    94%   88-90
+--------------------------------------------------------
+TOTAL                        759     10    99%
 
 
-======================================================= 88 passed in 0.43 seconds 
-=======
-TOTAL                       529     13    98%
-
-
-========================== 78 passed in 0.21 seconds 
+========================== 122 passed in 0.55 seconds ==
 
 
 ---------- coverage: platform darwin, python 3.5.2-final-0 -----------
-Name                      Stmts   Miss  Cover   Missing
--------------------------------------------------------
-src/deque.py                 33      6    82%   49-51, 56-58
-src/dll.py                   70      1    99%   17
-<<<<<<< HEAD
-src/heap.py                  47      2    96%   18, 65
-src/linked_list.py           58      3    95%   16, 26, 34
-src/queue.py                 19      0   100%
-src/stack.py                 13      0   100%
-src/test_deque.py            68      0   100%
-src/test_dll.py              82      0   100%
-<<<<<<< HEAD
-src/test_heap.py             34      0   100%
-src/test_linked_list.py      74      0   100%
-src/test_queue.py            64      0   100%
-src/test_stack.py            48      3    94%   88-90
--------------------------------------------------------
-TOTAL                       610     15    98%
+Name                       Stmts   Miss  Cover   Missing
+--------------------------------------------------------
+src/deque.py                  30      0   100%
+src/dll.py                    77      2    97%   16-17
+src/heap.py                   25      2    92%   15-16
+src/linked_list.py            58      3    95%   16, 26, 34
+src/queue.py                  19      0   100%
+src/simple_graph.py           42      0   100%
+src/stack.py                  13      0   100%
+src/test_deque.py             82      0   100%
+src/test_dll.py               82      0   100%
+src/test_heap.py              37      0   100%
+src/test_linked_list.py       74      0   100%
+src/test_queue.py             60      0   100%
+src/test_simple_graph.py     112      0   100%
+src/test_stack.py             48      3    94%   88-90
+--------------------------------------------------------
+TOTAL                        759     10    99%
 
 
-======================================================= 88 passed in 0.50 seconds ===
-=======
-TOTAL                       529     13    98%
-
-
-========================== 78 passed in 0.27 seconds
+========================== 122 passed in 0.59 seconds 
 ```
