@@ -83,7 +83,10 @@ Our Binary Heap implementation supports the following methods:
 ##Graph
 - **Module:** simple_graph.py
 - **Tests:** test_simple_graph.py
-- **Resources Used** https://interactivepython.org/runestone/static/pythonds/Trees/BinaryHeapImplementation.html
+- **Resources Used:** 
+    https://www.python.org/doc/essays/graphs/
+    https://medium.freecodecamp.com/a-gentle-introduction-to-data-structures-how-graphs-work-a223d9ef8837#.6xbpr1l6q
+    http://stackoverflow.com/questions/19472530/representing-graphs-data-str
 
 Our simple graph implementation supports the following methods:
 
