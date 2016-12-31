@@ -103,3 +103,11 @@ def test_pop_in_order_min_to_max(sample_heap):
     pop_values = [sample_heap[2].pop() for i in range(1, len(sample_heap[2].data) + 1)]
     print(pop_values)
     assert pop_values == [5, 9, 11, 14, 17, 18, 19, 21, 27, 33]
+
+
+def test_init_heap_with_incorrect_data_type(sample_heap):
+    """Test initialize heap with incorrect data type raises exception."""
+    from heap import Heap
+    with pytest.raises(TypeError):
+        Heap(False)
+        Heap(Exception)

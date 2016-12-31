@@ -15,6 +15,8 @@ class Heap(object):
             for item in val:
                 self.push(item)
         except TypeError:
+            if type(val) == bool or val == Exception:
+                raise TypeError('Incorrect datatype for Heap object.')
             self.data.append(val)
 
     def push(self, val):
