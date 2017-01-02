@@ -122,7 +122,6 @@ class Graph(object):
             edge = node_edges.pop(0)
             if edge not in discovered:
                 discovered.append(edge)
-                unique_edges = [i for i in self.graph[edge]
-                                if i not in discovered]
+                unique_edges = [i for i in self.graph[edge] if i not in discovered]
                 node_edges.extend(unique_edges)
         return discovered
