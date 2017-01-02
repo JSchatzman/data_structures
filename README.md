@@ -84,9 +84,10 @@ Our Binary Heap implementation supports the following methods:
 - **Module:** simple_graph.py
 - **Tests:** test_simple_graph.py
 - **Resources Used:** 
-    https://www.python.org/doc/essays/graphs/
-    https://medium.freecodecamp.com/a-gentle-introduction-to-data-structures-how-graphs-work-a223d9ef8837#.6xbpr1l6q
-    http://stackoverflow.com/questions/19472530/representing-graphs-data-str
+    - https://www.python.org/doc/essays/graphs/
+    - https://medium.freecodecamp.com/a-gentle-introduction-to-data-structures-how-graphs-work-a223d9ef8837#.6xbpr1l6q
+    - http://stackoverflow.com/questions/19472530/representing-graphs-data-str
+    - http://eddmann.com/posts/depth-first-search-and-breadth-first-search-in-python/
 
 Our simple graph implementation supports the following methods:
 
@@ -100,6 +101,8 @@ if either n1 or n2 are not already present in the graph, they should be added.
 - **has_node(n)** - True if node n is contained in the graph, False if not.
 - **neighbors(n)** - returns the list of all nodes connected to n by edges, raises an error if n is not in g
 - **adjacent(n1, n2)** - returns True if there is an edge connecting n1 and n2, False if not, raises an error if either of the supplied nodes are not in g
+- **g.depth_first_traversal(start)** - Perform a full depth-first traversal ofthe graph beginning at start. Return the full visited path when traversal is complete.
+- **g.breadth_first_traversal(start)** - Perform a full breadth-first traversal of the graph, beginning at start. Return the full visited path when traversal is complete.
 
 
 #Testing Coverage:
@@ -112,20 +115,20 @@ src/dll.py                    77      2    97%   16-17
 src/heap.py                   25      2    92%   15-16
 src/linked_list.py            58      3    95%   16, 26, 34
 src/queue.py                  19      0   100%
-src/simple_graph.py           42      0   100%
+src/simple_graph.py           66     11    83%   130-143
 src/stack.py                  13      0   100%
 src/test_deque.py             82      0   100%
 src/test_dll.py               82      0   100%
 src/test_heap.py              37      0   100%
 src/test_linked_list.py       74      0   100%
 src/test_queue.py             60      0   100%
-src/test_simple_graph.py     112      0   100%
+src/test_simple_graph.py     147      0   100%
 src/test_stack.py             48      3    94%   88-90
 --------------------------------------------------------
-TOTAL                        759     10    99%
+TOTAL                        818     21    97%
 
 
-========================== 122 passed in 0.55 seconds ==
+==========================================131 passed in 0.48 
 
 
 ---------- coverage: platform darwin, python 3.5.2-final-0 -----------
@@ -136,18 +139,20 @@ src/dll.py                    77      2    97%   16-17
 src/heap.py                   25      2    92%   15-16
 src/linked_list.py            58      3    95%   16, 26, 34
 src/queue.py                  19      0   100%
-src/simple_graph.py           42      0   100%
+src/simple_graph.py           66     11    83%   130-143
 src/stack.py                  13      0   100%
 src/test_deque.py             82      0   100%
 src/test_dll.py               82      0   100%
 src/test_heap.py              37      0   100%
 src/test_linked_list.py       74      0   100%
 src/test_queue.py             60      0   100%
-src/test_simple_graph.py     112      0   100%
+src/test_simple_graph.py     147      0   100%
 src/test_stack.py             48      3    94%   88-90
 --------------------------------------------------------
-TOTAL                        759     10    99%
+TOTAL                        818     21    97%
+
+==========================================131 passed in 0.48 
 
 
-========================== 122 passed in 0.59 seconds 
+
 ```
