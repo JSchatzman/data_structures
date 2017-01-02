@@ -178,9 +178,9 @@ def test_adjacent_invalid(sample_graph):
     test_graph.add_edge('A', 'B')
     test_graph.add_edge('A', 'C')
     test_graph.add_edge('A', 'D')
-    with pytest.raises(IndexError):
+    with pytest.raises(KeyError):
         assert test_graph.adjacent('X', 'A')
-    with pytest.raises(IndexError):
+    with pytest.raises(KeyError):
         assert test_graph.adjacent('B', 'X')
 
 
