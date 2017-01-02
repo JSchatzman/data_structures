@@ -88,14 +88,10 @@ class Graph(object):
 
     def neighbours(self, node):
         """Return the list of nodes connected to the input node."""
-        # if node not in self.graph:
-        #     raise IndexError('The input node is not in the graph')
         return self.graph[node]
 
     def adjacent(self, node1, node2):
         """Return True if there is an edge connecting n1 and n2."""
         if node1 not in self.graph or node2 not in self.graph:
-            raise IndexError('One or both of these nodes is not in the graph.')
-        if node2 in self.graph[node1]:
-            return True
-        return False
+            raise KeyError('One or both of these nodes is not in the graph.')
+        return node2 in self.graph[node1]
