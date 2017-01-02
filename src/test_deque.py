@@ -187,15 +187,13 @@ def test_deque_size_on_one(single_deque):
 
 def test_deque_size_increase(sample_deque):
     """Test that size increases after appending."""
-    testing_deque = sample_deque
-    testing_deque.append('test')
-    testing_deque.appendleft('test2')
-    assert testing_deque.size() == 7
+    sample_deque.append('test')
+    sample_deque.appendleft('test2')
+    assert sample_deque.size() == 7
 
 
 def test_deque_size_decrease(sample_deque):
     """Test that size decreases after appending."""
-    testing_deque = sample_deque
-    testing_deque.pop()
-    testing_deque.popleft()
-    assert testing_deque.size() == 3
+    sample_deque.pop()
+    sample_deque.popleft()
+    assert sample_deque.size() == 3
