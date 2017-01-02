@@ -153,13 +153,13 @@ def test_had_invalid_node(sample_graph):
 
 def test_neighbors_invalid(sample_graph):
     """Test that neighbors throws error if invalid node."""
-    with pytest.raises(IndexError):
+    with pytest.raises(KeyError):
         assert sample_graph[2].neighbours('X')
 
 
 def test_neighbors_invalid_empty(sample_graph):
     """Test that neighbors throws error on empty graph."""
-    with pytest.raises(IndexError):
+    with pytest.raises(KeyError):
         assert sample_graph[0].neighbours('X')
 
 
