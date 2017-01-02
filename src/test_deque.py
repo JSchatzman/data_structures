@@ -27,22 +27,49 @@ def empty_deque():
     return empty_queue
 
 
-def test_deque_empty_init(empty_deque):
-    """Test for empty deque init."""
+def test_deque_empty_init_head(empty_deque):
+    """Test for empty head deque init."""
     assert empty_deque.dll.head_node is None
+
+
+def test_deque_empty_init_tail(empty_deque):
+    """Test for empty  tail deque init."""
     assert empty_deque.dll.tail_node is None
 
 
-def test_deque_one_init(single_deque):
-    """Test for one item deque init."""
+def test_deque_init_size_zero(empty_deque):
+    """Test empty list has size of zero on initialisation."""
+    assert empty_deque.dll.length == 0
+
+
+def test_deque_one_init_head(single_deque):
+    """Test head for one item deque init."""
     assert single_deque.dll.head_node.contents == "one"
+
+
+def test_deque_one_init_tail(single_deque):
+    """Test tail for init of an one item deque."""
     assert single_deque.dll.tail_node.contents == "one"
 
 
-def test_deque_init(sample_deque):
-    """Test for new deque init."""
+def test_deque_init_size_one(single_deque):
+    """Test single list has size of zero on initialisation."""
+    assert single_deque.dll.length == 1
+
+
+def test_deque_init_head(sample_deque):
+    """Test for new deque init of head contents."""
     assert sample_deque.dll.head_node.contents == 5
+
+
+def test_deque_init_tail(sample_deque):
+    """Test for new deque init of tail contents."""
     assert sample_deque.dll.tail_node.contents == 1
+
+
+def test_deque_init_size_five(sample_deque):
+    """Test sampe list has size of five on initialisation."""
+    assert sample_deque.dll.length == 5
 
 
 def test_deque_appendleft(sample_deque):
