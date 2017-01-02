@@ -13,6 +13,21 @@ def sample_graph():
     return one_graph, empty_graph, new_graph
 
 
+@pytest.fixture
+def traversal_graph():
+    """Create a graph for traversal testing."""
+    from simple_graph import Graph
+    g = Graph(['A', 'B', 'C', 'D', 'E', 'F', 'G'])
+    g.add_edge('A', 'B')
+    g.add_edge('A', 'C')
+    g.add_edge('A', 'E')
+    g.add_edge('B', 'D')
+    g.add_edge('B', 'F')
+    g.add_edge('C', 'G')
+    g.add_edge('E', 'F')
+    return g
+
+
 def test_initialization_of_graph(sample_graph):
     """Test initilaization of an empty graph."""
     assert sample_graph[1].graph == {}
@@ -198,3 +213,24 @@ def test_adjacent_for_valid_edge(sample_graph):
     test_graph.add_edge('A', 'B')
     test_graph.add_edge('A', 'C')
     assert test_graph.adjacent('A', 'C')
+
+
+def test_graph_depth_traversal(traversal_graph):
+    """Test depth traversal of graph."""
+    assert traversal_graph.depth_traversal('A') == ['A', 'B', 'D', 'F', 'C', 'G', 'E']
+
+
+def test_graph_depth_traversal_partial_graph(traversal_graph):
+    """Test depth traversal of node that only points to part of the graph."""
+    assert traversal_graph.depth_traversal('B') == ['B', 'D', 'F']
+
+
+def test_graph_depth_traversal_dead_end(traversal_graph):
+    """Test depth traversal of graph with no edges."""
+    assert traversal_graph.depth_traversal('G') == ['G']
+
+
+def test_graph_depth_traversal_invaid_node(traversal_graph):
+    """Test depth traversal of graph with node that doesn't exist."""
+    with pytest.raises(KeyError):
+        assert traversal_graph.depth_traversal('H')
