@@ -84,14 +84,12 @@ class Graph(object):
 
     def has_node(self, node):
         """Return true if the input node is in the graph, else False."""
-        if node in self.graph:
-            return True
-        return False
+        return node in self.graph
 
     def neighbours(self, node):
         """Return the list of nodes connected to the input node."""
-        if node not in self.graph:
-            raise IndexError('The input node is not in the graph')
+        # if node not in self.graph:
+        #     raise IndexError('The input node is not in the graph')
         return self.graph[node]
 
     def adjacent(self, node1, node2):
