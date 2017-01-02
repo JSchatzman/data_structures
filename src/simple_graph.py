@@ -30,6 +30,14 @@ class Graph(object):
      and n2, False if not, raises an error if either of the supplied nodes
      are not in g
 
+    g.depth_first_traversal(start): Perform a full depth-first traversal of
+    the graph beginning at start. Return the full visited path when traversal
+    is complete.
+
+    g.breadth_first_traversal(start): Perform a full breadth-first traversal
+    of the graph, beginning at start. Return the full visited path when
+    traversal is complete.
+
 
 
     References:
