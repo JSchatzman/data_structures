@@ -95,3 +95,27 @@ class Graph(object):
         if node1 not in self.graph or node2 not in self.graph:
             raise KeyError('One or both of these nodes is not in the graph.')
         return node2 in self.graph[node1]
+
+    def depth_traversal(self, root, discovered=None):
+        """Perform depth traversal of graph."""
+        if discovered is None:
+            discovered = []
+        discovered.append(root)
+        for edge in self.graph[root]:
+            if edge not in discovered:
+                self.depth_traversal(edge, discovered)
+        return discovered
+
+
+
+
+test = Graph(['A', 'B', 'C', 'D', 'E', 'F', 'G'])
+test.add_edge('A', 'B')
+test.add_edge('A', 'C')
+test.add_edge('A', 'E')
+test.add_edge('B', 'D')
+test.add_edge('B', 'F')
+test.add_edge('C', 'G')
+test.add_edge('E', 'F')
+print (test.depth_traversal('A'))
+#print (test.graph)
