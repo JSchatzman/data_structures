@@ -106,7 +106,6 @@ class Graph(object):
                 self.depth_traversal(edge, discovered)
         return discovered
 
-
     def breadth_traversal(self, root, discovered=None):
         """Perform breath traversal of graph."""
         if discovered is None:
@@ -130,7 +129,3 @@ test.add_edge('C', 'G')
 test.add_edge('E', 'F')
 print (test.depth_traversal('A'))
 #print (test.graph)
-
-
-test2 = Graph()
-test2.depth_traversal('A')

@@ -17,15 +17,15 @@ def sample_graph():
 def traversal_graph():
     """Create a graph for traversal testing."""
     from simple_graph import Graph
-    g = Graph(['A', 'B', 'C', 'D', 'E', 'F', 'G'])
-    g.add_edge('A', 'B')
-    g.add_edge('A', 'C')
-    g.add_edge('A', 'E')
-    g.add_edge('B', 'D')
-    g.add_edge('B', 'F')
-    g.add_edge('C', 'G')
-    g.add_edge('E', 'F')
-    return g
+    graph = Graph(['A', 'B', 'C', 'D', 'E', 'F', 'G'])
+    graph.add_edge('A', 'B')
+    graph.add_edge('A', 'C')
+    graph.add_edge('A', 'E')
+    graph.add_edge('B', 'D')
+    graph.add_edge('B', 'F')
+    graph.add_edge('C', 'G')
+    graph.add_edge('E', 'F')
+    return graph
 
 
 def test_initialization_of_graph(sample_graph):
@@ -234,3 +234,33 @@ def test_graph_depth_traversal_invaid_node(traversal_graph):
     """Test depth traversal of graph with node that doesn't exist."""
     with pytest.raises(KeyError):
         assert traversal_graph.depth_traversal('H')
+
+
+def test_graph_depth_traversal_cyclical(traversal_graph):
+    """Test depth traversal of graph with no edges."""
+    traversal_graph.add_edge('G', 'A')
+    traversal_graph.add_edge('B', 'A')
+    assert traversal_graph.depth_traversal('A') == ['A', 'B', 'D', 'F', 'C', 'G', 'E']
+
+
+def test_graph_breadth_traversal(traversal_graph):
+    """Test breadth traversal of graph."""
+    assert traversal_graph.breadth_traversal('A') == ['A', 'B', 'C', 'E', 'D', 'F', 'G']
+
+
+def test_graph_breadth_traversal_dead_end(traversal_graph):
+    """Test breadth traversal of graph with no edges."""
+    assert traversal_graph.breadth_traversal('D') == ['D']
+
+
+def test_graph_depth_traversal_invaid_node(traversal_graph):
+    """Test depth traversal of graph with node that doesn't exist."""
+    with pytest.raises(KeyError):
+        assert traversal_graph.breadth_traversal('H')
+
+
+def test_graph_breadth_traversal_cyclical(traversal_graph):
+    """Test depth traversal of graph with no edges."""
+    traversal_graph.add_edge('G', 'A')
+    traversal_graph.add_edge('B', 'A')
+    assert traversal_graph.depth_traversal('A') == ['A', 'B', 'D', 'F', 'C', 'G', 'E']
