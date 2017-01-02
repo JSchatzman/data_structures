@@ -253,7 +253,7 @@ def test_graph_breadth_traversal_dead_end(traversal_graph):
     assert traversal_graph.breadth_traversal('D') == ['D']
 
 
-def test_graph_depth_traversal_invaid_node(traversal_graph):
+def test_graph_breadth_traversal_invaid_node(traversal_graph):
     """Test depth traversal of graph with node that doesn't exist."""
     with pytest.raises(KeyError):
         assert traversal_graph.breadth_traversal('H')
