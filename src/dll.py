@@ -33,6 +33,7 @@ class DoublyLinkedList(object):
             self.head_node = self.tail_node
         else:
             self.tail_node = Node(contents, None, self.tail_node)
+            self.tail_node.previous_node.next_node = self.tail_node
         self.length += 1
 
     def pop(self):
