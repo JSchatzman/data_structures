@@ -90,7 +90,7 @@ def test_edges_are_displayed(sample_graph):
     sample_graph[2].add_edge('C', 'A')
     sample_graph[2].add_edge('C', 'B')
     all_edges = sample_graph[2].edges()
-    assert sorted(all_edges) == [['A', 'B'], ['B']]
+    assert sorted(all_edges) == [('A', 'B'), ('C', 'A'), ('C', 'B')]
 
 
 def test_edges_when_there_are_none(sample_graph):
