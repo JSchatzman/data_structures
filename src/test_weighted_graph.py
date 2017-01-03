@@ -6,7 +6,7 @@ import pytest
 @pytest.fixture
 def sample_graph():
     """Create testing graph."""
-    from simple_graph import Graph
+    from weighted_graph import Graph
     one_graph = Graph('A')
     empty_graph = Graph()
     new_graph = Graph(['A', 'B', 'C', 'D'])
@@ -65,25 +65,25 @@ def test_add_existing_node_do_not_duplicate(sample_graph):
 def test_add_edge_on_existing_nodes(sample_graph):
     """Test connections between existing nodes is created."""
     sample_graph[2].add_edge('A', 'B')
-    assert sample_graph[2].graph['A'] == ['B']
+    assert sample_graph[2].graph['A'] == [('B', 1)]
 
 
 def test_add_edge_when_node2_does_not_exist(sample_graph):
     """Test connection between new node2 and existing is made."""
     sample_graph[0].add_edge('A', 'B')
-    assert sample_graph[0].graph == {'A': ['B'], 'B': []}
+    assert sample_graph[0].graph == {'A': [('B', 1)], 'B': []}
 
 
 def test_add_edge_when_node1_does_not_exist(sample_graph):
     """Test connection between new node1 and existing node2."""
     sample_graph[0].add_edge('B', 'A')
-    assert sample_graph[0].graph == {'A': [], 'B': ['A']}
+    assert sample_graph[0].graph == {'A': [], 'B': [('A', 1)]}
 
 
 def test_add_edge_when_node1_and_node2_does_not_exist(sample_graph):
     """Test connection between new node1 and new node2."""
     sample_graph[1].add_edge('A', 'B')
-    assert sample_graph[1].graph == {'A': ['B'], 'B': []}
+    assert sample_graph[1].graph == {'A': [('B', 1)], 'B': []}
 
 
 def test_list_of_nodes_is_displayed(sample_graph):
@@ -105,7 +105,7 @@ def test_edges_are_displayed(sample_graph):
     sample_graph[2].add_edge('C', 'A')
     sample_graph[2].add_edge('C', 'B')
     all_edges = sample_graph[2].edges()
-    assert sorted(all_edges) == [['A', 'B'], ['B']]
+    assert sorted(all_edges) == [('A', 'B', 1), ('C', 'A', 1), ('C', 'B', 1)]
 
 
 def test_edges_when_there_are_none(sample_graph):
@@ -143,7 +143,7 @@ def test_delete_edge(sample_graph):
     test_graph.add_edge('A', 'C')
     test_graph.add_edge('A', 'D')
     test_graph.del_edge('A', 'B')
-    assert test_graph.graph['A'] == ['C', 'D']
+    assert test_graph.graph['A'] == [('C', 1), ('D', 1)]
 
 
 def test_delete_invalid_edge(sample_graph):
