@@ -127,33 +127,38 @@ def test_delete_from_empty_graph(sample_graph):
 
 def test_delete_node_from_sample_graph(sample_graph):
     """Test deletion from sample graph."""
-    test_graph = sample_graph[2]
-    test_graph.add_edge('A', 'B')
-    test_graph.add_edge('A', 'C')
-    test_graph.add_edge('A', 'D')
-    test_graph.del_node('B')
-    assert 'B' not in test_graph.graph
-    assert 'B' not in test_graph.graph['A']
+    sample_graph[2].add_edge('A', 'B')
+    sample_graph[2].add_edge('A', 'C')
+    sample_graph[2].add_edge('A', 'D')
+    sample_graph[2].del_node('B')
+    assert 'B' not in sample_graph[2].graph
+
+
+def test_del_node_from_graph_removed_edge(sample_graph):
+    """Test deleted node is removed from edges."""
+    sample_graph[2].add_edge('A', 'B')
+    sample_graph[2].add_edge('A', 'C')
+    sample_graph[2].add_edge('A', 'D')
+    sample_graph[2].del_node('B')
+    assert 'B' not in sample_graph[2].graph['A']
 
 
 def test_delete_edge(sample_graph):
     """Test deletion of edge from graph."""
-    test_graph = sample_graph[2]
-    test_graph.add_edge('A', 'B')
-    test_graph.add_edge('A', 'C')
-    test_graph.add_edge('A', 'D')
-    test_graph.del_edge('A', 'B')
-    assert test_graph.graph['A'] == [('C', 1), ('D', 1)]
+    sample_graph[2].add_edge('A', 'B')
+    sample_graph[2].add_edge('A', 'C')
+    sample_graph[2].add_edge('A', 'D')
+    sample_graph[2].del_edge('A', 'B')
+    assert sample_graph[2].graph['A'] == [('C', 1), ('D', 1)]
 
 
 def test_delete_invalid_edge(sample_graph):
     """Test deletion of invalid edge from graph."""
-    test_graph = sample_graph[2]
-    test_graph.add_edge('A', 'B')
-    test_graph.add_edge('A', 'C')
-    test_graph.add_edge('A', 'D')
+    sample_graph[2].add_edge('A', 'B')
+    sample_graph[2].add_edge('A', 'C')
+    sample_graph[2].add_edge('A', 'D')
     with pytest.raises(IndexError):
-        assert test_graph.del_edge('A', 'X')
+        assert sample_graph[2].del_edge('A', 'X')
 
 
 def test_had_valid_node(sample_graph):
@@ -180,39 +185,35 @@ def test_neighbors_invalid_empty(sample_graph):
 
 def test_neighbors_valid(sample_graph):
     """Test that neighbors returns node connections."""
-    test_graph = sample_graph[2]
-    test_graph.add_edge('A', 'B')
-    test_graph.add_edge('A', 'C')
-    test_graph.add_edge('A', 'D')
-    assert test_graph.neighbours('A') == ['B', 'C', 'D']
+    sample_graph[2].add_edge('A', 'B')
+    sample_graph[2].add_edge('A', 'C')
+    sample_graph[2].add_edge('A', 'D')
+    assert sample_graph[2].neighbours('A') == ['B', 'C', 'D']
 
 
 def test_adjacent_invalid(sample_graph):
     """Test that adjacent throws error if invalid node."""
-    test_graph = sample_graph[2]
-    test_graph.add_edge('A', 'B')
-    test_graph.add_edge('A', 'C')
-    test_graph.add_edge('A', 'D')
+    sample_graph[2].add_edge('A', 'B')
+    sample_graph[2].add_edge('A', 'C')
+    sample_graph[2].add_edge('A', 'D')
     with pytest.raises(KeyError):
-        assert test_graph.adjacent('X', 'A')
+        assert sample_graph[2].adjacent('X', 'A')
     with pytest.raises(KeyError):
-        assert test_graph.adjacent('B', 'X')
+        assert sample_graph[2].adjacent('B', 'X')
 
 
 def test_adjacent_for_invalid_edge(sample_graph):
     """Test that adjacent returns False if edge does not exist."""
-    test_graph = sample_graph[2]
-    test_graph.add_edge('A', 'B')
-    test_graph.add_edge('A', 'C')
-    assert not test_graph.adjacent('A', 'D')
+    sample_graph[2].add_edge('A', 'B')
+    sample_graph[2].add_edge('A', 'C')
+    assert not sample_graph[2].adjacent('A', 'D')
 
 
 def test_adjacent_for_valid_edge(sample_graph):
     """Test that adjacent returns True for existing edgge."""
-    test_graph = sample_graph[2]
-    test_graph.add_edge('A', 'B')
-    test_graph.add_edge('A', 'C')
-    assert test_graph.adjacent('A', 'C')
+    sample_graph[2].add_edge('A', 'B')
+    sample_graph[2].add_edge('A', 'C')
+    assert sample_graph[2].adjacent('A', 'C')
 
 
 def test_graph_depth_traversal(traversal_graph):
@@ -264,3 +265,15 @@ def test_graph_breadth_traversal_cyclical(traversal_graph):
     traversal_graph.add_edge('G', 'A')
     traversal_graph.add_edge('B', 'A')
     assert traversal_graph.depth_traversal('A') == ['A', 'B', 'D', 'F', 'C', 'G', 'E']
+
+
+def test_edges_have_default_weight_of_one(sample_graph):
+    """Test added edges have a default weight of 1."""
+    sample_graph[2].add_edge('A', 'B')
+    assert sample_graph[2].graph['A'][0][1] == 1
+
+
+def test_edges_have_weight_other_than_one(sample_graph):
+    """Test added edges have a specified weight."""
+    sample_graph[2].add_edge('A', 'B', 2)
+    assert sample_graph[2].graph['A'][0][1] == 2
