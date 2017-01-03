@@ -10,7 +10,7 @@ class Graph(object):
 
     g.add_node(n): adds a new node n to the graph.
 
-    g.add_edge(n1, n2): adds a new edge to the graph connecting n1 and n2,
+    g.add_edge(n1, n2, weight): adds a new edge to the graph connecting n1 and n2,
      if either n1 or n2 are not already present in the graph,
      they should be added.
 
@@ -68,12 +68,12 @@ class Graph(object):
         """Add a new node to graph."""
         self.graph.setdefault(node, [])
 
-    def add_edge(self, node1, node2):
+    def add_edge(self, node1, node2, weight=1):
         """Add an edge between node1 and node2."""
         self.graph.setdefault(node1, [])
         self.graph.setdefault(node2, [])
         if node2 not in self.graph[node1]:
-            self.graph[node1].append(node2)
+            self.graph[node1].append((node2, weight))
 
     def del_node(self, node):
         """Delete the inputted node from the graph."""
@@ -81,12 +81,12 @@ class Graph(object):
             raise IndexError('The input node is not in the graph')
         del self.graph[node]
         for edge_list in self.graph.values():
-            if node in edge_list:
+            if node in edge_list[0]:
                 edge_list.remove(node)
 
     def del_edge(self, node1, node2):
         """Delete the edge connecting node1 to node 2 if it exists."""
-        if node2 not in self.graph[node1]:
+        if node2 not in [edge[0] for edge in self.graph[node1]]:
             raise IndexError('This edge does not exist.')
         self.graph[node1].remove(node2)
 
