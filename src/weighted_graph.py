@@ -77,8 +77,12 @@ class Graph(object):
         """Add an edge between node1 and node2."""
         self.graph.setdefault(node1, [])
         self.graph.setdefault(node2, [])
-        if node2 not in self.graph[node1]:
-            self.graph[node1].append((node2, weight))
+        try:
+            int(weight)
+            if node2 not in self.graph[node1]:
+                self.graph[node1].append((node2, weight))
+        except ValueError:
+            raise ValueError('Weight of an edge must be a number.')
 
     def del_node(self, node_delete):
         """Delete the inputted node from the graph."""
