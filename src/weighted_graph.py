@@ -62,7 +62,12 @@ class Graph(object):
 
     def edges(self):
         """Return a list of all edges in the graph."""
-        return [val for val in self.graph.values() if len(val) > 0]
+        edge_list = []
+        if self.nodes:
+            for node1 in self.graph:
+                for node2 in self.graph[node1]:
+                    edge_list.append((node1, node2[0], node2[1]))
+        return edge_list
 
     def add_node(self, node):
         """Add a new node to graph."""
@@ -80,15 +85,16 @@ class Graph(object):
         if node not in self.graph:
             raise IndexError('The input node is not in the graph')
         del self.graph[node]
-        for edge_list in self.graph.values():
-            if node in edge_list[0]:
-                edge_list.remove(node)
+        for edge in self.graph.values():
+            if node == edge[0]:
+                self.graph.values().remove(edge)
 
     def del_edge(self, node1, node2):
         """Delete the edge connecting node1 to node 2 if it exists."""
         if node2 not in [edge[0] for edge in self.graph[node1]]:
             raise IndexError('This edge does not exist.')
-        self.graph[node1].remove(node2)
+        removed_edge = [edge for edge in self.graph[node1] if edge[0] == node2]
+        self.graph[node1].remove(removed_edge)
 
     def has_node(self, node):
         """Return true if the input node is in the graph, else False."""
@@ -96,13 +102,13 @@ class Graph(object):
 
     def neighbours(self, node):
         """Return the list of nodes connected to the input node."""
-        return self.graph[node]
+        return [edge[0] for edge in self.graph[node]]
 
     def adjacent(self, node1, node2):
         """Return True if there is an edge connecting n1 and n2."""
         if node1 not in self.graph or node2 not in self.graph:
             raise KeyError('One or both of these nodes is not in the graph.')
-        return node2 in self.graph[node1]
+        return node2 in [edge[0] for edge in self.graph[node1]]
 
     def depth_traversal(self, root, visited=None):
         """Perform depth traversal of graph."""
@@ -110,8 +116,8 @@ class Graph(object):
             visited = []
         visited.append(root)
         for edge in self.graph[root]:
-            if edge not in visited:
-                self.depth_traversal(edge, visited)
+            if edge[0] not in visited:
+                self.depth_traversal(edge[0], visited)
         return visited
 
     def breadth_traversal(self, root):
@@ -120,10 +126,10 @@ class Graph(object):
         node_edges = self.graph[root]
         while node_edges:
             edge = node_edges.pop(0)
-            if edge not in visited:
-                visited.append(edge)
-                unique_edges = [i for i in self.graph[edge]
-                                if i not in visited]
+            if edge[0] not in visited:
+                visited.append(edge[0])
+                unique_edges = [edge[0] for edge in self.graph[edge]
+                                if edge[0] not in visited]
                 node_edges.extend(unique_edges)
         return visited
 
