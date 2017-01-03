@@ -86,7 +86,7 @@ class Graph(object):
             raise IndexError('The input node is not in the graph')
         del self.graph[node_delete]
         for node in self.graph:
-            for edge in self.graph[node][:]:
+            for edge in self.graph[node]:
                 if edge[0] == node_delete:
                     self.graph[node].remove(edge)
 
