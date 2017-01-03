@@ -104,55 +104,77 @@ if either n1 or n2 are not already present in the graph, they should be added.
 - **g.depth_first_traversal(start)** - Perform a full depth-first traversal ofthe graph beginning at start. Return the full visited path when traversal is complete.
 - **g.breadth_first_traversal(start)** - Perform a full breadth-first traversal of the graph, beginning at start. Return the full visited path when traversal is complete.
 
+##Weighted Graph
+- **Module:** weighted_graph.py
+- **Tests:** test_weighted_graph.py
+
+Our weighted graph implementation supports the following methods:
+
+- **nodes()** - return a list of all nodes in the graph.
+- **edges()** - return a list of all edges in the graph.
+- **add_node(n)** - adds a new node n to the graph.
+- **add_edge(n1, n2, weight)** - adds a new edge to the graph connecting n1 and n2,
+if either n1 or n2 are not already present in the graph, they should be added. Adds numerical weight to the edge which is by default 1.
+- **del_node(n)** - deletes the node n from the graph, raises an error if no such node exists
+- **del_edge(n1, n2)** - deletes the edge connecting n1 and n2 from the graph, raises an error if no such edge exists
+- **has_node(n)** - True if node n is contained in the graph, False if not.
+- **neighbors(n)** - returns the list of all nodes connected to n by edges, raises an error if n is not in g
+- **adjacent(n1, n2)** - returns True if there is an edge connecting n1 and n2, False if not, raises an error if either of the supplied nodes are not in g
+- **g.depth_first_traversal(start)** - Perform a full depth-first traversal ofthe graph beginning at start. Return the full visited path when traversal is complete.
+- **g.breadth_first_traversal(start)** - Perform a full breadth-first traversal of the graph, beginning at start. Return the full visited path when traversal is complete.
+
 
 #Testing Coverage:
 ```
 ---------- coverage: platform darwin, python 2.7.11-final-0 ----------
-Name                       Stmts   Miss  Cover   Missing
---------------------------------------------------------
-src/deque.py                  30      0   100%
-src/dll.py                    77      2    97%   16-17
-src/heap.py                   25      2    92%   15-16
-src/linked_list.py            58      3    95%   16, 26, 34
-src/queue.py                  19      0   100%
-src/simple_graph.py           66     11    83%   130-143
-src/stack.py                  13      0   100%
-src/test_deque.py             82      0   100%
-src/test_dll.py               82      0   100%
-src/test_heap.py              37      0   100%
-src/test_linked_list.py       74      0   100%
-src/test_queue.py             60      0   100%
-src/test_simple_graph.py     147      0   100%
-src/test_stack.py             48      3    94%   88-90
---------------------------------------------------------
-TOTAL                        818     21    97%
+Name                         Stmts   Miss  Cover   Missing
+----------------------------------------------------------
+src/deque.py                    30      0   100%
+src/dll.py                      77      2    97%   16-17
+src/heap.py                     25      2    92%   15-16
+src/linked_list.py              58      3    95%   16, 26, 34
+src/queue.py                    19      0   100%
+src/simple_graph.py             71     11    85%   136-149
+src/stack.py                    13      0   100%
+src/test_deque.py               82      0   100%
+src/test_dll.py                 82      0   100%
+src/test_heap.py                37      0   100%
+src/test_linked_list.py         74      0   100%
+src/test_queue.py               60      0   100%
+src/test_simple_graph.py       147      0   100%
+src/test_stack.py               48      3    94%   88-90
+src/test_weighted_graph.py     154      0   100%
+src/weighted_graph.py           77     27    65%   121-127, 131-140, 144-157
+----------------------------------------------------------
+TOTAL                         1054     48    95%
 
 
-==========================================131 passed in 0.48 
+==================================================== 171 passed in 0.54 seconds 
 
 
 ---------- coverage: platform darwin, python 3.5.2-final-0 -----------
-Name                       Stmts   Miss  Cover   Missing
---------------------------------------------------------
-src/deque.py                  30      0   100%
-src/dll.py                    77      2    97%   16-17
-src/heap.py                   25      2    92%   15-16
-src/linked_list.py            58      3    95%   16, 26, 34
-src/queue.py                  19      0   100%
-src/simple_graph.py           66     11    83%   130-143
-src/stack.py                  13      0   100%
-src/test_deque.py             82      0   100%
-src/test_dll.py               82      0   100%
-src/test_heap.py              37      0   100%
-src/test_linked_list.py       74      0   100%
-src/test_queue.py             60      0   100%
-src/test_simple_graph.py     147      0   100%
-src/test_stack.py             48      3    94%   88-90
---------------------------------------------------------
-TOTAL                        818     21    97%
+Name                         Stmts   Miss  Cover   Missing
+----------------------------------------------------------
+src/deque.py                    30      0   100%
+src/dll.py                      77      2    97%   16-17
+src/heap.py                     25      2    92%   15-16
+src/linked_list.py              58      3    95%   16, 26, 34
+src/queue.py                    19      0   100%
+src/simple_graph.py             71     11    85%   136-149
+src/stack.py                    13      0   100%
+src/test_deque.py               82      0   100%
+src/test_dll.py                 82      0   100%
+src/test_heap.py                37      0   100%
+src/test_linked_list.py         74      0   100%
+src/test_queue.py               60      0   100%
+src/test_simple_graph.py       147      0   100%
+src/test_stack.py               48      3    94%   88-90
+src/test_weighted_graph.py     154      0   100%
+src/weighted_graph.py           77     27    65%   121-127, 131-140, 144-157
+----------------------------------------------------------
+TOTAL                         1054     48    95%
 
-==========================================131 passed in 0.48 
 
-
+==================================================== 171 passed in 0.77 seconds 
 
 ```
