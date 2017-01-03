@@ -277,3 +277,9 @@ def test_edges_have_weight_other_than_one(sample_graph):
     """Test added edges have a specified weight."""
     sample_graph[2].add_edge('A', 'B', 2)
     assert sample_graph[2].graph['A'][0][1] == 2
+
+
+def test_weight_can_only_be_a_number(sample_graph):
+    """Test weight can only be a number."""
+    with pytest.raises(ValueError):
+        sample_graph[2].add_edge('A', 'B', 'C')
