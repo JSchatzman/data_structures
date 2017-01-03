@@ -54,7 +54,12 @@ class Graph(object):
 
     def edges(self):
         """Return a list of all edges in the graph."""
-        return [val for val in self.graph.values() if len(val) > 0]
+        edge_list = []
+        if self.nodes:
+            for node1 in self.graph:
+                for node2 in self.graph[node1]:
+                    edge_list.append((node1, node2))
+        return edge_list
 
     def add_node(self, node):
         """Add a new node to graph."""
