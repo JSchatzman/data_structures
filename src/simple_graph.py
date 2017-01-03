@@ -104,27 +104,28 @@ class Graph(object):
             raise KeyError('One or both of these nodes is not in the graph.')
         return node2 in self.graph[node1]
 
-    def depth_traversal(self, root, discovered=None):
+    def depth_traversal(self, root, visited=None):
         """Perform depth traversal of graph."""
-        if discovered is None:
-            discovered = []
-        discovered.append(root)
+        if visited is None:
+            visited = []
+        visited.append(root)
         for edge in self.graph[root]:
-            if edge not in discovered:
-                self.depth_traversal(edge, discovered)
-        return discovered
+            if edge not in visited:
+                self.depth_traversal(edge, visited)
+        return visited
 
     def breadth_traversal(self, root):
         """Perform breath traversal of graph."""
-        discovered = [root]
+        visited = [root]
         node_edges = self.graph[root]
         while node_edges:
             edge = node_edges.pop(0)
-            if edge not in discovered:
-                discovered.append(edge)
-                unique_edges = [i for i in self.graph[edge] if i not in discovered]
+            if edge not in visited:
+                visited.append(edge)
+                unique_edges = [i for i in self.graph[edge]
+                                if i not in visited]
                 node_edges.extend(unique_edges)
-        return discovered
+        return visited
 
 if __name__ == '__main__':
     import timeit
@@ -136,11 +137,11 @@ if __name__ == '__main__':
     graph.add_edge('B', 'F')
     graph.add_edge('C', 'G')
     graph.add_edge('E', 'F')
-    print ('Depth Traversal Time for 1000 traversals:',
-           timeit.timeit(stmt="graph.depth_traversal('A')",
-                         setup='from __main__ import graph',
-                         number=1000))
-    print ('Breadth Traversal Time for 1000 traversals:',
-           timeit.timeit(stmt="graph.breadth_traversal('A')",
-                         setup='from __main__ import graph',
-                         number=1000))
+    print('Depth Traversal Time for 1000 traversals:',
+          timeit.timeit(stmt="graph.depth_traversal('A')",
+                        setup='from __main__ import graph',
+                        number=1000))
+    print('Breadth Traversal Time for 1000 traversals:',
+          timeit.timeit(stmt="graph.breadth_traversal('A')",
+                        setup='from __main__ import graph',
+                        number=1000))
