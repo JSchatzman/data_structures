@@ -155,25 +155,51 @@ class Graph(object):
             current_weight = visited[min_node]
 
             for edge in self.graph[min_node]:
-                try:
-                    weight = current_weight + edge[1]
-                except:
-                    continue
+                weight = current_weight + edge[1]
                 if edge[0] not in visited or weight < visited[edge[0]]:
                     path.setdefault(edge[0], [])
                     visited[edge[0]] = weight
-                    path[edge[0]].append(min_node)
+                path[edge[0]].append(min_node)
 
         return visited, path
 
 
 if __name__ == '__main__':
-    import timeit
-    print('Depth Traversal Time for 1000 traversals:',
-          timeit.timeit(stmt="graph.depth_traversal('A')",
-                        setup='from __main__ import graph',
-                        number=1000))
-    print('Breadth Traversal Time for 1000 traversals:',
-          timeit.timeit(stmt="graph.breadth_traversal('A')",
-                        setup='from __main__ import graph',
-                        number=1000))
+    graph = Graph()
+    for node in ['A', 'B', 'C', 'D', 'E', 'X']:
+        graph.add_node(node)
+    graph.add_edge('A', 'B', 1)
+    graph.add_edge('A', 'C', 1)
+    graph.add_edge('B', 'D', 5)
+    graph.add_edge('C', 'D', 2)
+    graph.add_edge('D', 'E', 3)
+    #graph.add_edge('E', 'F', 7)
+
+    #graph.add_edge('E', 'A', 10)
+
+    print(graph.dijkstra('A'))
+
+
+
+    # graph = Graph()
+    # for node in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'Dead']:
+    #     graph.add_node(node)
+    # graph.add_edge('A', 'B', 10)
+    # graph.add_edge('A', 'C', 20)
+    # graph.add_edge('B', 'D', 15)
+    # graph.add_edge('C', 'D', 30)
+    # graph.add_edge('B', 'E', 50)
+    # graph.add_edge('D', 'E', 30)
+    # graph.add_edge('E', 'F', 5)
+    # graph.add_edge('F', 'G', 2)
+    # graph.add_edge('B', 'Dead', 2)
+    # print(graph.dijkstra('A'))
+    # import timeit
+    # print('Depth Traversal Time for 1000 traversals:',
+    #       timeit.timeit(stmt="graph.depth_traversal('A')",
+    #                     setup='from __main__ import graph',
+    #                     number=1000))
+    # print('Breadth Traversal Time for 1000 traversals:',
+    #       timeit.timeit(stmt="graph.breadth_traversal('A')",
+    #                     setup='from __main__ import graph',
+    #                     number=1000))
