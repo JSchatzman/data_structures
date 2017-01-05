@@ -155,25 +155,11 @@ class Graph(object):
             current_weight = visited[min_node]
 
             for edge in self.graph[min_node]:
-                try:
-                    weight = current_weight + edge[1]
-                except:
-                    continue
+
+                weight = current_weight + edge[1]
+
                 if edge[0] not in visited or weight < visited[edge[0]]:
-                    path.setdefault(edge[0], [])
                     visited[edge[0]] = weight
-                    path[edge[0]].append(min_node)
+                    path[edge[0]] = min_node
 
         return visited, path
-
-
-if __name__ == '__main__':
-    import timeit
-    print('Depth Traversal Time for 1000 traversals:',
-          timeit.timeit(stmt="graph.depth_traversal('A')",
-                        setup='from __main__ import graph',
-                        number=1000))
-    print('Breadth Traversal Time for 1000 traversals:',
-          timeit.timeit(stmt="graph.breadth_traversal('A')",
-                        setup='from __main__ import graph',
-                        number=1000))
