@@ -139,48 +139,70 @@ class Graph(object):
         """Find the shorted path from source node to all other nodes."""
         visited = {source: 0}
         path = {}
-        nodes = list(self.graph.keys())
-        while nodes:
+        nodes_visit = self.nodes()
+        while nodes_visit:
             min_node = None
-            for node in nodes:
+            for node in nodes_visit:
                 if node in visited:
                     if min_node is None:
                         min_node = node
                     elif visited[node] < visited[min_node]:
                         min_node = node
+               # print(node)
             if min_node is None:
                 break
 
-            nodes.remove(min_node)
+            nodes_visit.remove(min_node)
             current_weight = visited[min_node]
 
             for edge in self.graph[min_node]:
                 try:
-                    new_distance = [value[1] for value in self.graph[min_node] if value == edge][0]
-                    weight = current_weight + new_distance
+                    # new_distance = [value[1] for value in self.graph[min_node] if value == edge][0]
+                    weight = current_weight + edge[1]
                 except:
                     continue
                 if edge not in visited or weight < visited[edge]:
-                    visited[edge] = weight
-                    path[edge] = min_node
+                    visited[edge[0]] = weight
+                    path[edge[0]] = min_node
 
-        return visited, path
+        print (visited, path)
+
+        #     for edge in self.graph[min_node]:
+        #       #  print(edge)
+        #         try:
+        #             new_distance = [value[1] for value in self.graph[min_node] if value == edge][0]
+        #             weight = current_weight + new_distance
+        #             print(new_distance)
+        #         except BlockingIOError: ##Use random error so it keeps running
+        #             continue
+        #         if edge not in visited or weight < visited[edge]:
+        #             visited[edge] = weight
+        #             path[edge] = min_node
+
+        # return visited, path
 
 
 
 if __name__ == '__main__':
     import timeit
-    graph = Graph(['A', 'B', 'C', 'D', 'E', 'F', 'G'])
-    graph.add_node('X')
-    graph.add_edge('A', 'B', 30)
-    graph.add_edge('A', 'C')
-    graph.add_edge('A', 'E')
-    graph.add_edge('B', 'D')
-    graph.add_edge('B', 'F')
-    graph.add_edge('C', 'G')
-    graph.add_edge('E', 'F')
-    graph.add_edge('B', 'X', 5)
-    print(graph.dijkstra('A'))
+    graph = Graph()
+    for node in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'Dead']:
+        graph.add_node(node)
+    graph.add_edge('A', 'B', 10)
+    graph.add_edge('A', 'C', 20)
+    graph.add_edge('B', 'D', 15)
+    graph.add_edge('C', 'D', 30)
+    graph.add_edge('B', 'E', 50)
+    graph.add_edge('D', 'E', 30)
+    graph.add_edge('E', 'F', 5)
+    graph.add_edge('F', 'G', 2)
+    graph.add_edge('B', 'Dead', 2)
+    #graph.add_edge('Dead', 'Deader', 2)
+
+    #print (graph.graph)
+    graph.dijkstra('A')
+
+
     # print('Depth Traversal Time for 1000 traversals:',
     #       timeit.timeit(stmt="graph.depth_traversal('A')",
     #                     setup='from __main__ import graph',
