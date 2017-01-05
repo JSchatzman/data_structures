@@ -1,4 +1,4 @@
-"""Test implementation of a simple unweighted directed graph."""
+"""Test implementation of a simple weighted directed graph."""
 
 import pytest
 
