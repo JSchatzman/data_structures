@@ -135,7 +135,7 @@ class Graph(object):
                 node_edges.extend(unique_edges)
         return visited
 
-    def dijkstra(self, source):
+    def dijkstra(self, source, target):
         """Find the shorted path from source node to all other nodes."""
         visited = {source: 0}
         path = {}
@@ -157,11 +157,12 @@ class Graph(object):
             for edge in self.graph[min_node]:
                 weight = current_weight + edge[1]
                 if edge[0] not in visited or weight < visited[edge[0]]:
-                    path.setdefault(edge[0], [])
                     visited[edge[0]] = weight
-                path[edge[0]].append(min_node)
+                    path[edge[0]] = min_node
 
-        return visited, path
+            if min_node == target:
+                return visited[target], path
+
 
 
 if __name__ == '__main__':
@@ -177,7 +178,7 @@ if __name__ == '__main__':
 
     #graph.add_edge('E', 'A', 10)
 
-    print(graph.dijkstra('A'))
+    print(graph.dijkstra2('A', 'D'))
 
 
 
@@ -203,3 +204,4 @@ if __name__ == '__main__':
     #       timeit.timeit(stmt="graph.breadth_traversal('A')",
     #                     setup='from __main__ import graph',
     #                     number=1000))
+

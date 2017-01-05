@@ -6,7 +6,7 @@ import pytest
 @pytest.fixture
 def sample_graph():
     """Create testing graph."""
-    from weighted_graph import Graph
+    from shortest_path_graph import Graph
     one_graph = Graph('A')
     empty_graph = Graph()
     new_graph = Graph(['A', 'B', 'C', 'D'])
@@ -25,6 +25,20 @@ def traversal_graph():
     graph.add_edge('B', 'F')
     graph.add_edge('C', 'G')
     graph.add_edge('E', 'F')
+    return graph
+
+
+@pytest.fixture
+def path_graph():
+    """Create a graph for shortest path testing."""
+    from shortest_path_graph import Graph
+    graph = Graph(['A', 'B', 'C', 'D', 'E', 'F', 'X'])
+    graph.add_edge('A', 'B', 1)
+    graph.add_edge('A', 'C', 1)
+    graph.add_edge('B', 'D', 5)
+    graph.add_edge('C', 'D', 2)
+    graph.add_edge('D', 'E', 3)
+    graph.add_edge('E', 'F', 4)
     return graph
 
 
@@ -277,3 +291,15 @@ def test_edges_have_weight_other_than_one(sample_graph):
     """Test added edges have a specified weight."""
     sample_graph[2].add_edge('A', 'B', 2)
     assert sample_graph[2].graph['A'][0][1] == 2
+
+
+def test_dijkstra_returns_shortest_length(path_graph):
+    """Test dijkstra returns the shortest path."""
+    distance = path_graph.dijkstra('A')[0]
+    assert distance['D'] == 3
+
+
+def test_dijkstra_returns_correct_path(path_graph):
+    """Test dijkstra returns the shortest path."""
+    path = path_graph.dijkstra('A')[1]
+    assert path['D'] == 'C'
