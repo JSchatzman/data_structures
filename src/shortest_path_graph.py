@@ -148,7 +148,6 @@ class Graph(object):
                         min_node = node
                     elif visited[node] < visited[min_node]:
                         min_node = node
-               # print(node)
             if min_node is None:
                 break
 
@@ -157,57 +156,24 @@ class Graph(object):
 
             for edge in self.graph[min_node]:
                 try:
-                    # new_distance = [value[1] for value in self.graph[min_node] if value == edge][0]
                     weight = current_weight + edge[1]
                 except:
                     continue
-                if edge not in visited or weight < visited[edge]:
+                if edge[0] not in visited or weight < visited[edge[0]]:
+                    path.setdefault(edge[0], [])
                     visited[edge[0]] = weight
-                    path[edge[0]] = min_node
+                    path[edge[0]].append(min_node)
 
-        print (visited, path)
-
-        #     for edge in self.graph[min_node]:
-        #       #  print(edge)
-        #         try:
-        #             new_distance = [value[1] for value in self.graph[min_node] if value == edge][0]
-        #             weight = current_weight + new_distance
-        #             print(new_distance)
-        #         except BlockingIOError: ##Use random error so it keeps running
-        #             continue
-        #         if edge not in visited or weight < visited[edge]:
-        #             visited[edge] = weight
-        #             path[edge] = min_node
-
-        # return visited, path
-
+        return visited, path
 
 
 if __name__ == '__main__':
     import timeit
-    graph = Graph()
-    for node in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'Dead']:
-        graph.add_node(node)
-    graph.add_edge('A', 'B', 10)
-    graph.add_edge('A', 'C', 20)
-    graph.add_edge('B', 'D', 15)
-    graph.add_edge('C', 'D', 30)
-    graph.add_edge('B', 'E', 50)
-    graph.add_edge('D', 'E', 30)
-    graph.add_edge('E', 'F', 5)
-    graph.add_edge('F', 'G', 2)
-    graph.add_edge('B', 'Dead', 2)
-    #graph.add_edge('Dead', 'Deader', 2)
-
-    #print (graph.graph)
-    graph.dijkstra('A')
-
-
-    # print('Depth Traversal Time for 1000 traversals:',
-    #       timeit.timeit(stmt="graph.depth_traversal('A')",
-    #                     setup='from __main__ import graph',
-    #                     number=1000))
-    # print('Breadth Traversal Time for 1000 traversals:',
-    #       timeit.timeit(stmt="graph.breadth_traversal('A')",
-    #                     setup='from __main__ import graph',
-    #                     number=1000))
+    print('Depth Traversal Time for 1000 traversals:',
+          timeit.timeit(stmt="graph.depth_traversal('A')",
+                        setup='from __main__ import graph',
+                        number=1000))
+    print('Breadth Traversal Time for 1000 traversals:',
+          timeit.timeit(stmt="graph.breadth_traversal('A')",
+                        setup='from __main__ import graph',
+                        number=1000))
