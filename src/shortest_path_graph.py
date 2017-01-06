@@ -139,6 +139,7 @@ class Graph(object):
         """Find the shorted path from source node to all other nodes."""
         visited = {source: 0}
         path = {}
+        path2 = []
         nodes_visit = self.nodes()
         while nodes_visit:
             min_node = None
@@ -161,7 +162,7 @@ class Graph(object):
                     path[edge[0]] = min_node
 
             if min_node == target:
-                return visited[target], path
+                return visited[target], path, path2
 
 
 
@@ -174,11 +175,11 @@ if __name__ == '__main__':
     graph.add_edge('B', 'D', 5)
     graph.add_edge('C', 'D', 2)
     graph.add_edge('D', 'E', 3)
-    #graph.add_edge('E', 'F', 7)
+    graph.add_edge('E', 'F', 7)
 
     #graph.add_edge('E', 'A', 10)
 
-    print(graph.dijkstra2('A', 'D'))
+    print(graph.dijkstra('A', 'B'))
 
 
 
