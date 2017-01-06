@@ -303,3 +303,20 @@ def test_dijkstra_returns_correct_path(path_graph):
     """Test dijkstra returns the shortest path."""
     path = path_graph.dijkstra('A', 'D')[1]
     assert path == ['A', 'C', 'D']
+
+
+def test_dijkstra_avoids_long_path(path_graph):
+    """Test dijkstra doesn't return longer path when two options."""
+    path = path_graph.dijkstra('A', 'D')[1]
+    assert path is not ['A', 'B', 'D']
+
+
+def test_dijkstra_to_unconnected_node(path_graph):
+    """Test dijkstra to an unconnected node is None."""
+    assert path_graph.dijkstra('A', 'X') is None
+
+
+def test_dijkstra_on_a_path_of_five(path_graph):
+    """Test dijkstra for a path of 5 nodes."""
+    path = path_graph.dijkstra('A', 'F')[1]
+    assert path == ['A', 'C', 'D', 'E', 'F']
