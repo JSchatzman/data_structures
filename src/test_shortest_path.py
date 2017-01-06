@@ -295,11 +295,11 @@ def test_edges_have_weight_other_than_one(sample_graph):
 
 def test_dijkstra_returns_shortest_length(path_graph):
     """Test dijkstra returns the shortest path."""
-    distance = path_graph.dijkstra('A')[0]
-    assert distance['D'] == 3
+    distance = path_graph.dijkstra('A', 'D')[0]
+    assert distance == 3
 
 
 def test_dijkstra_returns_correct_path(path_graph):
     """Test dijkstra returns the shortest path."""
-    path = path_graph.dijkstra('A')[1]
-    assert path['D'] == 'C'
+    path = path_graph.dijkstra('A', 'D')[1]
+    assert path == ['A', 'C', 'D']
