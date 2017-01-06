@@ -3,43 +3,29 @@
 
 class Graph(object):
     """Implementation of a simple directed Graph.
-
     g.nodes(): return a list of all nodes in the graph.
-
     g.edges(): return a list of all edges in the graph.
-
     g.add_node(n): adds a new node n to the graph.
-
     g.add_edge(n1, n2, weight): adds a new edge to the graph connecting n1 n2,
      if either n1 or n2 are not already present in the graph,
      they should be added.
-
     g.del_node(n): deletes the node n from the graph, raises an error
      if no such node exists
-
     g.del_edge(n1, n2): deletes the edge connecting n1 and n2 from the
      graph, raises an error if no such edge exists
-
     g.has_node(n): True if node n is contained in the graph,
      False if not.
-
     g.neighbors(n): returns the list of all nodes connected to n by
      edges, raises an error if n is not in g
-
     g.adjacent(n1, n2): returns True if there is an edge connecting n1
      and n2, False if not, raises an error if either of the supplied nodes
      are not in g
-
     g.depth_first_traversal(start): Perform a full depth-first traversal of
     the graph beginning at start. Return the full visited path when traversal
     is complete.
-
     g.breadth_first_traversal(start): Perform a full breadth-first traversal
     of the graph, beginning at start. Return the full visited path when
     traversal is complete.
-
-
-
     References:
     https://www.python.org/doc/essays/graphs/
     https://medium.freecodecamp.com/a-gentle-introduction-to-data-structures-how-graphs-work-a223d9ef8837#.6xbpr1l6q
@@ -48,7 +34,6 @@ class Graph(object):
 
     def __init__(self, data=None):
         """Initialize a graph instance.
-
         Data is the key of the dict and edges are held in a list of names.
         """
         self.graph = {}
@@ -139,7 +124,6 @@ class Graph(object):
         """Find the shorted path from source node to all other nodes."""
         visited = {source: 0}
         path = {}
-        path2 = []
         nodes_visit = self.nodes()
         while nodes_visit:
             min_node = None
@@ -162,8 +146,16 @@ class Graph(object):
                     path[edge[0]] = min_node
 
             if min_node == target:
-                return visited[target], path, path2
+                return visited[target], self._path(source, target, path)
 
+    def _path(self, source, target, path):
+        """Helper function to return a list of the path."""
+        cur_node = target
+        ret_path = [target]
+        while cur_node is not source:
+            ret_path.append(path[cur_node])
+            cur_node = path[cur_node]
+        return ret_path[::-1]
 
 
 if __name__ == '__main__':
@@ -175,11 +167,11 @@ if __name__ == '__main__':
     graph.add_edge('B', 'D', 5)
     graph.add_edge('C', 'D', 2)
     graph.add_edge('D', 'E', 3)
-    graph.add_edge('E', 'F', 7)
+    #graph.add_edge('E', 'F', 7)
 
     #graph.add_edge('E', 'A', 10)
 
-    print(graph.dijkstra('A', 'B'))
+    print(graph.dijkstra2('A', 'D'))
 
 
 
@@ -204,5 +196,4 @@ if __name__ == '__main__':
     # print('Breadth Traversal Time for 1000 traversals:',
     #       timeit.timeit(stmt="graph.breadth_traversal('A')",
     #                     setup='from __main__ import graph',
-    #                     number=1000))
-
+#                     number=1000))
