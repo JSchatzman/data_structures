@@ -161,8 +161,16 @@ class Graph(object):
                     path[edge[0]] = min_node
 
             if min_node == target:
-                return visited[target], path
+                return visited[target], self._path(source, target, path)
 
+    def _path(self, source, target, path):
+        """Helper function to return a list of the path."""
+        cur_node = target
+        ret_path = [target]
+        while cur_node is not source:
+            ret_path.append(path[cur_node])
+            cur_node = path[cur_node]
+        return ret_path[::-1]
 
 
 if __name__ == '__main__':
