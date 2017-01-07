@@ -148,6 +148,34 @@ class Graph(object):
             if min_node == target:
                 return visited[target], self._path(source, target, path)
 
+
+    def floyd_warshall(self):
+        """Use Floyd Marshall algorithm to find shorted path."""
+        distance = {}
+        path = {}
+        nodes = self.nodes()
+        for u in nodes:
+            distance[u] = {}
+            path[u] = {}
+            for v in nodes:
+                distance[u][v] = 1000
+                path[u][v] = -1
+            distance[u][u] = 0
+            for neighbor in self.graph[u]:
+                new_weight = [weight[1] for weight in self.graph[u] if weight[0] == neighbor][0]
+                distance[u][neighbor] = new_weight
+                path[u][neighbor] = u
+
+        for t in nodes:
+            for u in nodes:
+                for v in nodes:
+                    new_distance = distance[u][t] + dist[t][v]
+                    if newdist < distance[u][v]:
+                        distance[u][v] = new_distance
+                        path[u][v] = path[t][v]
+        return distance, path
+
+
     def _path(self, source, target, path):
         """Helper function to return a list of the path."""
         cur_node = target
@@ -158,42 +186,3 @@ class Graph(object):
         return ret_path[::-1]
 
 
-if __name__ == '__main__':
-    graph = Graph()
-    for node in ['A', 'B', 'C', 'D', 'E', 'X']:
-        graph.add_node(node)
-    graph.add_edge('A', 'B', 1)
-    graph.add_edge('A', 'C', 1)
-    graph.add_edge('B', 'D', 5)
-    graph.add_edge('C', 'D', 2)
-    graph.add_edge('D', 'E', 3)
-    #graph.add_edge('E', 'F', 7)
-
-    #graph.add_edge('E', 'A', 10)
-
-    print(graph.dijkstra2('A', 'D'))
-
-
-
-    # graph = Graph()
-    # for node in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'Dead']:
-    #     graph.add_node(node)
-    # graph.add_edge('A', 'B', 10)
-    # graph.add_edge('A', 'C', 20)
-    # graph.add_edge('B', 'D', 15)
-    # graph.add_edge('C', 'D', 30)
-    # graph.add_edge('B', 'E', 50)
-    # graph.add_edge('D', 'E', 30)
-    # graph.add_edge('E', 'F', 5)
-    # graph.add_edge('F', 'G', 2)
-    # graph.add_edge('B', 'Dead', 2)
-    # print(graph.dijkstra('A'))
-    # import timeit
-    # print('Depth Traversal Time for 1000 traversals:',
-    #       timeit.timeit(stmt="graph.depth_traversal('A')",
-    #                     setup='from __main__ import graph',
-    #                     number=1000))
-    # print('Breadth Traversal Time for 1000 traversals:',
-    #       timeit.timeit(stmt="graph.breadth_traversal('A')",
-    #                     setup='from __main__ import graph',
-#                     number=1000))
