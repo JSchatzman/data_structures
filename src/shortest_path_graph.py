@@ -176,10 +176,16 @@ class Graph(object):
                         path[u][v] = path[t][v]
 
         if source not in distance or target not in nodes:
-            raise IndexError('These are invalid nodes')
+            raise IndexError('These is no exising path between these nodes')
         elif distance[source][target] == infinity:
             return
-        return distance[source][target]
+        exact_path = [target]
+        target_path = path[source]
+        iter_source = target
+        while iter_source != source:
+            exact_path.append(target_path[iter_source])
+            iter_source = target_path[iter_source]
+        return distance[source][target], exact_path[::-1]
 
     def _path(self, source, target, path):
         """Helper function to return a list of the path."""
@@ -197,4 +203,4 @@ graph.add_edge('B', 'D', 5)
 graph.add_edge('C', 'D', 2)
 graph.add_edge('D', 'E', 3)
 graph.add_edge('E', 'F', 4)
-print (graph.floyd_warshall('F', 'X'))
+print (graph.floyd_warshall('A', 'F'))
