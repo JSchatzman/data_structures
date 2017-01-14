@@ -149,8 +149,8 @@ class Graph(object):
                 return visited[target], self._path(source, target, path)
 
 
-    def floyd_warshall(self):
-        """Use Floyd Marshall algorithm to find shorted path."""
+    def floyd_warshall(self, source, target, infinity=99999999):
+        """Use Floyd Marshall algorithm to find shortest path."""
         distance = {}
         path = {}
         nodes = self.nodes()
@@ -158,13 +158,12 @@ class Graph(object):
             distance[u] = {}
             path[u] = {}
             for v in nodes:
-                distance[u][v] = 1000
+                distance[u][v] = infinity #placholder for infinity
                 path[u][v] = -1
             distance[u][u] = 0
             for neighbor in self.graph[u]:
                 target_node = neighbor[0]
                 new_weight = neighbor[1]
-                #import pdb; pdb.set_trace()
                 distance[u][target_node] = new_weight
                 path[u][target_node] = u
 
@@ -175,8 +174,12 @@ class Graph(object):
                     if new_distance < distance[u][v]:
                         distance[u][v] = new_distance
                         path[u][v] = path[t][v]
-        return distance, path
 
+        if source not in distance or target not in nodes:
+            raise IndexError('These are invalid nodes')
+        elif distance[source][target] == infinity:
+            return
+        return distance[source][target]
 
     def _path(self, source, target, path):
         """Helper function to return a list of the path."""
@@ -194,4 +197,4 @@ graph.add_edge('B', 'D', 5)
 graph.add_edge('C', 'D', 2)
 graph.add_edge('D', 'E', 3)
 graph.add_edge('E', 'F', 4)
-print (graph.floyd_warshall()[0]['A'])
+print (graph.floyd_warshall('F', 'X'))
