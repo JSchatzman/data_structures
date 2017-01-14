@@ -185,7 +185,7 @@ class Graph(object):
         """Helper function to return a list of the path."""
         cur_node = target
         ret_path = [target]
-        while cur_node is not source:
+        while cur_node != source:
             ret_path.append(path[cur_node])
             cur_node = path[cur_node]
         return ret_path[::-1]
