@@ -320,3 +320,32 @@ def test_dijkstra_on_a_path_of_five(path_graph):
     """Test dijkstra for a path of 5 nodes."""
     path = path_graph.dijkstra('A', 'F')[1]
     assert path == ['A', 'C', 'D', 'E', 'F']
+
+
+def test_floyd_warshall_returns_shortest_length(path_graph):
+    """Test floyd_warshall returns the shortest path."""
+    distance = path_graph.floyd_warshall('A', 'D')[0]
+    assert distance == 3
+
+
+def test_floyd_warshall_returns_correct_path(path_graph):
+    """Test floyd_warshall returns the shortest path."""
+    path = path_graph.floyd_warshall('A', 'D')[1]
+    assert path == ['A', 'C', 'D']
+
+
+def test_floyd_warshall_avoids_long_path(path_graph):
+    """Test floyd_warshall doesn't return longer path when two options."""
+    path = path_graph.floyd_warshall('A', 'D')[1]
+    assert path is not ['A', 'B', 'D']
+
+
+def test_floyd_warshall_to_unconnected_node(path_graph):
+    """Test floyd_warshall to an unconnected node is None."""
+    assert path_graph.floyd_warshall('A', 'X') is None
+
+
+def test_floyd_warshall_on_a_path_of_five(path_graph):
+    """Test floyd_warshall for a path of 5 nodes."""
+    path = path_graph.floyd_warshall('A', 'F')[1]
+    assert path == ['A', 'C', 'D', 'E', 'F']
