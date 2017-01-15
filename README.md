@@ -103,6 +103,8 @@ if either n1 or n2 are not already present in the graph, they should be added.
 - **adjacent(n1, n2)** - returns True if there is an edge connecting n1 and n2, False if not, raises an error if either of the supplied nodes are not in g
 - **g.depth_first_traversal(start)** - Perform a full depth-first traversal ofthe graph beginning at start. Return the full visited path when traversal is complete.
 - **g.breadth_first_traversal(start)** - Perform a full breadth-first traversal of the graph, beginning at start. Return the full visited path when traversal is complete.
+- **dijkstra** - If possible, find the shortest path between two nodes in a graph using Dijkstra's algorithm.
+- **floyd_warshall** - If possible, find shortest path between two nodes in a graph using the Floyd Warshall algorithm.  This has a consistent complexity of O(V^3).  This has adavantages over Dijkstra's algorithm in certain situations.
 
 
 #Testing Coverage:
