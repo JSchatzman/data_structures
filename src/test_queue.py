@@ -6,7 +6,7 @@ import pytest
 @pytest.fixture
 def sample_queue():
     """Create testing queue."""
-    from queue import Queue
+    from queue_ import Queue
     new_queue = Queue([1, 2, 3, 4, 5])
     return new_queue
 
@@ -14,7 +14,7 @@ def sample_queue():
 @pytest.fixture
 def single_queue():
     """Create testing queues."""
-    from queue import Queue
+    from queue_ import Queue
     one_queue = Queue(["one"])
     return one_queue
 
@@ -22,7 +22,7 @@ def single_queue():
 @pytest.fixture
 def empty_queue():
     """Create testing queues."""
-    from queue import Queue
+    from queue_ import Queue
     empty_queue = Queue()
     return empty_queue
 

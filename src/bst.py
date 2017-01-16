@@ -21,11 +21,13 @@ class BinarySearchTree(object):
         self._size = 0
         if contents:
             self.root = Node(contents[0])
-            for val in contents[1:]:
+            for val in contents:
                 self.insert(val)
 
     def insert(self, val):
         """Insert a new node into the bst."""
+        if val not in self.all_values.keys():
+            self._size += 1
         self.all_values.setdefault(val)
         check = self.root
         while check:
@@ -35,7 +37,6 @@ class BinarySearchTree(object):
                     check = check.left_child
                     continue
                 check.left_child = Node(val)
-                self._size += 1
                 return
             elif val > check.contents:
                 print('hello2')
@@ -43,7 +44,6 @@ class BinarySearchTree(object):
                     check = check.right_child
                     continue
                 check.right_child = Node(val)
-                self._size += 1
                 return
             else:
                 return
@@ -51,13 +51,3 @@ class BinarySearchTree(object):
     def size(self):
         """Return the length of the bst."""
         return self._size
-
-
-# bst = BinarySearchTree([40, 20, 50, 30, 15, 60])
-# bst.insert(20)
-# bst.insert(50)
-# bst.insert(30)
-# bst.insert(15)
-
-
-
