@@ -53,7 +53,6 @@ class BinarySearchTree(object):
         return self._size
 
 
-
     def depth(self, root_check=None, depth_list=None):
         """Find all depths of this bst."""
         if not self.root:
