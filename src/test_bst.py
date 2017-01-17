@@ -140,3 +140,23 @@ def test_search_method_on_filled_bst(bst_filled):
 def test_search_method_on_filled_bst_where_val_not_there(bst_filled):
     """Should return none on because Node not found."""
     assert bst_filled.search(0) is None
+
+
+def test_in_order_on_empty(bst_empty):
+    """Should raise error on next of empty tree."""
+    in_order = bst_empty.in_order()
+    with pytest.raises(StopIteration):
+        assert next(in_order)
+
+
+def test_in_order_on_full(bst_filled):
+    """Test that in order accurately returns nodes in order."""
+    assert [node for node in bst_filled.in_order()] == [15, 20, 30, 40, 50, 60]
+
+
+def test_error_after_first_iteration_of_single_tree(bst_single):
+    """Test that the second iteration of single tree yields an error."""
+    in_order = bst_single.in_order()
+    next(in_order)
+    with pytest.raises(StopIteration):
+        assert next(in_order)
