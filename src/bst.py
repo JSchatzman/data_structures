@@ -10,6 +10,19 @@ class Node(object):
         self.left_child = left_child
         self.right_child = right_child
 
+    def in_order(self):
+        check_node = self
+        while check_node.left_child:
+            check_node = check_node.left_child
+            if self.left_child:
+                self.left_child.in_order()
+        #yield check_node.contents
+        while check_node.right_child:
+            check_node = check_node.right_child
+            if self.right_child:
+                self.right_child.in_order()
+        yield check_node.contents
+
 
 class BinarySearchTree(object):
     """Class representation of bst.
@@ -110,15 +123,36 @@ class BinarySearchTree(object):
             return self.depth(root_check.left_child)
         return self.depth(root_check.right_child) - self.depth(root_check.left_child)
 
+    def in_order(self):
+        if self.root:
+            check_node = self.root
+            while check_node.left_child:
+                check_node = check_node.left_child
+                if check_node.left_child:
+                    check_node.left_child.in_order()
+            while check_node.right_child:
+                check_node = check_node.right_child
+                if check_node.right_child:
+                    check_node.right_child.in_order()
+            yield check_node.contents
 
-if __name__ == '__main__':
-    import timeit
-    bst = BinarySearchTree((40, 20, 50, 30, 15, 60))
-    print('Depth Time for 1000 depth function calls:',
-          timeit.timeit(stmt="bst.depth()",
-                        setup='from __main__ import bst',
-                        number=1000))
-    print('Balance Time for 1000 balance function calls:',
-          timeit.timeit(stmt="bst.balance()",
-                        setup='from __main__ import bst',
-                        number=1000))
+
+
+# bst = BinarySearchTree((40, 20, 50, 30, 15, 60))
+# gen = bst.in_order()
+# for i in range(5):
+#     print(gen.next())
+
+
+
+# if __name__ == '__main__':
+#     import timeit
+#     bst = BinarySearchTree((40, 20, 50, 30, 15, 60))
+#     print('Depth Time for 1000 depth function calls:',
+#           timeit.timeit(stmt="bst.depth()",
+#                         setup='from __main__ import bst',
+#                         number=1000))
+#     print('Balance Time for 1000 balance function calls:',
+#           timeit.timeit(stmt="bst.balance()",
+#                         setup='from __main__ import bst',
+#                         number=1000))
