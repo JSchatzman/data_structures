@@ -11,17 +11,14 @@ class Node(object):
         self.right_child = right_child
 
     def in_order(self):
-        check_node = self
-        while check_node.left_child:
-            check_node = check_node.left_child
-            if self.left_child:
-                self.left_child.in_order()
-        #yield check_node.contents
-        while check_node.right_child:
-            check_node = check_node.right_child
-            if self.right_child:
-                self.right_child.in_order()
-        yield check_node.contents
+        """In order method for Node object."""
+        if self.left_child:
+            for yieldval in self.left_child.in_order():
+                yield yieldval
+        yield self.contents
+        if self.right_child:
+            for yieldval in self.right_child.in_order():
+                yield yieldval
 
 
 class BinarySearchTree(object):
@@ -37,6 +34,8 @@ class BinarySearchTree(object):
     contains(val): Will return True if val is in the BST, False if not.
 
     balance(): Will return an integer, positive or negative that represents how well balanced the tree is. Trees which are higher on the left than the right should return a positive value, trees which are higher on the right than the left should return a negative value. An ideally-balanced tree should return 0.
+
+    in_order(): In Order method for Binary Search Tree class. Return the values in order from smallest to largest.
     """
 
     def __init__(self, contents=None):
@@ -111,6 +110,7 @@ class BinarySearchTree(object):
         right than the left should return a negative value. An
         ideally-balanced tree should return 0.
         """
+
         if not self.root:
             return 0
         if not root_check:
@@ -124,17 +124,11 @@ class BinarySearchTree(object):
         return self.depth(root_check.right_child) - self.depth(root_check.left_child)
 
     def in_order(self):
+        """In Order method for Binary Search Tree class. Return the values in order from smallest to largest."""
+
         if self.root:
-            check_node = self.root
-            while check_node.left_child:
-                check_node = check_node.left_child
-                if check_node.left_child:
-                    check_node.left_child.in_order()
-            while check_node.right_child:
-                check_node = check_node.right_child
-                if check_node.right_child:
-                    check_node.right_child.in_order()
-            yield check_node.contents
+            for item in self.root.in_order():
+                yield item
 
 
 
