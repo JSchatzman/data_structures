@@ -12,7 +12,19 @@ class Node(object):
 
 
 class BinarySearchTree(object):
-    """Class representation of bst."""
+    """Class representation of bst.
+    
+    Methods:
+    insert(val): Insert a new node into the bst.
+
+    size(): Return the length of the bst.
+
+    depth(): Find all maximum depth of this bst.
+
+    contains(val): Will return True if val is in the BST, False if not.
+
+    balance(): Will return an integer, positive or negative that represents how well balanced the tree is. Trees which are higher on the left than the right should return a positive value, trees which are higher on the right than the left should return a negative value. An ideally-balanced tree should return 0.
+    """
 
     def __init__(self, contents=None):
         """Initialize bst with a node."""
@@ -28,6 +40,8 @@ class BinarySearchTree(object):
         """Insert a new node into the bst."""
         if val not in self.all_values.keys():
             self._size += 1
+        if not self.root:
+            self.root = Node(val)
         self.all_values.setdefault(val)
         check = self.root
         while check:
@@ -92,29 +106,3 @@ class BinarySearchTree(object):
         if root_check.right_child is None:
             return self.depth(root_check.left_child)
         return self.depth(root_check.right_child) - self.depth(root_check.left_child) 
-        # balance = 0
-        # check = self.root
-        # while check:
-        #     if check.left_child:
-        #         balance -= 1
-        #     if check.right_child:
-        #         balance += 1
-        #     if check.left_child:
-        #         check = check.left_child
-        #         continue
-        #     check = check.right_child
-        # check = self.root
-        # while check:
-        #     if check.left_child:
-        #         balance -= 1
-        #     if check.right_child:
-        #         balance += 1
-        #     if check.right_child:
-        #         check = check.right_child
-        #         continue
-        #     check = check.left_child
-        # return balance
-
-#test = BinarySearchTree([5, 1, 7, 0, 3, 4])
-test = BinarySearchTree([1,2,3,4,5, -1, -2, -3, -4, -5])
-print(test.balance())

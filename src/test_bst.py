@@ -10,6 +10,15 @@ BST_INSERT_TABLE = [
     [1]
 ]
 
+BST_BALANCE_TABLE = [
+    ([40, 20], 1),
+    [(40, 20, 50), 0],
+    [[40, 20, 50, 30], -1],
+    [(40, 20, 50, 30, 15), -1],
+    [(40, 20, 50, 30, 15, 60), 0],
+    ([1, 2, 3, 4, 5, 6], 5)
+]
+
 
 @pytest.fixture
 def newnode():
@@ -87,3 +96,31 @@ def test_depth_on_single_bst(bst_single):
 def test_depth_on_filled_bst(bst_filled):
     """Test that depth on filled bst returns 0."""
     assert bst_filled.depth() == 3
+
+
+def test_balance_on_empty_tree(bst_empty):
+    """Should return 0 for an empty tree."""
+    assert bst_empty.balance() == 0
+
+
+@pytest.mark.parametrize("vals, result", BST_BALANCE_TABLE)
+def test_balance_on_filled_tree(vals, result, bst_empty):
+    """Should return result for Table in tree."""
+    for val in vals:
+        bst_empty.insert(val)
+    assert bst_empty.balance() == result
+
+
+def test_balance_on_single_tree(bst_single):
+    """Should return 1 for a tree with just a root."""
+    assert bst_single.balance() == 1
+
+
+def test_contains_method_on_empty(bst_empty):
+    """Should return false for any value."""
+    assert bst_empty.contains("asdfsaf") is False
+
+
+def test_contains_method_on_filled(bst_filled):
+    """Check that values are in the filled bst."""
+    assert bst_filled.contains(15) is True
