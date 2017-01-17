@@ -72,32 +72,49 @@ class BinarySearchTree(object):
             return True
         return False
 
-    def balance(self): 
+    def balance(self, root_check=None, depth_list=None): 
         """Will return an integer, positive or negative that represents how
         well balanced the tree is. Trees which are higher on the left than the
         right should return a positive value, trees which are higher on the
         right than the left should return a negative value. An
         ideally-balanced tree should return 0.
         """
-        balance = 0
-        check = self.root
-        while check:
-            if check.left_child:
-                balance -= 1
-            if check.right_child:
-                balance += 1
-            if check.left_child:
-                check = check.left_child
-                continue
-            check = check.right_child
-        check = self.root
-        while check:
-            if check.left_child:
-                balance -= 1
-            if check.right_child:
-                balance += 1
-            if check.right_child:
-                check = check.right_child
-                continue
-            check = check.left_child
-        return balance
+        if not self.root:
+            return 0
+        if not root_check:
+            root_check = self.root
+        if not depth_list:
+            depth_list = []
+        if not root_check.left_child and not root_check.right_child:
+            return 1
+        if root_check.left_child is None:
+            return self.depth(root_check.right_child)
+        if root_check.right_child is None:
+            return self.depth(root_check.left_child)
+        return self.depth(root_check.right_child) - self.depth(root_check.left_child) 
+        # balance = 0
+        # check = self.root
+        # while check:
+        #     if check.left_child:
+        #         balance -= 1
+        #     if check.right_child:
+        #         balance += 1
+        #     if check.left_child:
+        #         check = check.left_child
+        #         continue
+        #     check = check.right_child
+        # check = self.root
+        # while check:
+        #     if check.left_child:
+        #         balance -= 1
+        #     if check.right_child:
+        #         balance += 1
+        #     if check.right_child:
+        #         check = check.right_child
+        #         continue
+        #     check = check.left_child
+        # return balance
+
+#test = BinarySearchTree([5, 1, 7, 0, 3, 4])
+test = BinarySearchTree([1,2,3,4,5, -1, -2, -3, -4, -5])
+print(test.balance())
