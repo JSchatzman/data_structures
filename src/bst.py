@@ -20,6 +20,26 @@ class Node(object):
             for yieldval in self.right_child.in_order():
                 yield yieldval
 
+    def pre_order(self):
+        """Pre_order method for Node object."""
+        yield self.contents
+        if self.left_child:
+            for yieldval in self.left_child.pre_order():
+                yield yieldval
+        if self.right_child:
+            for yieldval in self.right_child.pre_order():
+                yield yieldval
+
+    def post_order(self):
+        """Post_order method for Node object."""
+        if self.left_child:
+            for yieldval in self.left_child.post_order():
+                yield yieldval
+        if self.right_child:
+            for yieldval in self.right_child.post_order():
+                yield yieldval
+        yield self.contents
+
 
 class BinarySearchTree(object):
     """Class representation of bst.
@@ -130,6 +150,19 @@ class BinarySearchTree(object):
             for item in self.root.in_order():
                 yield item
 
+    def pre_order(self):
+        """Pre_order method for Binary Search Tree class. Return a generator that will return the values in the tree using pre-order traversal, one at a time."""
+
+        if self.root:
+            for item in self.root.pre_order():
+                yield item
+
+    def post_order(self):
+        """Post_order method for Binary Search Tree class. return a generator that will return the values in the tree using post-order traversal, one at a time."""
+
+        if self.root:
+            for item in self.root.post_order():
+                yield item
 
 
 # bst = BinarySearchTree((40, 20, 50, 30, 15, 60))
