@@ -110,3 +110,16 @@ class BinarySearchTree(object):
         elif root_check.right_child is None:
             return self.depth(root_check.left_child)
         return self.depth(root_check.right_child) - self.depth(root_check.left_child)
+
+
+if __name__ == '__main__':
+    import timeit
+    bst = BinarySearchTree((40, 20, 50, 30, 15, 60))
+    print('Depth Time for 1000 depth function calls:',
+          timeit.timeit(stmt="bst.depth()",
+                        setup='from __main__ import bst',
+                        number=1000))
+    print('Balance Time for 1000 balance function calls:',
+          timeit.timeit(stmt="bst.balance()",
+                        setup='from __main__ import bst',
+                        number=1000))
