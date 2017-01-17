@@ -124,3 +124,19 @@ def test_contains_method_on_empty(bst_empty):
 def test_contains_method_on_filled(bst_filled):
     """Check that values are in the filled bst."""
     assert bst_filled.contains(15) is True
+
+
+def test_search_method_on_empty_bst(bst_empty):
+    """Should return none on empty bst."""
+    assert bst_empty.search(0) is None
+
+
+def test_search_method_on_filled_bst(bst_filled):
+    """Should return a Node when found."""
+    from bst import Node
+    assert isinstance(bst_filled.search(15), Node)
+
+
+def test_search_method_on_filled_bst_where_val_not_there(bst_filled):
+    """Should return none on because Node not found."""
+    assert bst_filled.search(0) is None

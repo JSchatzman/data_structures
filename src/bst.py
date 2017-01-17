@@ -40,9 +40,10 @@ class BinarySearchTree(object):
         """Insert a new node into the bst."""
         if val not in self.all_values.keys():
             self._size += 1
+        node = Node(val)
         if not self.root:
-            self.root = Node(val)
-        self.all_values.setdefault(val)
+            self.root = node
+        self.all_values.setdefault(val, node)
         check = self.root
         while check:
             if val < check.contents:
