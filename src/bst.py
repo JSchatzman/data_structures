@@ -60,6 +60,13 @@ class BinarySearchTree(object):
             else:
                 return
 
+    def search(self, val):
+        """Return Node containing the value."""
+        try:
+            return self.all_values[val]
+        except KeyError:
+            return None
+
     def size(self):
         """Return the length of the bst."""
         return self._size
