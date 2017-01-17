@@ -32,7 +32,6 @@ class BinarySearchTree(object):
         self.root = None
         self._size = 0
         if contents:
-            self.root = Node(contents[0])
             for val in contents:
                 self.insert(val)
 
@@ -50,13 +49,13 @@ class BinarySearchTree(object):
                 if check.left_child:
                     check = check.left_child
                     continue
-                check.left_child = Node(val)
+                check.left_child = node
                 return
             elif val > check.contents:
                 if check.right_child:
                     check = check.right_child
                     continue
-                check.right_child = Node(val)
+                check.right_child = node
                 return
             else:
                 return
