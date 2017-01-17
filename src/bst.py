@@ -13,7 +13,7 @@ class Node(object):
 
 class BinarySearchTree(object):
     """Class representation of bst.
-    
+
     Methods:
     insert(val): Insert a new node into the bst.
 
@@ -64,19 +64,17 @@ class BinarySearchTree(object):
         """Return the length of the bst."""
         return self._size
 
-    def depth(self, root_check=None, depth_list=None):
+    def depth(self, root_check=None):
         """Find all maximum depth of this bst."""
         if not self.root:
             return 0
         if not root_check:
             root_check = self.root
-        if not depth_list:
-            depth_list = []
         if not root_check.left_child and not root_check.right_child:
             return 1
-        if root_check.left_child is None:
+        elif root_check.left_child is None:
             return self.depth(root_check.right_child) + 1
-        if root_check.right_child is None:
+        elif root_check.right_child is None:
             return self.depth(root_check.left_child) + 1
         return max(self.depth(root_check.left_child), self.depth(root_check.right_child)) + 1
 
@@ -86,7 +84,7 @@ class BinarySearchTree(object):
             return True
         return False
 
-    def balance(self, root_check=None, depth_list=None): 
+    def balance(self, root_check=None): 
         """Will return an integer, positive or negative that represents how
         well balanced the tree is. Trees which are higher on the left than the
         right should return a positive value, trees which are higher on the
@@ -97,12 +95,10 @@ class BinarySearchTree(object):
             return 0
         if not root_check:
             root_check = self.root
-        if not depth_list:
-            depth_list = []
         if not root_check.left_child and not root_check.right_child:
             return 1
-        if root_check.left_child is None:
+        elif root_check.left_child is None:
             return self.depth(root_check.right_child)
-        if root_check.right_child is None:
+        elif root_check.right_child is None:
             return self.depth(root_check.left_child)
-        return self.depth(root_check.right_child) - self.depth(root_check.left_child) 
+        return self.depth(root_check.right_child) - self.depth(root_check.left_child)
