@@ -159,16 +159,40 @@ class BinarySearchTree(object):
 
     def post_order(self):
         """Post_order method for Binary Search Tree class. return a generator that will return the values in the tree using post-order traversal, one at a time."""
-
         if self.root:
             for item in self.root.post_order():
                 yield item
 
 
-# bst = BinarySearchTree((40, 20, 50, 30, 15, 60))
-# gen = bst.in_order()
-# for i in range(5):
-#     print(gen.next())
+    def breadth_first(self):
+        """Post_order method for Binary Search Tree class. return a generator that will return the values in the tree using post-order traversal, one at a time."""
+        from queue_ import Queue
+        q = Queue()
+        q.enqueue(self.root)
+        while q:
+            try:
+                node = q.dequeue()
+                yield node.contents
+                if node.left_child:
+                    q.enqueue(node.left_child)
+                if node.right_child:
+                    q.enqueue(node.right_child)
+            except(IndexError):
+                break
+
+
+bst = BinarySearchTree((40, 20, 50, 30, 15, 60))
+gen = bst.breadth_first()
+#print([i for i in gen])
+print(next(gen))
+print(next(gen))
+print(next(gen))
+print(next(gen))
+print(next(gen))
+print(next(gen))
+
+
+
 
 
 
