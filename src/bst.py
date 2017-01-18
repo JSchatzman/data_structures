@@ -183,6 +183,19 @@ class BinarySearchTree(object):
         return
 
 
+    def delete_node(self, val):
+        if val not in self.all_values.keys():
+            return
+        value_node = self.all_values[val]
+        if not value_node.left_child and not value_node.right_child:
+            pass
+            #call childless node delete func
+        elif value_node.left_child and value_node.right_child:
+            pass
+            #call multichild node delete func
+        #call single child delete func
+
+
 if __name__ == '__main__':
     import timeit
     bst = BinarySearchTree((40, 20, 50, 30, 15, 60))
