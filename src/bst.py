@@ -13,11 +13,12 @@ class Node(object):
 
     """
 
-    def __init__(self, contents, left_child=None, right_child=None):
+    def __init__(self, contents, left_child=None, right_child=None, parent=None):
         """Instantiate linked list node."""
         self.contents = contents
         self.left_child = left_child
         self.right_child = right_child
+        self.parent = parent
 
     def in_order(self):
         """In order method for Node object."""
@@ -101,12 +102,14 @@ class BinarySearchTree(object):
                     check = check.left_child
                     continue
                 check.left_child = node
+                node.parent = check
                 return
             elif val > check.contents:
                 if check.right_child:
                     check = check.right_child
                     continue
                 check.right_child = node
+                node.parent = check
                 return
             else:
                 return
@@ -215,24 +218,20 @@ class BinarySearchTree(object):
         #call single child delete func
 
     def _single_child_delete(self, val):
-        gen = self.in_order()
-        previous = None
-        current = self.search(next(gen))
-        while current != self.search(val):
-            previous = current
-            #import pdb; pdb.set_trace()
-            #print(current.contents)
-            current = self.search(next(gen))
-        child = self.search(next(gen))
-        # import pdb; pdb.set_trace()
-        if previous.left_child:
-            previous.left_child = child
-        else:
-            previous.right_child = child
+        node = self.search(val)
+        if node.parent.left_child == node and node.right_child:
+            node.parent.left = node.right_child
+        elif node.parent.left_child == node and node.left_child:
+            node.parent.left_child = node.left_child
+        elif node.parent.right_child == node and node.right_child:
+            node.parent.right_child = node.right_child
+        elif node.parent.right_child == node and node.left_child:
+            node.parent.right_child = node.left_child
 
 
-bst = BinarySearchTree([7,5,10,11])
-bst._single_child_delete(10)
+
+bst = BinarySearchTree([7,5,6,10,9,11])
+bst._single_child_delete(5)
 print([node for node in bst.in_order()])
 
 # if __name__ == '__main__':
