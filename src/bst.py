@@ -214,15 +214,35 @@ class BinarySearchTree(object):
             #call multichild node delete func
         #call single child delete func
 
+    def _single_child_delete(self, val):
+        gen = self.in_order()
+        previous = None
+        current = self.search(next(gen))
+        while current != self.search(val):
+            previous = current
+            #import pdb; pdb.set_trace()
+            #print(current.contents)
+            current = self.search(next(gen))
+        child = self.search(next(gen))
+        # import pdb; pdb.set_trace()
+        if previous.left_child:
+            previous.left_child = child
+        else:
+            previous.right_child = child
 
-if __name__ == '__main__':
-    import timeit
-    bst = BinarySearchTree((40, 20, 50, 30, 15, 60))
-    print('Depth Time for 1000 depth function calls:',
-          timeit.timeit(stmt="bst.depth()",
-                        setup='from __main__ import bst',
-                        number=1000))
-    print('Balance Time for 1000 balance function calls:',
-          timeit.timeit(stmt="bst.balance()",
-                        setup='from __main__ import bst',
-                        number=1000))
+
+bst = BinarySearchTree([7,5,10,11])
+bst._single_child_delete(10)
+print([node for node in bst.in_order()])
+
+# if __name__ == '__main__':
+#     import timeit
+#     bst = BinarySearchTree((40, 20, 50, 30, 15, 60))
+#     print('Depth Time for 1000 depth function calls:',
+#           timeit.timeit(stmt="bst.depth()",
+#                         setup='from __main__ import bst',
+#                         number=1000))
+#     print('Balance Time for 1000 balance function calls:',
+#           timeit.timeit(stmt="bst.balance()",
+#                         setup='from __main__ import bst',
+#                         number=1000))
