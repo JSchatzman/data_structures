@@ -204,51 +204,47 @@ class BinarySearchTree(object):
                     break
         return
 
-
     def delete_node(self, val):
-        if val not in self.all_values.keys():
-            return
-        value_node = self.all_values[val]
-        if not value_node.left_child and not value_node.right_child:
-            pass
-            #call childless node delete func
-        elif value_node.left_child and value_node.right_child:
-            pass
-            #call multichild node delete func
-        #call single child delete func
+        """Delete the node whose contents are the value given."""
+        if self.root:
+            if val not in self.all_values.keys():
+                return
+            value_node = self.search(val)
+            if not value_node.left_child and not value_node.right_child:
+                pass
+                #call childless node delete func
+                # delete_the_node = self._barren_node_delete
+            elif value_node.left_child and value_node.right_child:
+                pass
+                #call multichild node delete func
+                # delete_the_node = self.multi_child_delete
+            self._size -= 1
+            delete_the_node = self._single_child_delete
+            return delete_the_node(value_node)
+        return
 
-    def _single_child_delete(self, val):
-        node = self.search(val)
-        parent = node.parent
-        if node.right_child:
-            print(1)
-            child = node.right_child
-        else:
-            print(2)
-            child = node.left_child
-        if parent.right_child == node:
-            print(3)
-            parent.right_child = child
-        else:
-            print(4)
-            #import pdb; pdb.set_trace()
-            parent.left_child = child
-        # print(node.contents)
-        # print(parent.contents)
-        # if node.parent.left_child == node and node.right_child:
-        #     node.parent.left = node.right_child
-        # elif node.parent.left_child == node and node.left_child:
-        #     node.parent.left_child = node.left_child
-        # elif node.parent.right_child == node and node.right_child:
-        #     node.parent.right_child = node.right_child
-        # elif node.parent.right_child == node and node.left_child:
-        #     node.parent.right_child = node.left_child
+    def _single_child_delete(self, node):
+        """Delete a node that has a single child."""
+        if node.parent:
+            parent = node.parent
+            if node.right_child:
+                child = node.right_child
+            else:
+                child = node.left_child
+            if parent.right_child == node:
+                parent.right_child = child
+            else:
+                parent.left_child = child
+        return
 
+    # def _barren_node_delete(self, node):
+    #     """Delete a node with no children."""
+    #     parent = node.parent
+    #     if parent.right_child and parent.right_child == node:
+    #         parent.right_child = None
+    #     if parent.left_child and parent.left_child == node:
+    #         parent.left_child = None
 
-
-bst = BinarySearchTree([7,5,6,10,9])
-bst._single_child_delete(10)
-print([node for node in bst.in_order()])
 
 # if __name__ == '__main__':
 #     import timeit
