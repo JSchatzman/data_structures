@@ -219,19 +219,35 @@ class BinarySearchTree(object):
 
     def _single_child_delete(self, val):
         node = self.search(val)
-        if node.parent.left_child == node and node.right_child:
-            node.parent.left = node.right_child
-        elif node.parent.left_child == node and node.left_child:
-            node.parent.left_child = node.left_child
-        elif node.parent.right_child == node and node.right_child:
-            node.parent.right_child = node.right_child
-        elif node.parent.right_child == node and node.left_child:
-            node.parent.right_child = node.left_child
+        parent = node.parent
+        if node.right_child:
+            print(1)
+            child = node.right_child
+        else:
+            print(2)
+            child = node.left_child
+        if parent.right_child == node:
+            print(3)
+            parent.right_child = child
+        else:
+            print(4)
+            #import pdb; pdb.set_trace()
+            parent.left_child = child
+        # print(node.contents)
+        # print(parent.contents)
+        # if node.parent.left_child == node and node.right_child:
+        #     node.parent.left = node.right_child
+        # elif node.parent.left_child == node and node.left_child:
+        #     node.parent.left_child = node.left_child
+        # elif node.parent.right_child == node and node.right_child:
+        #     node.parent.right_child = node.right_child
+        # elif node.parent.right_child == node and node.left_child:
+        #     node.parent.right_child = node.left_child
 
 
 
-bst = BinarySearchTree([7,5,6,10,9,11])
-bst._single_child_delete(5)
+bst = BinarySearchTree([7,5,6,10,9])
+bst._single_child_delete(10)
 print([node for node in bst.in_order()])
 
 # if __name__ == '__main__':
