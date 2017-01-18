@@ -19,6 +19,23 @@ BST_BALANCE_TABLE = [
     ([1, 2, 3, 4, 5, 6], 5)
 ]
 
+PRE_ORDER_TABLE = [
+    ([40, 30, 75, 200, 76, 50], [40, 30, 75, 50, 200, 76]),
+    ([80, 25, 76, 888, 95, 10, 11], [80, 25, 10, 11, 76, 888, 95]),
+    ([50, 100, 12, 30, 58, 79, 51, 42], [50, 12, 30, 42, 100, 58, 51, 79])
+]
+
+POST_ORDER_TABLE = [
+    ([40, 30, 75, 200, 76, 50], [30, 50, 76, 200, 75, 40]),
+    ([80, 25, 76, 888, 95, 10, 11], [11, 10, 76, 25, 95, 888, 80]),
+    ([50, 100, 12, 30, 58, 79, 51, 42], [42, 30, 12, 51, 79, 58, 100, 50])
+]
+
+IN_ORDER_TABLE = [
+    ([40, 30, 75, 200, 76, 50], [30, 40, 50, 75, 76, 200]),
+    ([80, 25, 76, 888, 95, 10, 11], [10, 11, 25, 76, 80, 95, 888]),
+    ([50, 100, 12, 30, 58, 79, 51, 42], [12, 30, 42, 50, 51, 58, 79, 100])
+]
 
 @pytest.fixture
 def newnode():
@@ -160,3 +177,67 @@ def test_error_after_first_iteration_of_single_tree(bst_single):
     next(in_order)
     with pytest.raises(StopIteration):
         assert next(in_order)
+
+
+def test_pre_order_on_empty(bst_empty):
+    """Test that stop iteration raises on empty tree."""
+    order = bst_empty.pre_order()
+    with pytest.raises(StopIteration):
+        assert next(order)
+
+
+def test_post_order_on_empty(bst_empty):
+    """Test that stop iteration raises on empty tree."""
+    order = bst_empty.post_order()
+    with pytest.raises(StopIteration):
+        assert next(order)
+
+
+def test_pre_order_on_full(bst_filled):
+    """Test that in order accurately returns nodes in order."""
+    assert [node for node in bst_filled.pre_order()] == [40, 20, 15, 30, 50, 60]
+
+
+def test_post_order_on_full(bst_filled):
+    """Test that in order accurately returns nodes in order."""
+    assert [node for node in bst_filled.post_order()] == [15, 30, 20, 60, 50, 40]
+
+
+def test_error_after_first_iteration_of_single_tree_pre_order(bst_single):
+    """Test that the second iteration of single tree yields an error."""
+    order = bst_single.pre_order()
+    next(order)
+    with pytest.raises(StopIteration):
+        assert next(order)
+
+
+def test_error_after_first_iteration_of_single_tree_post_order(bst_single):
+    """Test that the second iteration of single tree yields an error."""
+    order = bst_single.post_order()
+    next(order)
+    with pytest.raises(StopIteration):
+        assert next(order)
+
+
+@pytest.mark.parametrize("input_table, result", IN_ORDER_TABLE)
+def test_in_order_parametrize(input_table, result):
+    """Test a bunch of values on in order."""
+    from bst import BinarySearchTree
+    bst = BinarySearchTree(input_table)
+    assert [node for node in bst.in_order()] == result
+
+
+@pytest.mark.parametrize("input_table, result", PRE_ORDER_TABLE)
+def test_pre_order_parametrize(input_table, result):
+    """Test a bunch of values on pre order."""
+    from bst import BinarySearchTree
+    bst = BinarySearchTree(input_table)
+    assert [node for node in bst.pre_order()] == result
+
+
+@pytest.mark.parametrize("input_table, result", POST_ORDER_TABLE)
+def test_post_order_parametrize(input_table, result):
+    """Test a bunch of values on post order."""
+    from bst import BinarySearchTree
+    bst = BinarySearchTree(input_table)
+    assert [node for node in bst.post_order()] == result
