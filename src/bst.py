@@ -2,7 +2,16 @@
 
 
 class Node(object):
-    """Class representation of bst node."""
+    """Class representation of bst node.
+    
+    Methods:
+    in_order(): In Order method for Node class. Return the values in order from smallest to largest.
+
+    pre_order(): Pre_order method for Node class. Return a generator that will return the values in the tree using pre-order traversal, one at a time.
+
+    post_order(): Post_order method for Node class. return a generator that will return the values in the tree using post-order traversal, one at a time.
+
+    """
 
     def __init__(self, contents, left_child=None, right_child=None):
         """Instantiate linked list node."""
@@ -55,7 +64,17 @@ class BinarySearchTree(object):
 
     balance(): Will return an integer, positive or negative that represents how well balanced the tree is. Trees which are higher on the left than the right should return a positive value, trees which are higher on the right than the left should return a negative value. An ideally-balanced tree should return 0.
 
+    search(val): Return Node containing the value.
+
     in_order(): In Order method for Binary Search Tree class. Return the values in order from smallest to largest.
+
+    pre_order(): Pre_order method for Binary Search Tree class. Return a generator that will return the values in the tree using pre-order traversal, one at a time.
+
+    post_order(): Post_order method for Binary Search Tree class. return a generator that will return the values in the tree using post-order traversal, one at a time.
+
+    breadth_first(): Post_order method for Binary Search Tree class. return a generator that will return the values in the tree using post-order traversal, one at a time.
+
+
     """
 
     def __init__(self, contents=None):
