@@ -211,17 +211,15 @@ class BinarySearchTree(object):
                 return
             value_node = self.search(val)
             if not value_node.left_child and not value_node.right_child:
-                pass
-                #call childless node delete func
-                # delete_the_node = self._barren_node_delete
+                delete_the_node = self._barren_node_delete
             elif value_node.left_child and value_node.right_child:
                 pass
                 #call multichild node delete func
                 # delete_the_node = self.multi_child_delete
+            else:
+                delete_the_node = self._single_child_delete
             self._size -= 1
-            delete_the_node = self._single_child_delete
             return delete_the_node(value_node)
-        return
 
     def _single_child_delete(self, node):
         """Delete a node that has a single child."""
@@ -235,15 +233,25 @@ class BinarySearchTree(object):
                 parent.right_child = child
             else:
                 parent.left_child = child
+            return
+        if node.right_child:
+            self.root = node.right_child
+        if node.left_child:
+            self.root = node.left_child
+        self.root.parent = None
         return
 
-    # def _barren_node_delete(self, node):
-    #     """Delete a node with no children."""
-    #     parent = node.parent
-    #     if parent.right_child and parent.right_child == node:
-    #         parent.right_child = None
-    #     if parent.left_child and parent.left_child == node:
-    #         parent.left_child = None
+    def _barren_node_delete(self, node):
+        """Delete a node with no children."""
+        if node.parent:
+            parent = node.parent
+            if parent.right_child and parent.right_child == node:
+                parent.right_child = None
+            if parent.left_child and parent.left_child == node:
+                parent.left_child = None
+            return
+        self.root = None
+        return
 
 
 # if __name__ == '__main__':
