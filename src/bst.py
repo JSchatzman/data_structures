@@ -180,7 +180,7 @@ class BinarySearchTree(object):
                         q.enqueue(node.right_child)
                 except(IndexError):
                     break
-        yield
+        return
 
 
 if __name__ == '__main__':

@@ -37,6 +37,12 @@ IN_ORDER_TABLE = [
     ([50, 100, 12, 30, 58, 79, 51, 42], [12, 30, 42, 50, 51, 58, 79, 100])
 ]
 
+BREADTH_ORDER_TABLE = [
+    ([40, 30, 75, 200, 76, 50], [40, 30, 75, 50, 200, 76]),
+    ([80, 25, 76, 888, 95, 10, 11], [80, 25, 888, 10, 76, 95, 11]),
+    ([50, 100, 12, 30, 58, 79, 51, 42], [50, 12, 100, 30, 58, 42, 51, 79])
+]
+
 @pytest.fixture
 def newnode():
     from bst import Node
@@ -244,4 +250,15 @@ def test_post_order_parametrize(input_table, result):
 
 
 def test_breadth_first_on_empty(bst_empty):
-    
+    """Test first value returned from breadth on empty table should be StopIteration."""
+    gen = bst_empty.breadth_first()
+    with pytest.raises(StopIteration):
+        next(gen)
+
+
+@pytest.mark.parametrize("input_table, result", BREADTH_ORDER_TABLE)
+def test_breadth_order_parametrize(input_table, result):
+    """Test a bunch of values on pre order."""
+    from bst import BinarySearchTree
+    bst = BinarySearchTree(input_table)
+    assert [node for node in bst.breadth_first()] == result
