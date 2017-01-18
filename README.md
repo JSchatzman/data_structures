@@ -121,9 +121,81 @@ if either n1 or n2 are not already present in the graph, they should be added.
 
 - **balance()** - Will return an integer, positive or negative that represents how well balanced the tree is. Trees which are higher on the left than the right should return a positive value, trees which are higher on the right than the left should return a negative value. An ideally-balanced tree should return 0.
 
-- **search(self, val)** - Return Node containing the value.
+- **search(val)** - Return Node containing the value.
+
+- **in_order()** - In Order method for Binary Search Tree class. Return the values in order from smallest to largest.
+
+- **pre_order()** - Pre_order method for Binary Search Tree class. Return a generator that will return the values in the tree using pre-order traversal, one at a time.
+
+- **post_order()** - Post_order method for Binary Search Tree class. return a generator that will return the values in the tree using post-order traversal, one at a time.
+
+- **breadth_first()** - Post_order method for Binary Search Tree class. return a generator that will return the values in the tree using post-order traversal, one at a time.
 
 #Testing Coverage:
+
+```
+---------- coverage: platform linux2, python 2.7.12-final-0 ----------
+Name                         Stmts   Miss  Cover   Missing
+----------------------------------------------------------
+src/bst.py                     127      5    96%   136, 206-212
+src/deque.py                    30      0   100%
+src/dll.py                      77      2    97%   16-17
+src/heap.py                     25      2    92%   15-16
+src/linked_list.py              58      3    95%   16, 26, 34
+src/queue_.py                   19      0   100%
+src/shortest_path_graph.py     133     17    87%   102-108, 112-121, 179
+src/simple_graph.py             71     11    85%   136-149
+src/stack.py                    13      0   100%
+src/test_bst.py                116      0   100%
+src/test_deque.py               82      0   100%
+src/test_dll.py                 82      0   100%
+src/test_heap.py                37      0   100%
+src/test_linked_list.py         74      0   100%
+src/test_queue.py               60      0   100%
+src/test_shortest_path.py      189      0   100%
+src/test_simple_graph.py       147      0   100%
+src/test_stack.py               48      3    94%   88-90
+src/test_weighted_graph.py     151      0   100%
+src/warshall.py                 24     24     0%   1-40
+src/weighted_graph.py           73     27    63%   117-123, 127-136, 140-153
+----------------------------------------------------------
+TOTAL                         1636     94    94%
+
+
+====================================== 270 passed in 0.97 seconds
+
+----------- coverage: platform linux, python 3.5.2-final-0 -----------
+Name                         Stmts   Miss  Cover   Missing
+----------------------------------------------------------
+src/bst.py                     127      5    96%   136, 206-212
+src/deque.py                    30      0   100%
+src/dll.py                      77      2    97%   16-17
+src/heap.py                     25      2    92%   15-16
+src/linked_list.py              58      3    95%   16, 26, 34
+src/queue_.py                   19      0   100%
+src/shortest_path_graph.py     133     18    86%   102-108, 112-121, 135, 179
+src/simple_graph.py             71     11    85%   136-149
+src/stack.py                    13      0   100%
+src/test_bst.py                116      0   100%
+src/test_deque.py               82      0   100%
+src/test_dll.py                 82      0   100%
+src/test_heap.py                37      0   100%
+src/test_linked_list.py         74      0   100%
+src/test_queue.py               60      0   100%
+src/test_shortest_path.py      189      0   100%
+src/test_simple_graph.py       147      0   100%
+src/test_stack.py               48      3    94%   88-90
+src/test_weighted_graph.py     151      0   100%
+src/warshall.py                 24     24     0%   1-40
+src/weighted_graph.py           73     27    63%   117-123, 127-136, 140-153
+----------------------------------------------------------
+TOTAL                         1636     95    94%
+
+
+====================================== 270 passed in 0.98 seconds
+```
+
+
 ```
 ---------- coverage: platform linux2, python 2.7.12-final-0 ----------
 Name                         Stmts   Miss  Cover   Missing
