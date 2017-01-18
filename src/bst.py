@@ -166,44 +166,31 @@ class BinarySearchTree(object):
 
     def breadth_first(self):
         """Post_order method for Binary Search Tree class. return a generator that will return the values in the tree using post-order traversal, one at a time."""
-        from queue_ import Queue
-        q = Queue()
-        q.enqueue(self.root)
-        while q:
-            try:
-                node = q.dequeue()
-                yield node.contents
-                if node.left_child:
-                    q.enqueue(node.left_child)
-                if node.right_child:
-                    q.enqueue(node.right_child)
-            except(IndexError):
-                break
+        if self.root:
+            from queue_ import Queue
+            q = Queue()
+            q.enqueue(self.root)
+            while q:
+                try:
+                    node = q.dequeue()
+                    yield node.contents
+                    if node.left_child:
+                        q.enqueue(node.left_child)
+                    if node.right_child:
+                        q.enqueue(node.right_child)
+                except(IndexError):
+                    break
+        yield
 
 
-bst = BinarySearchTree((40, 20, 50, 30, 15, 60))
-gen = bst.breadth_first()
-#print([i for i in gen])
-print(next(gen))
-print(next(gen))
-print(next(gen))
-print(next(gen))
-print(next(gen))
-print(next(gen))
-
-
-
-
-
-
-# if __name__ == '__main__':
-#     import timeit
-#     bst = BinarySearchTree((40, 20, 50, 30, 15, 60))
-#     print('Depth Time for 1000 depth function calls:',
-#           timeit.timeit(stmt="bst.depth()",
-#                         setup='from __main__ import bst',
-#                         number=1000))
-#     print('Balance Time for 1000 balance function calls:',
-#           timeit.timeit(stmt="bst.balance()",
-#                         setup='from __main__ import bst',
-#                         number=1000))
+if __name__ == '__main__':
+    import timeit
+    bst = BinarySearchTree((40, 20, 50, 30, 15, 60))
+    print('Depth Time for 1000 depth function calls:',
+          timeit.timeit(stmt="bst.depth()",
+                        setup='from __main__ import bst',
+                        number=1000))
+    print('Balance Time for 1000 balance function calls:',
+          timeit.timeit(stmt="bst.balance()",
+                        setup='from __main__ import bst',
+                        number=1000))

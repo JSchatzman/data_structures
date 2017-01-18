@@ -241,3 +241,7 @@ def test_post_order_parametrize(input_table, result):
     from bst import BinarySearchTree
     bst = BinarySearchTree(input_table)
     assert [node for node in bst.post_order()] == result
+
+
+def test_breadth_first_on_empty(bst_empty):
+    
