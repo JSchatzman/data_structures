@@ -1,5 +1,8 @@
 # Data-Structures
 
+[![Build Status](https://travis-ci.org/JSchatzman/data_structures.svg?branch=bst-delete)](https://travis-ci.org/JSchatzman/data_structures)
+
+
 ###This repo holds sample code for a number of classic data structures implemented in Python.
 
 ##Singly-Linked List in Python
