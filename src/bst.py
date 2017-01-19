@@ -213,9 +213,7 @@ class BinarySearchTree(object):
             if not value_node.left_child and not value_node.right_child:
                 delete_the_node = self._barren_node_delete
             elif value_node.left_child and value_node.right_child:
-                pass
-                #call multichild node delete func
-                # delete_the_node = self.multi_child_delete
+                delete_the_node = self._two_child_delete
             else:
                 delete_the_node = self._single_child_delete
             self._size -= 1
@@ -255,44 +253,38 @@ class BinarySearchTree(object):
 
     def _two_child_delete(self, node):
         """Delete a node with two children."""
-        current_node = node
+        if node.parent:
+            parent = node.parent
+            if parent.left_child == node:
+                target = node.right_child
+                if target.left_child:
+                    while target.left_child:
+                        target = target.left_child
+                    node.contents = target.contents
+                    target.parent = None
+                else:
+                    node.contents = target.contents
+                    node.right_child = target.right_child
+                    target.parent = None
+            else:
+                target = node.left_child
+                if target.right_child:
+                    while target.right_child:
+                        target = target.right_child
+                    node.contents = target.contents
+                    target.parent = None
+                else:
+                    node.contents = target.contents
+                    node.left_child = target.left_child
+                    target.parent = None
+        else:
+            root_child = node.left_child
+            self.root = node.right_child
+            gen = self.in_order()
+            target = self.search(next(gen))
+            target.left_child = root_child
+            return
 
-        # find right most child of left side.
-        swap_node = current_node.left_child
-        while swap_node.right_child:
-            swap_node = swap_node.right_child
-
-        # remove swap_nodes parent's reference to it
-
-        swap_node.parent.right_child = None
-
-        # reassign nodes children to new left_most child of right side
-
-        current_node.left_child.parent = swap_node
-        current_node.right_child.parent = swap_node
-
-        # reassign swap_nodes_children to original children
-
-        swap_node.left_child = current_node.left_child
-        swap_node.right_child = current_node.right_child
-
-        # reassign swap_node parent to original node's parent
-
-        swap_node.parent = current_node.parent
-
-        #reassign names for below loop
-        current_node = swap_node
-        if current_node.right_child:
-            child = current_node.right_child
-
-        while current_node.contents > child.contents:
-            placeholder = current_node
-
-
-            child = current_node
-            current_node = placeholder
-
-            #
 
 
 
