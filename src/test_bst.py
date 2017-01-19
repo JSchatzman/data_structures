@@ -43,6 +43,32 @@ BREADTH_ORDER_TABLE = [
     ([50, 100, 12, 30, 58, 79, 51, 42], [50, 12, 100, 30, 58, 42, 51, 79])
 ]
 
+DELETE_SINGLE_VALUE_TABLE = [
+    ([40, 30, 75, 200, 76, 50], 200),
+    ([80, 25, 76, 888, 95, 10, 11], 888),
+    ([80, 25, 76, 888, 95, 10, 11], 10),
+    ([50, 100, 12, 30, 58, 79, 51, 42], 30),
+    ([50, 100, 12, 30, 58, 79, 51, 42], 79),
+    ([40, 50], 40),
+    ([40, 10], 40)
+
+]
+
+DELETE_SINGLE_VALUE_TABLE2 = [
+    ([80, 25, 76, 888, 95, 10, 11], [888, 10]),
+    ([50, 100, 12, 30, 58, 79, 51, 42], [30, 79]),
+]
+
+DELETE_BARREN_VALUE_TABLE = [
+    ([40, 30, 75, 200, 76, 50], 50),
+    ([80, 25, 76, 888, 95, 10, 11], 76),
+    ([80, 25, 76, 888, 95, 10, 11], 95),
+    ([50, 100, 12, 30, 58, 79, 51, 42], 42),
+    ([50, 100, 12, 30, 58, 79, 51, 42], 51),
+    ([40, 50], 50),
+    ([40, 10], 10)
+]
+
 @pytest.fixture
 def newnode():
     from bst import Node
@@ -262,3 +288,60 @@ def test_breadth_order_parametrize(input_table, result):
     from bst import BinarySearchTree
     bst = BinarySearchTree(input_table)
     assert [node for node in bst.breadth_first()] == result
+
+
+def test_delete_single_child(bst_filled):
+    bst_filled.delete_node(50)
+    assert 50 not in [node for node in bst_filled.in_order()]
+
+
+@pytest.mark.parametrize("input_table, result", DELETE_SINGLE_VALUE_TABLE)
+def test_delete_single_child_parametrize(input_table, result):
+    """Delete a variety of single tree nodes."""
+    from bst import BinarySearchTree
+    bst = BinarySearchTree(input_table)
+    bst.delete_node(result)
+    assert result not in [node for node in bst.in_order()]
+
+
+@pytest.mark.parametrize("input_table, result", DELETE_SINGLE_VALUE_TABLE2)
+def test_delete_single_child_parametrize_twice(input_table, result):
+    """Delete a variety of single tree nodes."""
+    from bst import BinarySearchTree
+    bst = BinarySearchTree(input_table)
+    bst.delete_node(result[0])
+    bst.delete_node(result[1])
+    assert result[0] not in [node for node in bst.in_order()]
+    assert result[1] not in [node for node in bst.in_order()]
+
+
+def test_delete_barren_nodes(bst_filled):
+    """A barren node's child where the node was should be empty."""
+    bst_filled.delete_node(60)
+    node = bst_filled.search(50)
+    assert not node.right_child
+
+
+def test_delete_barren_nodes2(bst_filled):
+    """A barren node's child where the node was should be empty."""
+    bst_filled.delete_node(15)
+    node = bst_filled.search(20)
+    assert not node.left_child
+
+
+@pytest.mark.parametrize("input_table, result", DELETE_BARREN_VALUE_TABLE)
+def test_delete_barren_nodes_parametrize(input_table, result):
+    """A barren node's child where the node was should be empty."""
+    from bst import BinarySearchTree
+    bst = BinarySearchTree(input_table)
+    node = bst.search(result)
+    parent = node.parent
+    bst.delete_node(result)
+    if parent.right_child:
+        assert not parent.left_child
+    if parent.left_child:
+        assert not parent.right_child
+
+def test_delete_barren_root(bst_single):
+    bst_single.delete_node(1)
+    assert 1 not in [node for node in bst_single.in_order()]
