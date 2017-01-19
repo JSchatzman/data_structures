@@ -253,6 +253,48 @@ class BinarySearchTree(object):
         self.root = None
         return
 
+    def _two_child_delete(self, node):
+        """Delete a node with two children."""
+        del_node = node
+
+        # find right most child of left side.
+        swap_node = del_node.left_child
+        while swap_node.right_child:
+            swap_node = swap_node.right_child
+
+        # remove swap_nodes parent's reference to it
+
+        swap_node.parent.right_child = None
+
+        # reassign nodes children to new left_most child of right side
+
+        del_node.left_child.parent = swap_node
+        del_node.right_child.parent = swap_node
+
+        # reassign swap_nodes_children to original children
+
+        swap_node.left_child = del_node.left_child
+        swap_node.right_child = del_node.right_child
+
+        # reassign swap_node parent to original node's parent
+
+        swap_node.parent = del_node.parent
+
+        #reassign names for below loop
+        current_node = swap_node
+        if current_node.right_child:
+            child = current_node.right_child
+
+        while swap_node.right_child and swap_node.contents > swap_node.right_child.contents:
+            
+            new_child = swap_node.right_child
+
+            #
+
+
+
+
+
 
 # if __name__ == '__main__':
 #     import timeit
