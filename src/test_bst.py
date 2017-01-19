@@ -295,6 +295,12 @@ def test_delete_single_child(bst_filled):
     assert 50 not in [node for node in bst_filled.in_order()]
 
 
+def test_delete_single_child_updates_size(bst_filled):
+    size_before_delete = bst_filled.size()
+    bst_filled.delete_node(50)
+    assert bst_filled.size() == size_before_delete - 1
+
+
 @pytest.mark.parametrize("input_table, result", DELETE_SINGLE_VALUE_TABLE)
 def test_delete_single_child_parametrize(input_table, result):
     """Delete a variety of single tree nodes."""
@@ -302,6 +308,16 @@ def test_delete_single_child_parametrize(input_table, result):
     bst = BinarySearchTree(input_table)
     bst.delete_node(result)
     assert result not in [node for node in bst.in_order()]
+
+
+@pytest.mark.parametrize("input_table, result", DELETE_SINGLE_VALUE_TABLE)
+def test_delete_single_child_parametrize_updates_size(input_table, result):
+    """Delete a variety of single tree nodes."""
+    from bst import BinarySearchTree
+    bst = BinarySearchTree(input_table)
+    size_before_delete = bst.size()
+    bst.delete_node(result)
+    assert bst.size() == size_before_delete - 1
 
 
 @pytest.mark.parametrize("input_table, result", DELETE_SINGLE_VALUE_TABLE2)
@@ -315,11 +331,29 @@ def test_delete_single_child_parametrize_twice(input_table, result):
     assert result[1] not in [node for node in bst.in_order()]
 
 
+@pytest.mark.parametrize("input_table, result", DELETE_SINGLE_VALUE_TABLE2)
+def test_delete_single_child_parametrize_twice_updates_size(input_table, result):
+    """Delete a variety of single tree nodes."""
+    from bst import BinarySearchTree
+    bst = BinarySearchTree(input_table)
+    size_before_delete = bst.size()
+    bst.delete_node(result[0])
+    bst.delete_node(result[1])
+    assert bst.size() == size_before_delete - 2
+
+
 def test_delete_barren_nodes(bst_filled):
     """A barren node's child where the node was should be empty."""
     bst_filled.delete_node(60)
     node = bst_filled.search(50)
     assert not node.right_child
+
+
+def test_delete_barren_nodes_updates_size(bst_filled):
+    """A barren node's child where the node was should be empty."""
+    size_before_delete = bst_filled.size()
+    bst_filled.delete_node(60)
+    assert bst_filled.size() == size_before_delete - 1
 
 
 def test_delete_barren_nodes2(bst_filled):
@@ -342,6 +376,14 @@ def test_delete_barren_nodes_parametrize(input_table, result):
     if parent.left_child:
         assert not parent.right_child
 
+
 def test_delete_barren_root(bst_single):
+    """Deleting a barren root should remove it from the tree."""
     bst_single.delete_node(1)
     assert 1 not in [node for node in bst_single.in_order()]
+
+
+def test_delete_barren_root_updates_size(bst_single):
+    """Deleting a barren root should make size 0."""
+    bst_single.delete_node(1)
+    assert bst_single.size() == 0
