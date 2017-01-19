@@ -108,7 +108,7 @@ class BinarySearchTree(object):
             return self.depth(root_check.right_child)
         elif root_check.right_child is None:
             return self.depth(root_check.left_child)
-        return self.depth(root_check.right_child) - self.depth(root_check.left_child)
+        return self.depth(root_check.left_child) - self.depth(root_check.right_child)
 
 
 if __name__ == '__main__':
