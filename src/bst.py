@@ -290,19 +290,14 @@ class BinarySearchTree(object):
             return
 
 
-
-
-
-
-
-# if __name__ == '__main__':
-#     import timeit
-#     bst = BinarySearchTree((40, 20, 50, 30, 15, 60))
-#     print('Depth Time for 1000 depth function calls:',
-#           timeit.timeit(stmt="bst.depth()",
-#                         setup='from __main__ import bst',
-#                         number=1000))
-#     print('Balance Time for 1000 balance function calls:',
-#           timeit.timeit(stmt="bst.balance()",
-#                         setup='from __main__ import bst',
-#                         number=1000))
+if __name__ == '__main__':
+    import timeit
+    bst = BinarySearchTree((40, 20, 50, 30, 15, 60))
+    print('Depth Time for 1000 depth function calls:',
+          timeit.timeit(stmt="bst.depth()",
+                        setup='from __main__ import bst',
+                        number=1000))
+    print('Balance Time for 1000 balance function calls:',
+          timeit.timeit(stmt="bst.balance()",
+                        setup='from __main__ import bst',
+                        number=1000))
