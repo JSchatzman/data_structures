@@ -166,7 +166,7 @@ class BinarySearchTree(object):
             return self.depth(root_check.right_child)
         elif root_check.right_child is None:
             return self.depth(root_check.left_child)
-        return self.depth(root_check.right_child) - self.depth(root_check.left_child)
+        return self.depth(root_check.left_child) - self.depth(root_check.right_child)
 
     def in_order(self):
         """In Order method for Binary Search Tree class. Return the values in order from smallest to largest."""
