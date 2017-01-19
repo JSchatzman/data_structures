@@ -131,6 +131,9 @@ if either n1 or n2 are not already present in the graph, they should be added.
 
 - **breadth_first()** - Post_order method for Binary Search Tree class. return a generator that will return the values in the tree using post-order traversal, one at a time.
 
+- **delete_node(val)** - Delete the node whose contents are the value given.
+    Makes use of hidden methods for deleting a node with no children (barren), a node with one child (single child) and a node with two children (two children).
+
 #Testing Coverage:
 
 ```

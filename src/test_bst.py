@@ -69,25 +69,42 @@ DELETE_BARREN_VALUE_TABLE = [
     ([40, 10], 10)
 ]
 
+DELETE_TWO_CHILDREN_TABLE = [
+    ([40, 30, 75, 200, 76, 50], 75),
+    ([40, 30, 75, 200, 76, 50, 49, 51], 75),
+    ([80, 25, 76, 888, 95, 10, 11], 80),
+    ([80, 25, 76, 888, 95, 900, 10, 11], 888),
+    ([80, 25, 76, 888, 95, 900, 10, 11, 889, 901, 94, 96], 888),
+    ([50, 100, 12, 11, 30, 58, 79, 51, 42], 58),
+    ([50, 100, 12, 11, 30, 58, 79, 51, 42], 50),
+    ([50, 100, 12, 11, 30, 58, 79, 51, 42, 29], 30),
+    ([50, 100, 12, 11, 30, 58, 79, 51, 42], 12)
+]
+
+
 @pytest.fixture
 def newnode():
     from bst import Node
     return Node(4, 2, 8)
+
 
 @pytest.fixture
 def bst_empty():
     from bst import BinarySearchTree
     return BinarySearchTree()
 
+
 @pytest.fixture
 def bst_filled():
     from bst import BinarySearchTree
     return BinarySearchTree(BST_INSERT_TABLE[4])
 
+
 @pytest.fixture
 def bst_single():
     from bst import BinarySearchTree
     return BinarySearchTree(BST_INSERT_TABLE[5])
+
 
 def test_node_makes_stuff(newnode):
     assert newnode.contents == 4
@@ -387,3 +404,22 @@ def test_delete_barren_root_updates_size(bst_single):
     """Deleting a barren root should make size 0."""
     bst_single.delete_node(1)
     assert bst_single.size() == 0
+
+
+@pytest.mark.parametrize("input_table, result", DELETE_TWO_CHILDREN_TABLE)
+def test_delete_two_child_node_parametrize(input_table, result):
+    """A barren node's child where the node was should be empty."""
+    from bst import BinarySearchTree
+    bst = BinarySearchTree(input_table)
+    bst.delete_node(result)
+    assert bst.search(result) is None
+
+
+@pytest.mark.parametrize("input_table, result", DELETE_TWO_CHILDREN_TABLE)
+def test_delete_two_child_node_parametrize2(input_table, result):
+    """A barren node's child where the node was should be empty."""
+    from bst import BinarySearchTree
+    bst = BinarySearchTree(input_table)
+    bst.delete_node(result)
+    assert bst.root.contents != result
+    assert result not in [node for node in bst.in_order()]

@@ -188,7 +188,6 @@ class BinarySearchTree(object):
             for item in self.root.post_order():
                 yield item
 
-
     def breadth_first(self):
         """Post_order method for Binary Search Tree class. return a generator that will return the values in the tree using post-order traversal, one at a time."""
         if self.root:
@@ -220,7 +219,9 @@ class BinarySearchTree(object):
             else:
                 delete_the_node = self._single_child_delete
             self._size -= 1
-            return delete_the_node(value_node)
+            delete_the_node(value_node)
+            del self.all_values[val]
+            return
 
     def _single_child_delete(self, node):
         """Delete a node that has a single child."""
