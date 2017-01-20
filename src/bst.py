@@ -19,6 +19,7 @@ class Node(object):
         self.left_child = left_child
         self.right_child = right_child
         self.parent = parent
+        self.balance_factor = 0
 
     def in_order(self):
         """In order method for Node object."""
@@ -106,6 +107,8 @@ class BinarySearchTree(object):
                     continue
                 check.left_child = node
                 node.parent = check
+                node.balance_factor += 1
+                self.update_balance(check.left_child)
                 return
             elif val > check.contents:
                 if check.right_child:
@@ -113,6 +116,8 @@ class BinarySearchTree(object):
                     continue
                 check.right_child = node
                 node.parent = check
+                node.balance_factor -= 1
+                self.update_balance(check.right_child)
                 return
             else:
                 return
@@ -289,6 +294,70 @@ class BinarySearchTree(object):
             target.left_child = root_child
             return
 
+    def update_balance(self, node):
+        """Update the balance of a node which updates the tree balance."""
+        if node.balance_factor > 1 or node.balance_factor < -1:
+            self.rebalance(node)
+            return
+        if node.parent:
+            if node.parent.left_child == node:
+                    node.parent.balance_factor += 1
+            elif node.parent.right_child == node:
+                    node.parent.balance_factor -= 1
+
+            if node.parent.balance_factor != 0:
+                    self.update_balance(node.parent)
+
+    def rotate_left(self, dying_root):
+        """Rotate to the left."""
+        new_root = dying_root.right_child
+        dying_root.right_child = new_root.left_child
+        if new_root.left_child:
+            new_root.left_child.parent = dying_root
+        new_root.parent = dying_root.parent
+        if dying_root == self.root:
+            self.root = new_root
+        else:
+            if dying_root.parent.left_child == dying_root:
+                    dying_root.parent.left_child = new_root
+            else:
+                dying_root.parent.right_child = new_root
+        new_root.left_child = dying_root
+        dying_root.parent = new_root
+        dying_root.balance_factor = dying_root.balance_factor + 1 - min(new_root.balance_factor, 0)
+        new_root.balance_factor = new_root.balance_factor + 1 + max(dying_root.balance_factor, 0)
+
+    def rotate_right(self, dying_root):
+        """Rotate the dying root right."""
+        new_root = dying_root.left_child
+        dying_root.left_child = new_root.right_child
+        if new_root.right_child:
+            new_root.right_child.parent = dying_root
+        new_root.parent = dying_root.parent
+        if dying_root == self.root:
+            self.root = new_root
+        else:
+            if dying_root.parent.right_child == dying_root:
+                    dying_root.parent.right_child = new_root
+            else:
+                dying_root.parent.left_child = new_root
+        new_root.right_child = dying_root
+        dying_root.parent = new_root
+        dying_root.balance_factor = dying_root.balance_factor + 1 - min(new_root.balance_factor, 0)
+        new_root.balance_factor = new_root.balance_factor + 1 + max(dying_root.balance_factor, 0)
+
+    def rebalance(self, node):
+        """Rebalance the tree starting with the given node."""
+        if node.balance_factor < 0 and node.right_child:
+            if node.right_child.balance_factor > 0:
+                self.rotate_right(node.right_child)
+                self.rotate_left(node)
+            self.rotate_left(node)
+        elif node.balance_factor > 0:
+            if node.left_child.balance_factor < 0 and node.left_child:
+                self.rotate_left(node.left_child)
+                self.rotate_right(node)
+            self.rotate_right(node)
 
 if __name__ == '__main__':
     import timeit
