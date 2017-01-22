@@ -16,19 +16,19 @@ BST_BALANCE_TABLE = [
     [[40, 20, 50, 30], 1],
     [(40, 20, 50, 30, 15), 1],
     [(40, 20, 50, 30, 15, 60), 0],
-    ([1, 2, 3, 4, 5, 6], 5)
+    ([1, 2, 3, 4, 5, 6], 0)
 ]
 
 PRE_ORDER_TABLE = [
-    ([40, 30, 75, 200, 76, 50], [40, 30, 75, 50, 200, 76]),
+    ([40, 30, 75, 200, 76, 50], [40, 30, 200, 75, 50, 76]),
     ([80, 25, 76, 888, 95, 10, 11], [80, 25, 10, 11, 76, 888, 95]),
-    ([50, 100, 12, 30, 58, 79, 51, 42], [50, 12, 30, 42, 100, 58, 51, 79])
+    ([50, 100, 12, 30, 58, 79, 51, 42], [50, 12, 42, 30, 100, 58, 51, 79])
 ]
 
 POST_ORDER_TABLE = [
-    ([40, 30, 75, 200, 76, 50], [30, 50, 76, 200, 75, 40]),
+    ([40, 30, 75, 200, 76, 50], [30, 50, 76, 75, 200, 40]),
     ([80, 25, 76, 888, 95, 10, 11], [11, 10, 76, 25, 95, 888, 80]),
-    ([50, 100, 12, 30, 58, 79, 51, 42], [42, 30, 12, 51, 79, 58, 100, 50])
+    ([50, 100, 12, 30, 58, 79, 51, 42], [30, 42, 12, 51, 79, 58, 100, 50])
 ]
 
 IN_ORDER_TABLE = [
@@ -38,9 +38,9 @@ IN_ORDER_TABLE = [
 ]
 
 BREADTH_ORDER_TABLE = [
-    ([40, 30, 75, 200, 76, 50], [40, 30, 75, 50, 200, 76]),
+    ([40, 30, 75, 200, 76, 50], [40, 30, 200, 75, 50, 76]),
     ([80, 25, 76, 888, 95, 10, 11], [80, 25, 888, 10, 76, 95, 11]),
-    ([50, 100, 12, 30, 58, 79, 51, 42], [50, 12, 100, 30, 58, 42, 51, 79])
+    ([50, 100, 12, 30, 58, 79, 51, 42], [50, 12, 100, 42, 58, 30, 51, 79])
 ]
 
 DELETE_SINGLE_VALUE_TABLE = [
@@ -244,12 +244,12 @@ def test_post_order_on_empty(bst_empty):
 
 def test_pre_order_on_full(bst_filled):
     """Test that in order accurately returns nodes in order."""
-    assert [node for node in bst_filled.pre_order()] == [40, 20, 15, 30, 50, 60]
+    assert [node for node in bst_filled.pre_order()] == [40, 20, 15, 30, 60, 50]
 
 
 def test_post_order_on_full(bst_filled):
     """Test that in order accurately returns nodes in order."""
-    assert [node for node in bst_filled.post_order()] == [15, 30, 20, 60, 50, 40]
+    assert [node for node in bst_filled.post_order()] == [15, 30, 20, 50, 60, 40]
 
 
 def test_error_after_first_iteration_of_single_tree_pre_order(bst_single):

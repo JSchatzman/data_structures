@@ -226,9 +226,6 @@ class BinarySearchTree(object):
             self._size -= 1
             delete_the_node(value_node)
             del self.all_values[val]
-            nodes_left_in_tree = [node for node in self.in_order()]
-            if len(nodes_left_in_tree) > 0:
-                self.update_balance(self.search(nodes_left_in_tree[-1]))
             return
 
     def _single_child_delete(self, node):
@@ -314,11 +311,9 @@ class BinarySearchTree(object):
     def rotate_left(self, dying_root):
         """Rotate to the left."""
         new_root = dying_root.right_child
-        if new_root and new_root.left_child:
-            dying_root.right_child = new_root.left_child
+        dying_root.right_child = new_root.left_child
+        if new_root.left_child:
             new_root.left_child.parent = dying_root
-        else:
-            dying_root.right_child = None
         new_root.parent = dying_root.parent
         if dying_root == self.root:
             self.root = new_root
@@ -335,11 +330,9 @@ class BinarySearchTree(object):
     def rotate_right(self, dying_root):
         """Rotate the dying root right."""
         new_root = dying_root.left_child
-        if new_root and new_root.right_child:
-            dying_root.left_child = new_root.right_child
+        dying_root.left_child = new_root.right_child
+        if new_root.right_child:
             new_root.right_child.parent = dying_root
-        else:
-            dying_root.left_child = None
         new_root.parent = dying_root.parent
         if dying_root == self.root:
             self.root = new_root
@@ -355,13 +348,13 @@ class BinarySearchTree(object):
 
     def rebalance(self, node):
         """Rebalance the tree starting with the given node."""
-        if node.right_child and node.balance_factor < 0:
+        if node.balance_factor < 0 and node.right_child:
             if node.right_child.balance_factor > 0:
                 self.rotate_right(node.right_child)
                 self.rotate_left(node)
             self.rotate_left(node)
-        elif node.left_child and node.balance_factor > 0:
-            if node.left_child and node.left_child.balance_factor < 0:
+        elif node.balance_factor > 0:
+            if node.left_child.balance_factor < 0 and node.left_child:
                 self.rotate_left(node.left_child)
                 self.rotate_right(node)
             self.rotate_right(node)
