@@ -227,8 +227,9 @@ class BinarySearchTree(object):
             delete_the_node(value_node)
             del self.all_values[val]
             nodes_left_in_tree = [node for node in self.in_order()]
+            median_node = int(len(nodes_left_in_tree) / 2)
             if len(nodes_left_in_tree) > 0:
-                self.update_balance(self.search(nodes_left_in_tree[-1]))
+                self.update_balance(self.search(nodes_left_in_tree[median_node]))
             return
 
     def _single_child_delete(self, node):
