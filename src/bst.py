@@ -320,7 +320,8 @@ class BinarySearchTree(object):
             new_root.left_child.parent = dying_root
         else:
             dying_root.right_child = None
-        new_root.parent = dying_root.parent
+        if new_root:
+            new_root.parent = dying_root.parent
         if dying_root == self.root:
             self.root = new_root
         else:
@@ -328,10 +329,11 @@ class BinarySearchTree(object):
                     dying_root.parent.left_child = new_root
             else:
                 dying_root.parent.right_child = new_root
-        new_root.left_child = dying_root
-        dying_root.parent = new_root
-        dying_root.balance_factor = dying_root.balance_factor + 1 - min(new_root.balance_factor, 0)
-        new_root.balance_factor = new_root.balance_factor + 1 + max(dying_root.balance_factor, 0)
+        if new_root:
+            new_root.left_child = dying_root
+            dying_root.parent = new_root
+            dying_root.balance_factor = dying_root.balance_factor + 1 - min(new_root.balance_factor, 0)
+            new_root.balance_factor = new_root.balance_factor + 1 + max(dying_root.balance_factor, 0)
 
     def rotate_right(self, dying_root):
         """Rotate the dying root right."""
@@ -341,7 +343,8 @@ class BinarySearchTree(object):
             new_root.right_child.parent = dying_root
         else:
             dying_root.left_child = None
-        new_root.parent = dying_root.parent
+        if new_root:
+            new_root.parent = dying_root.parent
         if dying_root == self.root:
             self.root = new_root
         else:
@@ -349,10 +352,11 @@ class BinarySearchTree(object):
                     dying_root.parent.right_child = new_root
             else:
                 dying_root.parent.left_child = new_root
-        new_root.right_child = dying_root
-        dying_root.parent = new_root
-        dying_root.balance_factor = dying_root.balance_factor + 1 - min(new_root.balance_factor, 0)
-        new_root.balance_factor = new_root.balance_factor + 1 + max(dying_root.balance_factor, 0)
+        if new_root:
+            new_root.parent = dying_root.parent
+            dying_root.parent = new_root
+            dying_root.balance_factor = dying_root.balance_factor + 1 - min(new_root.balance_factor, 0)
+            new_root.balance_factor = new_root.balance_factor + 1 + max(dying_root.balance_factor, 0)
 
     def rebalance(self, node):
         """Rebalance the tree starting with the given node."""
