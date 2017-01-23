@@ -242,8 +242,13 @@ class BinarySearchTree(object):
                 child = node.left_child
             if parent.right_child == node:
                 parent.right_child = child
-            else:
+                child.parent = parent
+            elif parent.left_child == node:
                 parent.left_child = child
+                child.parent = parent
+            else:
+                parent.left_child = None
+                parent.right_child = None
             return
         if node.right_child:
             self.root = node.right_child
