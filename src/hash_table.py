@@ -15,12 +15,12 @@ class HashTable(object):
         hash_key = self._hash(key) % self.size
         return self.hash_table[hash_key]
 
-    def set(self, key):
+    def set(self, key, val):
         """Store the given val using the given key."""
         if type(key) is not str:
             raise TypeError("Hashes need to be in string format.")
         hash_key = self._hash(key) % self.size
-        self.hash_table[hash_key].append(key)
+        self.hash_table[hash_key].append(val)
 
     def _hash(self, key):
         """Hash the key provided."""
