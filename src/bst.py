@@ -107,8 +107,7 @@ class BinarySearchTree(object):
                     continue
                 check.left_child = node
                 node.parent = check
-                node.balance_factor += 1
-                self.update_balance(check.left_child)
+                self.update_balance(node.parent)
                 return
             elif val > check.contents:
                 if check.right_child:
@@ -116,8 +115,7 @@ class BinarySearchTree(object):
                     continue
                 check.right_child = node
                 node.parent = check
-                node.balance_factor -= 1
-                self.update_balance(check.right_child)
+                self.update_balance(node.parent)
                 return
             else:
                 return
@@ -320,13 +318,10 @@ class BinarySearchTree(object):
     def rotate_left(self, dying_root):
         """Rotate to the left."""
         new_root = dying_root.right_child
+        dying_root.right_child = new_root.left_child
         if new_root and new_root.left_child:
-            dying_root.right_child = new_root.left_child
             new_root.left_child.parent = dying_root
-        else:
-            dying_root.right_child = None
-        if new_root:
-            new_root.parent = dying_root.parent
+        new_root.parent = dying_root.parent
         if dying_root == self.root:
             self.root = new_root
         else:
@@ -343,13 +338,10 @@ class BinarySearchTree(object):
     def rotate_right(self, dying_root):
         """Rotate the dying root right."""
         new_root = dying_root.left_child
+        dying_root.left_child = new_root.right_child
         if new_root and new_root.right_child:
-            dying_root.left_child = new_root.right_child
             new_root.right_child.parent = dying_root
-        else:
-            dying_root.left_child = None
-        if new_root:
-            new_root.parent = dying_root.parent
+        new_root.parent = dying_root.parent
         if dying_root == self.root:
             self.root = new_root
         else:
@@ -358,23 +350,26 @@ class BinarySearchTree(object):
             else:
                 dying_root.parent.left_child = new_root
         if new_root:
-            new_root.parent = dying_root.parent
+            new_root.right_child = dying_root
             dying_root.parent = new_root
-            dying_root.balance_factor = dying_root.balance_factor + 1 - min(new_root.balance_factor, 0)
-            new_root.balance_factor = new_root.balance_factor + 1 + max(dying_root.balance_factor, 0)
+            dying_root.balance_factor = dying_root.balance_factor + 1 + min(new_root.balance_factor, 0)
+            new_root.balance_factor = new_root.balance_factor + 1 - max(dying_root.balance_factor, 0)
 
     def rebalance(self, node):
         """Rebalance the tree starting with the given node."""
         if node.right_child and node.balance_factor < 0:
             if node.right_child.balance_factor > 0:
-                self.rotate_right(node.right_child)
                 self.rotate_left(node)
-            self.rotate_left(node)
-        elif node.left_child and node.balance_factor > 0:
+                self.rotate_right(node.right_child)
+            else:
+                self.rotate_left(node)
+        if node.left_child and node.balance_factor > 0:
             if node.left_child and node.left_child.balance_factor < 0:
-                self.rotate_left(node.left_child)
                 self.rotate_right(node)
-            self.rotate_right(node)
+                self.rotate_left(node.left_child)
+            else:
+                self.rotate_right(node)
+
 
 if __name__ == '__main__':
     import timeit
