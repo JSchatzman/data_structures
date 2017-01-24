@@ -4,16 +4,17 @@ import pytest
 import io
 import sys
 import random
+import os
 
-file = io.open('/etc/dictionaries-common/words')
+dir_path = os.path.dirname(os.path.realpath(__file__))
+file = io.open(dir_path + '/subset.txt')
 words = file.read()
+file.close()
 
 if sys.version[0] == "2":
     words = words.encode("utf8")
 
 WORD_LIST = words.split('\n')
-
-WORD_LIST = WORD_LIST[0:2000]
 
 
 @pytest.fixture
@@ -100,7 +101,7 @@ def test_collision_on_medium_basic_hash(medium_table_naive):
     """Test collisions on a grander scale."""
     for word in WORD_LIST:
         medium_table_naive.set(str(word), str(word))
-    word = WORD_LIST[random.randint(0, 2000)]
+    word = WORD_LIST[random.randint(0, 4000)]
     assert medium_table_naive.get(word) == word
 
 
@@ -108,7 +109,7 @@ def test_collision_on_medium_bern_hash(medium_table_bern):
     """Test collisions on a grander scale."""
     for word in WORD_LIST:
         medium_table_bern.set(str(word), str(word))
-    word = WORD_LIST[random.randint(0, 2000)]
+    word = WORD_LIST[random.randint(0, 4000)]
     assert medium_table_bern.get(word) == word
 
 
