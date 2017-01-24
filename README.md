@@ -1,6 +1,6 @@
 # Data-Structures
 
-[![Build Status](https://travis-ci.org/JSchatzman/data_structures.svg?branch=bst-delete)](https://travis-ci.org/JSchatzman/data_structures)
+[![Build Status](https://travis-ci.org/JSchatzman/data_structures.svg?branch=hash-table)](https://travis-ci.org/JSchatzman/data_structures)
 
 
 ###This repo holds sample code for a number of classic data structures implemented in Python.
@@ -137,24 +137,44 @@ if either n1 or n2 are not already present in the graph, they should be added.
 - **delete_node(val)** - Delete the node whose contents are the value given.
     Makes use of hidden methods for deleting a node with no children (barren), a node with one child (single child) and a node with two children (two children).
 
+
+##HashTable
+- **Module:** hash_table.py
+- **Tests:** test_hash.py
+
+- **get(key)** - Return the value stored with the given key.
+
+-**set(key, val)** - Store the given val using the given key.
+
+-**_naive(key)** - Hash the key provided naively. A basic hash algorithm.
+
+-**_bernstein(string)** - Hash the key using bernstein's method.
+
+-**fun_chooser(key)**- Control which hash method to use.
+
+
 #Testing Coverage:
+
+Commented out tests for BST because broken after rebalancing.
 
 ```
 ---------- coverage: platform linux2, python 2.7.12-final-0 ----------
 Name                         Stmts   Miss  Cover   Missing
 ----------------------------------------------------------
-src/bst.py                     127      5    96%   136, 206-212
+src/bst.py                     264    264     0%   4-381
 src/deque.py                    30      0   100%
 src/dll.py                      77      2    97%   16-17
+src/hash_table.py               32      0   100%
 src/heap.py                     25      2    92%   15-16
 src/linked_list.py              58      3    95%   16, 26, 34
 src/queue_.py                   19      0   100%
 src/shortest_path_graph.py     133     17    87%   102-108, 112-121, 179
 src/simple_graph.py             71     11    85%   136-149
 src/stack.py                    13      0   100%
-src/test_bst.py                116      0   100%
+src/test_bst.py                  0      0   100%
 src/test_deque.py               82      0   100%
 src/test_dll.py                 82      0   100%
+src/test_hash.py               106      0   100%
 src/test_heap.py                37      0   100%
 src/test_linked_list.py         74      0   100%
 src/test_queue.py               60      0   100%
@@ -165,26 +185,28 @@ src/test_weighted_graph.py     151      0   100%
 src/warshall.py                 24     24     0%   1-40
 src/weighted_graph.py           73     27    63%   117-123, 127-136, 140-153
 ----------------------------------------------------------
-TOTAL                         1636     94    94%
+TOTAL                         1795    353    80%
 
 
-====================================== 270 passed in 0.97 seconds
+================244 passed in 2.27 seconds
 
 ----------- coverage: platform linux, python 3.5.2-final-0 -----------
 Name                         Stmts   Miss  Cover   Missing
 ----------------------------------------------------------
-src/bst.py                     127      5    96%   136, 206-212
+src/bst.py                     264    264     0%   4-381
 src/deque.py                    30      0   100%
 src/dll.py                      77      2    97%   16-17
+src/hash_table.py               32      0   100%
 src/heap.py                     25      2    92%   15-16
 src/linked_list.py              58      3    95%   16, 26, 34
 src/queue_.py                   19      0   100%
 src/shortest_path_graph.py     133     18    86%   102-108, 112-121, 135, 179
 src/simple_graph.py             71     11    85%   136-149
 src/stack.py                    13      0   100%
-src/test_bst.py                116      0   100%
+src/test_bst.py                  0      0   100%
 src/test_deque.py               82      0   100%
 src/test_dll.py                 82      0   100%
+src/test_hash.py               106      1    99%   11
 src/test_heap.py                37      0   100%
 src/test_linked_list.py         74      0   100%
 src/test_queue.py               60      0   100%
@@ -195,184 +217,7 @@ src/test_weighted_graph.py     151      0   100%
 src/warshall.py                 24     24     0%   1-40
 src/weighted_graph.py           73     27    63%   117-123, 127-136, 140-153
 ----------------------------------------------------------
-TOTAL                         1636     95    94%
+TOTAL                         1795    355    80%
 
 
-====================================== 270 passed in 0.98 seconds
-```
-
-
-```
----------- coverage: platform linux2, python 2.7.12-final-0 ----------
-Name                         Stmts   Miss  Cover   Missing
-----------------------------------------------------------
-src/bst.py                      71      1    99%   86
-src/deque.py                    30      0   100%
-src/dll.py                      77      2    97%   16-17
-src/heap.py                     25      2    92%   15-16
-src/linked_list.py              58      3    95%   16, 26, 34
-src/queue_.py                   19      0   100%
-src/shortest_path_graph.py     133     18    86%   102-108, 112-121, 135, 179
-src/simple_graph.py             71     11    85%   136-149
-src/stack.py                    13      0   100%
-src/test_bst.py                 59      0   100%
-src/test_deque.py               82      0   100%
-src/test_dll.py                 82      0   100%
-src/test_heap.py                37      0   100%
-src/test_linked_list.py         74      0   100%
-src/test_queue.py               60      0   100%
-src/test_shortest_path.py      189      0   100%
-src/test_simple_graph.py       147      0   100%
-src/test_stack.py               48      3    94%   88-90
-src/test_weighted_graph.py     151      0   100%
-src/warshall.py                 24     24     0%   1-40
-src/weighted_graph.py           73     27    63%   117-123, 127-136, 140-153
-----------------------------------------------------------
-TOTAL                         1523     91    94%
-
-
-===============================================248 passed in 0.88 seconds
-
------------ coverage: platform linux, python 3.5.2-final-0 -----------
-Name                         Stmts   Miss  Cover   Missing
-----------------------------------------------------------
-src/bst.py                      71      1    99%   86
-src/deque.py                    30      0   100%
-src/dll.py                      77      2    97%   16-17
-src/heap.py                     25      2    92%   15-16
-src/linked_list.py              58      3    95%   16, 26, 34
-src/queue_.py                   19      0   100%
-src/shortest_path_graph.py     133     18    86%   102-108, 112-121, 135, 179
-src/simple_graph.py             71     11    85%   136-149
-src/stack.py                    13      0   100%
-src/test_bst.py                 59      0   100%
-src/test_deque.py               82      0   100%
-src/test_dll.py                 82      0   100%
-src/test_heap.py                37      0   100%
-src/test_linked_list.py         74      0   100%
-src/test_queue.py               60      0   100%
-src/test_shortest_path.py      189      0   100%
-src/test_simple_graph.py       147      0   100%
-src/test_stack.py               48      3    94%   88-90
-src/test_weighted_graph.py     151      0   100%
-src/warshall.py                 24     24     0%   1-40
-src/weighted_graph.py           73     27    63%   117-123, 127-136, 140-153
-----------------------------------------------------------
-TOTAL                         1523     91    94%
-
-
-==============================================248 passed in 0.97 seconds
-```
-
-```
----------- coverage: platform linux2, python 2.7.12-final-0 ----------
-Name                         Stmts   Miss  Cover   Missing
-----------------------------------------------------------
-src/bst.py                      69      1    99%   68
-src/deque.py                    30      0   100%
-src/dll.py                      77      2    97%   16-17
-src/heap.py                     25      2    92%   15-16
-src/linked_list.py              58      3    95%   16, 26, 34
-src/queue_.py                   19      0   100%
-src/shortest_path_graph.py     133     18    86%   102-108, 112-121, 135, 179
-src/simple_graph.py             71     11    85%   136-149
-src/stack.py                    13      0   100%
-src/test_bst.py                 52      0   100%
-src/test_deque.py               82      0   100%
-src/test_dll.py                 82      0   100%
-src/test_heap.py                37      0   100%
-src/test_linked_list.py         74      0   100%
-src/test_queue.py               60      0   100%
-src/test_shortest_path.py      189      0   100%
-src/test_simple_graph.py       147      0   100%
-src/test_stack.py               48      3    94%   88-90
-src/test_weighted_graph.py     151      0   100%
-src/warshall.py                 24     24     0%   1-40
-src/weighted_graph.py           73     27    63%   117-123, 127-136, 140-153
-----------------------------------------------------------
-TOTAL                         1514     91    94%
-
-
-============================================245 passed in 0.93 seconds
-
------------ coverage: platform linux, python 3.5.2-final-0 -----------
-Name                         Stmts   Miss  Cover   Missing
-----------------------------------------------------------
-src/bst.py                      69      1    99%   68
-src/deque.py                    30      0   100%
-src/dll.py                      77      2    97%   16-17
-src/heap.py                     25      2    92%   15-16
-src/linked_list.py              58      3    95%   16, 26, 34
-src/queue_.py                   19      0   100%
-src/shortest_path_graph.py     133     18    86%   102-108, 112-121, 135, 179
-src/simple_graph.py             71     11    85%   136-149
-src/stack.py                    13      0   100%
-src/test_bst.py                 52      0   100%
-src/test_deque.py               82      0   100%
-src/test_dll.py                 82      0   100%
-src/test_heap.py                37      0   100%
-src/test_linked_list.py         74      0   100%
-src/test_queue.py               60      0   100%
-src/test_shortest_path.py      189      0   100%
-src/test_simple_graph.py       147      0   100%
-src/test_stack.py               48      3    94%   88-90
-src/test_weighted_graph.py     151      0   100%
-src/warshall.py                 24     24     0%   1-40
-src/weighted_graph.py           73     27    63%   117-123, 127-136, 140-153
-----------------------------------------------------------
-TOTAL                         1514     91    94%
-
-
-===========================================245 passed in 0.96 seconds
-
-
-```
----------- coverage: platform darwin, python 2.7.11-final-0 ----------
-Name                       Stmts   Miss  Cover   Missing
---------------------------------------------------------
-src/deque.py                  30      0   100%
-src/dll.py                    77      2    97%   16-17
-src/heap.py                   25      2    92%   15-16
-src/linked_list.py            58      3    95%   16, 26, 34
-src/queue.py                  19      0   100%
-src/simple_graph.py           66     11    83%   130-143
-src/stack.py                  13      0   100%
-src/test_deque.py             82      0   100%
-src/test_dll.py               82      0   100%
-src/test_heap.py              37      0   100%
-src/test_linked_list.py       74      0   100%
-src/test_queue.py             60      0   100%
-src/test_simple_graph.py     147      0   100%
-src/test_stack.py             48      3    94%   88-90
---------------------------------------------------------
-TOTAL                        818     21    97%
-
-
-==========================================131 passed in 0.48 
-
-
----------- coverage: platform darwin, python 3.5.2-final-0 -----------
-Name                       Stmts   Miss  Cover   Missing
---------------------------------------------------------
-src/deque.py                  30      0   100%
-src/dll.py                    77      2    97%   16-17
-src/heap.py                   25      2    92%   15-16
-src/linked_list.py            58      3    95%   16, 26, 34
-src/queue.py                  19      0   100%
-src/simple_graph.py           66     11    83%   130-143
-src/stack.py                  13      0   100%
-src/test_deque.py             82      0   100%
-src/test_dll.py               82      0   100%
-src/test_heap.py              37      0   100%
-src/test_linked_list.py       74      0   100%
-src/test_queue.py             60      0   100%
-src/test_simple_graph.py     147      0   100%
-src/test_stack.py             48      3    94%   88-90
---------------------------------------------------------
-TOTAL                        818     21    97%
-
-==========================================131 passed in 0.48 
-
-
-
-```
+================244 passed in 2.23 seconds

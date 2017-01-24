@@ -5,7 +5,17 @@ class HashTable(object):
     """Implementation of a hash table."""
 
     def __init__(self, size, hash_type='naive'):
-        """Initializes the hash table based on Key Word arg."""
+        """Initializes the hash table based on Key Word arg.
+        
+        Methods:
+
+        get(key):Return the value stored with the given key.
+        set(key, val):Store the given val using the given key.
+        _naive(key):Hash the key provided naively. A basic hash algorithm.
+        _bernstein(string): Hash the key using bernstein's method.
+        fun_chooser(key):Control which hash method to use.
+
+        """
         if hash_type not in ('bern', 'naive'):
             raise NameError("Hash type must be 'naive' or 'bern'.")
         self.hash_type = hash_type
