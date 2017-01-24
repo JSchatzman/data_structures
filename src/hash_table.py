@@ -36,10 +36,10 @@ class HashTable(object):
 
     def _bernstein(self, string):
         """Hash the key using bernstein's method."""
-        h = 3313 # arbitrary prime number
+        h = 3313  # arbitrary prime number
         for char in string:
             h = ((h << 5) + h) + ord(char)
-        return h % self.size
+        return int(int(h) % int(self.size))
 
     def fun_chooser(self, key):
         """Control which hash method to use."""
