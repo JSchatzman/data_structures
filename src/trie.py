@@ -37,6 +37,24 @@ class Trie(object):
             return True
         return False
 
+    def size(self):
+        """Return the size of the trie."""
+        return self.size
+
+    def remove(self, string):
+        """Remove the string from the tree if it exists."""
+        if not self.contains(string):
+            raise ValueError('The trie does not contain this string.')
+        check = self.root
+        for letter in string:
+            check = check[letter]
+        if check.keys().count > 1:
+            del check['END']
+            return
+        for letter in string.reverse():
+            del check[letter]
+        return
+
 
 
 
