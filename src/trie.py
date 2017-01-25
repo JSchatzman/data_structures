@@ -12,7 +12,7 @@ class Trie(object):
 
     def __init__(self):
         self.root = {}
-        self.size = 0
+        self._size = 0
 
     def insert(self, string):
         """Insert a new word into the trie."""
@@ -24,7 +24,7 @@ class Trie(object):
                 check.setdefault(letter, {})
             check = check[letter]
         check['$'] = 'END'
-        self.size += 1
+        self._size += 1
 
     def contains(self, string):
         """Return true if the string is in trie else false."""
@@ -39,7 +39,7 @@ class Trie(object):
 
     def size(self):
         """Return the size of the trie."""
-        return self.size
+        return self._size
 
     def remove(self, string):
         """Remove the string from the tree if it exists."""
