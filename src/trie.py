@@ -21,6 +21,8 @@ class Trie(object):
                 check.setdefault(letter, {})
             check = check[letter]
 
+        check['$'] = 'END'
+
 
 
 
