@@ -41,7 +41,7 @@ def delete_tree():
 
 def test_empty_tree_size(empty_trie):
     """Test empty tree size is 0."""
-    assert empty_trie.size() == 0
+    assert empty_trie.size == 0
 
 
 def test_insert_must_be_string(empty_trie):
@@ -88,14 +88,14 @@ def test_insert_on_empty(empty_trie):
     """Test that inserting into an empty tree works correctly."""
     empty_trie.insert('hello')
     assert 'h' in empty_trie.root.keys()
-    assert empty_trie.size() == 1
+    assert empty_trie.size == 1
 
 
 def test_double_insert_on_empty(empty_trie):
     """Test double insert does not increase size."""
     empty_trie.insert('hello')
     empty_trie.insert('hello')
-    assert empty_trie.size() == 1
+    assert empty_trie.size == 1
 
 
 def test_shorter_valid_string_is_contained(tricky_trie):
@@ -110,28 +110,28 @@ def test_nonexisting_string_not_contained(tricky_trie):
 
 def test_on_tricky_trie(tricky_trie):
     """Test that size on tricky trie is correct."""
-    assert tricky_trie.size() == 4
+    assert tricky_trie.size == 4
 
 
 def test_remove_childless_on_delete_tree(delete_tree):
     """Test the remove function on childless Node."""
-    tree_size = delete_tree.size()
+    tree_size = delete_tree.size
     delete_tree.remove("teabaggers")
-    assert delete_tree.size() == tree_size - 1
+    assert delete_tree.size == tree_size - 1
 
 
 def test_remove_middle_child_on_delete_tree(delete_tree):
     """Test the remove function on a middle child."""
-    tree_size = delete_tree.size()
+    tree_size = delete_tree.size
     delete_tree.remove("teabag")
-    assert delete_tree.size() == tree_size - 1
+    assert delete_tree.size == tree_size - 1
 
 
 def test_remove_top_but_not_root(delete_tree):
     """Test removing a top but not the root."""
-    tree_size = delete_tree.size()
+    tree_size = delete_tree.size
     delete_tree.remove("tea")
-    assert delete_tree.size() == tree_size - 1
+    assert delete_tree.size == tree_size - 1
 
 
 def test_remove_childless_on_delete_tree2(delete_tree):
@@ -149,10 +149,65 @@ def test_remove_middle_child_on_delete_tree2(delete_tree):
 def test_remove_top_but_not_root2(delete_tree):
     """Test removing a top but not the root."""
     delete_tree.remove("tea")
-    assert delete_tree.contains("teabag") is False
+    assert delete_tree.contains("teabag") is True
 
 
 def test_remove_not_in_tree_raises_error(delete_tree):
     """Removing a value not in the tree should raise an error."""
     with pytest.raises(ValueError):
         delete_tree.remove("toldyouso raise an error")
+
+
+def test_remove_all_values1(delete_tree):
+    """Removing all values should work."""
+    delete_tree.remove("ted")
+    delete_tree.remove("tea")
+    delete_tree.remove("teabag")
+    delete_tree.remove("teabags")
+    delete_tree.remove("teabagger")
+    delete_tree.remove("teabaggers")
+    delete_tree.remove("teabagged")
+
+
+def test_remove_all_values2(delete_tree):
+    """Removing all values should work."""
+    delete_tree.remove("ted")
+    delete_tree.remove("teabagged")
+    delete_tree.remove("tea")
+    delete_tree.remove("teabag")
+    delete_tree.remove("teabagger")
+    delete_tree.remove("teabags")
+    delete_tree.remove("teabaggers")
+
+
+def test_remove_all_values3(delete_tree):
+    """Removing all values should work."""
+    delete_tree.remove("tea")
+    delete_tree.remove("teabagged")
+    delete_tree.remove("teabaggers")
+    delete_tree.remove("teabagger")
+    delete_tree.remove("teabags")
+    delete_tree.remove("teabag")
+    delete_tree.remove("ted")
+
+
+def test_remove_all_values4(delete_tree):
+    """Removing all values should work."""
+    delete_tree.remove("teabagged")
+    delete_tree.remove("teabaggers")
+    delete_tree.remove("teabagger")
+    delete_tree.remove("teabags")
+    delete_tree.remove("teabag")
+    delete_tree.remove("tea")
+    delete_tree.remove("ted")
+
+
+def test_remove_all_values5(delete_tree):
+    """Removing all values should work."""
+    delete_tree.remove("teabaggers")
+    delete_tree.remove("teabagged")
+    delete_tree.remove("teabagger")
+    delete_tree.remove("teabag")
+    delete_tree.remove("teabags")
+    delete_tree.remove("ted")
+    delete_tree.remove("tea")
