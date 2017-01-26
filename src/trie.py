@@ -1,5 +1,6 @@
 """Implementation of trie."""
 
+from collections import OrderedDict
 
 class Trie(object):
     """Class representation of trie.
@@ -11,7 +12,7 @@ class Trie(object):
     """
 
     def __init__(self):
-        self.root = {}
+        self.root = OrderedDict()
         self._size = 0
 
     def insert(self, string):
@@ -23,7 +24,7 @@ class Trie(object):
         check = self.root
         for letter in string:
             if letter not in check:
-                check.setdefault(letter, {})
+                check.setdefault(letter, OrderedDict())
             check = check[letter]
         check['$'] = 'END'
         self._size += 1
@@ -69,3 +70,39 @@ class Trie(object):
         else:
             del self.root[string[0]]
         self._size -= 1
+
+    def _traversal_start(self, start=None):
+        """Return the node in trie corresponding to the input string if exists."""
+        if start:
+            try:
+                check = self.root
+                for letter in start:
+                    check = check[letter]
+            except KeyError:
+                raise KeyError('The input string is not in the trie.')
+            return check
+        return self.root
+
+
+    def traversal(self, start=True, tracker=None):
+        """Perform a depth traversal of the string."""
+        if start:
+            check = self._traversal_start(start)
+        else:
+            check = self.root
+        for letter in check.keys():
+            for subletter in self.traversal(False, letter):
+                yield subletter
+
+# def node_recurse_generator(node):
+#    yield node.value
+#    for n in node.ChildElements:
+#        for rn in node_recurse_generator(n):
+#            yield rn
+
+from trie import Trie
+test = Trie()
+test.insert('alpha')
+test.insert('alpaca')
+test.insert('boy')
+gen = test.traversal('alp')
