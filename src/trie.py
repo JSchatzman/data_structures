@@ -65,13 +65,3 @@ class Trie(object):
                 prev = check[letter]
             check = check[letter]
         del prev[list_deleted[0]]
-
-from trie import Trie
-t = Trie()
-t.insert("ted")
-t.insert("tea")
-t.insert("teabag")
-t.insert("teabags")
-t.insert("teabagger")
-t.insert("teabaggers")
-t.insert("teabagged")
