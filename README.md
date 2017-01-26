@@ -144,13 +144,26 @@ if either n1 or n2 are not already present in the graph, they should be added.
 
 - **get(key)** - Return the value stored with the given key.
 
--**set(key, val)** - Store the given val using the given key.
+- **set(key, val)** - Store the given val using the given key.
 
--**_naive(key)** - Hash the key provided naively. A basic hash algorithm.
+- **_naive(key)** - Hash the key provided naively. A basic hash algorithm.
 
--**_bernstein(string)** - Hash the key using bernstein's method.
+- **_bernstein(string)** - Hash the key using bernstein's method.
 
--**fun_chooser(key)**- Control which hash method to use.
+- **fun_chooser(key)**- Control which hash method to use.
+
+##Trie
+
+- **Module:** trie.py
+- **Tests:** test_trie.py
+
+- **Insert** - Insert a new string into the trie. Runs in O(n)
+
+- **Contains** - Determine if input string exists in trie.  Runs in O(n)
+
+- **Size** - Returns the number of strings in the trie. Runs in O(1)
+
+- **Remove** - Remove the input string from the trie if it exists. Runs in O(n)
 
 
 #Testing Coverage:
@@ -168,27 +181,30 @@ src/hash_table.py               32      0   100%
 src/heap.py                     25      2    92%   15-16
 src/linked_list.py              58      3    95%   16, 26, 34
 src/queue_.py                   19      0   100%
-src/shortest_path_graph.py     133     17    87%   102-108, 112-121, 179
+src/shortest_path_graph.py     133     18    86%   102-108, 112-121, 135, 179
 src/simple_graph.py             71     11    85%   136-149
 src/stack.py                    13      0   100%
 src/test_bst.py                  0      0   100%
 src/test_deque.py               82      0   100%
 src/test_dll.py                 82      0   100%
-src/test_hash.py               106      0   100%
+src/test_hash.py               112      0   100%
 src/test_heap.py                37      0   100%
 src/test_linked_list.py         74      0   100%
 src/test_queue.py               60      0   100%
 src/test_shortest_path.py      189      0   100%
 src/test_simple_graph.py       147      0   100%
 src/test_stack.py               48      3    94%   88-90
+src/test_trie.py               128      0   100%
 src/test_weighted_graph.py     151      0   100%
+src/trie.py                     50      0   100%
 src/warshall.py                 24     24     0%   1-40
 src/weighted_graph.py           73     27    63%   117-123, 127-136, 140-153
 ----------------------------------------------------------
-TOTAL                         1795    353    80%
+TOTAL                         1979    354    82%
 
 
-================244 passed in 2.27 seconds
+========================== 270 passed in 1.13 seconds ===========================
+
 
 ----------- coverage: platform linux, python 3.5.2-final-0 -----------
 Name                         Stmts   Miss  Cover   Missing
@@ -200,24 +216,26 @@ src/hash_table.py               32      0   100%
 src/heap.py                     25      2    92%   15-16
 src/linked_list.py              58      3    95%   16, 26, 34
 src/queue_.py                   19      0   100%
-src/shortest_path_graph.py     133     18    86%   102-108, 112-121, 135, 179
+src/shortest_path_graph.py     133     17    87%   102-108, 112-121, 179
 src/simple_graph.py             71     11    85%   136-149
 src/stack.py                    13      0   100%
 src/test_bst.py                  0      0   100%
 src/test_deque.py               82      0   100%
 src/test_dll.py                 82      0   100%
-src/test_hash.py               106      1    99%   11
+src/test_hash.py               112      1    99%   15
 src/test_heap.py                37      0   100%
 src/test_linked_list.py         74      0   100%
 src/test_queue.py               60      0   100%
 src/test_shortest_path.py      189      0   100%
 src/test_simple_graph.py       147      0   100%
 src/test_stack.py               48      3    94%   88-90
+src/test_trie.py               128      0   100%
 src/test_weighted_graph.py     151      0   100%
+src/trie.py                     50      0   100%
 src/warshall.py                 24     24     0%   1-40
 src/weighted_graph.py           73     27    63%   117-123, 127-136, 140-153
 ----------------------------------------------------------
-TOTAL                         1795    355    80%
+TOTAL                         1979    354    82%
 
 
-================244 passed in 2.23 seconds
+========================== 270 passed in 5.00 seconds ===========================
