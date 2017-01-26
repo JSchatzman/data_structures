@@ -45,19 +45,57 @@ class Trie(object):
         """Remove the string from the tree if it exists."""
         if not self.contains(string):
             raise ValueError('The trie does not contain this string.')
+        del_list = []
         check = self.root
         for letter in string:
+            key_length = len([key for key in check.keys() if key != '$']) 
+            # del_list.append((check, len(check.keys())))
+            del_list.append((check, key_length))
             check = check[letter]
-        if check.keys().count > 1:
-            del check['END']
-            return
-        for letter in string.reverse():
-            del check[letter]
-        return
+
+        del_list = del_list
+        for val in range(len(del_list)):
+            if del_list[val][1] > 1:
+                break
+
+        check2 = self.root
+        for i in range(val):
+            print(string[i])
+            check2 = check2[string[i]]
+        del check2[string[i + 1]]
+
+
+
+
+
+        # check = self.root
+        # # del_list = []
+        # # #count = 0
+        # for i, letter in enumerate(string):
+        #     previous = check
+        #     check = check[letter]
+        #     if len(check.keys()) > 2:
+        #         break
+        # if (i + 1) == len(string):
+        #     pass
+        #     #del previous[string[i]['$']
+
+        # import pdb; pdb.set_trace()
+        # del check[string[i + 1]]
+        
+        
+
 
 
 
 
 
 test = Trie()
-test.insert('kill')
+test.insert('h')
+test.insert('help')
+test.insert('hey')
+test.insert('helpp')
+#test.insert('h')
+import pdb; pdb.set_trace()
+test.remove('hey')
+import pdb; pdb.set_trace()
