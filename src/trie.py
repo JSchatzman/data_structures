@@ -83,16 +83,25 @@ class Trie(object):
             return check
         return self.root
 
-
-    def traversal(self, start=True, tracker=None):
+    def traversal(self, start=None):
         """Perform a depth traversal of the string."""
-        if start:
-            check = self._traversal_start(start)
-        else:
-            check = self.root
-        for letter in check.keys():
-            for subletter in self.traversal(False, letter):
-                yield subletter
+        check = self._traversal_start(start)
+        if isinstance(check, OrderedDict):
+            for letter in check.keys():
+                if letter != "$":
+                    yield letter
+                if start:
+                    newstart = start + letter
+                else:
+                    newstart = letter
+                for item in self.traversal(newstart):
+                    if item != "$":
+                        yield item
+            
+
+
+
+
 
 # def node_recurse_generator(node):
 #    yield node.value
@@ -102,7 +111,7 @@ class Trie(object):
 
 from trie import Trie
 test = Trie()
-test.insert('alpha')
+test.insert('alph2a')
 test.insert('alpaca')
 test.insert('boy')
-gen = test.traversal('alp')
+gen = test.traversal()
