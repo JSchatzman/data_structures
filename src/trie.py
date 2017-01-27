@@ -97,3 +97,9 @@ class Trie(object):
                 for item in self.traversal(newstart):
                     if item != "$":
                         yield item
+trie = Trie()
+trie.insert('alpha')
+trie.insert('alpaca')
+trie.insert('boy')
+gen = trie.traversal('alp')
+print (list(gen))

@@ -39,6 +39,17 @@ def delete_tree():
     return t
 
 
+@pytest.fixture
+def traversal_test_trie():
+    """A tree used to test traversal on."""
+    from trie import Trie
+    trie = Trie()
+    trie.insert('alpha')
+    trie.insert('alpaca')
+    trie.insert('boy')
+    return trie
+
+
 def test_empty_tree_size(empty_trie):
     """Test empty tree size is 0."""
     assert empty_trie.size == 0
@@ -211,3 +222,29 @@ def test_remove_all_values5(delete_tree):
     delete_tree.remove("teabags")
     delete_tree.remove("ted")
     delete_tree.remove("tea")
+
+
+def test_traversal_invalid_string(traversal_test_trie):
+    """Test traversal of invalid string raises error."""
+    with pytest.raises(KeyError):
+        gen = traversal_test_trie.traversal('invalid')
+        next(gen)
+
+
+def test_traversal_invalid_string_on_empty(empty_trie):
+    """Test traversal of invalid string raises error."""
+    with pytest.raises(KeyError):
+        gen = empty_trie.traversal('invalid')
+        next(gen)
+
+
+def test_traversal_on_test_trie_from_root(traversal_test_trie):
+    """Test traversal of test trie from root."""
+    gen = traversal_test_trie.traversal()
+    assert list(gen) == ['a', 'l', 'p', 'h', 'a', 'a', 'c', 'a', 'b', 'o', 'y']
+
+
+def test_traversal_on_test_trie_from_middle(traversal_test_trie):
+    """Test traversal of test trie from root."""
+    gen = traversal_test_trie.traversal('alp')
+    assert list(gen) == ['h', 'a', 'a', 'c', 'a']
