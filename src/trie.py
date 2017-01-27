@@ -97,21 +97,3 @@ class Trie(object):
                 for item in self.traversal(newstart):
                     if item != "$":
                         yield item
-            
-
-
-
-
-
-# def node_recurse_generator(node):
-#    yield node.value
-#    for n in node.ChildElements:
-#        for rn in node_recurse_generator(n):
-#            yield rn
-
-from trie import Trie
-test = Trie()
-test.insert('alph2a')
-test.insert('alpaca')
-test.insert('boy')
-gen = test.traversal()
