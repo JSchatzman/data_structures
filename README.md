@@ -161,13 +161,13 @@ if either n1 or n2 are not already present in the graph, they should be added.
 
 - **Contains** - Determine if input string exists in trie.  Runs in O(n)
 
-- **Size** - Returns the number of strings in the trie. Runs in O(1)
+- **Size** - Returns the number of strings in the trie. Runs in O(n)
 
 - **Remove** - Remove the input string from the trie if it exists. Runs in O(n)
 
-- **Traversal** - Perform a depth traversal of the string.
+- **Traversal** - Perform a depth traversal of the string. Runs in O(n^2)
 
-- **_traversal_start** - Return the node in trie corresponding to the input string if exists.
+- **_traversal_start** - Return the node in trie corresponding to the input string if exists. Runs in O(n)
 
 
 #Testing Coverage:
