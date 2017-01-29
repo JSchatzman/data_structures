@@ -165,10 +165,15 @@ if either n1 or n2 are not already present in the graph, they should be added.
 
 - **Remove** - Remove the input string from the trie if it exists. Runs in O(n)
 
+- **Traversal** - Perform a depth traversal of the string.
+
+- **_traversal_start** - Return the node in trie corresponding to the input string if exists.
+
 
 #Testing Coverage:
 
 Commented out tests for BST because broken after rebalancing.
+
 
 ```
 ---------- coverage: platform linux2, python 2.7.12-final-0 ----------
@@ -181,7 +186,7 @@ src/hash_table.py               32      0   100%
 src/heap.py                     25      2    92%   15-16
 src/linked_list.py              58      3    95%   16, 26, 34
 src/queue_.py                   19      0   100%
-src/shortest_path_graph.py     133     18    86%   102-108, 112-121, 135, 179
+src/shortest_path_graph.py     133     17    87%   102-108, 112-121, 179
 src/simple_graph.py             71     11    85%   136-149
 src/stack.py                    13      0   100%
 src/test_bst.py                  0      0   100%
@@ -194,17 +199,16 @@ src/test_queue.py               60      0   100%
 src/test_shortest_path.py      189      0   100%
 src/test_simple_graph.py       147      0   100%
 src/test_stack.py               48      3    94%   88-90
-src/test_trie.py               128      0   100%
+src/test_trie.py               149      0   100%
 src/test_weighted_graph.py     151      0   100%
-src/trie.py                     50      0   100%
+src/trie.py                     73      0   100%
 src/warshall.py                 24     24     0%   1-40
 src/weighted_graph.py           73     27    63%   117-123, 127-136, 140-153
 ----------------------------------------------------------
-TOTAL                         1979    354    82%
+TOTAL                         2023    353    83%
 
 
-========================== 270 passed in 1.13 seconds ===========================
-
+========================== 274 passed in 1.69 seconds
 
 ----------- coverage: platform linux, python 3.5.2-final-0 -----------
 Name                         Stmts   Miss  Cover   Missing
@@ -229,13 +233,14 @@ src/test_queue.py               60      0   100%
 src/test_shortest_path.py      189      0   100%
 src/test_simple_graph.py       147      0   100%
 src/test_stack.py               48      3    94%   88-90
-src/test_trie.py               128      0   100%
+src/test_trie.py               149      0   100%
 src/test_weighted_graph.py     151      0   100%
-src/trie.py                     50      0   100%
+src/trie.py                     73      0   100%
 src/warshall.py                 24     24     0%   1-40
 src/weighted_graph.py           73     27    63%   117-123, 127-136, 140-153
 ----------------------------------------------------------
-TOTAL                         1979    354    82%
+TOTAL                         2023    354    83%
 
 
-========================== 270 passed in 5.00 seconds ===========================
+========================== 274 passed in 1.51 seconds
+```

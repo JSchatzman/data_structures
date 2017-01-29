@@ -9,6 +9,8 @@ class Trie(object):
     contains(self, string): Return true if the string is in trie else false.
     size(self): Return the size of the trie.
     remove(self, string): Remove the string from the tree if it exists.
+    traversal(self, start=None): Perform a depth traversal of the string.
+    _traversal_start(self, start=None): Return the node in trie corresponding to the input string if exists.
     """
 
     def __init__(self):
