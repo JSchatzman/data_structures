@@ -6,11 +6,15 @@ def insertion_sort(input_list):
     for i in range(len(input_list)):
         value = input_list[i]
         position = i
-        while position > 0 and input_list[position - 1] > value:
-            input_list[position] = input_list[position - 1]
-            position -= 1
-        input_list[position] = value
+        try:
+            while position > 0 and input_list[position - 1] > value:
+                input_list[position] = input_list[position - 1]
+                position -= 1
+            input_list[position] = value
+        except TypeError:
+            raise TypeError("Cannot compare across types in Python 3")
     return input_list
+
 
 
 if __name__ == '__main__':
@@ -40,3 +44,4 @@ if __name__ == '__main__':
           timeit.timeit(stmt="insertion_sort(random_list)",
                         setup='from __main__ import random_list, insertion_sort',
                         number=1000))
+
