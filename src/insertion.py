@@ -12,5 +12,5 @@ def insertion_sort(input_list):
     return input_list
 
 
-print(insertion_sort([5,4,3,6,3,1,3,5,6,2,34,6]))
+print(insertion_sort(['a','z','gggdgd','ttrt','gfggfgd']))
 
