@@ -177,6 +177,17 @@ if either n1 or n2 are not already present in the graph, they should be added.
 -**insertion_sort** - takes an input list and returns the sorted version of the list.  Runs in O(n^2).
 
 
+##Insertion Sort
+
+- **Module:** insertion.py
+- **Tests:** test_insertion.py
+
+- **Insertion Sort** - Takes an iterable and sorts the iterable in ascending order
+        - Integers > Capital Letters > Lowercase Letters
+        - For python 3 because no type forcing, cannot compare across types
+            - Raises type error
+        
+
 #Testing Coverage:
 
 Commented out tests for BST because broken after rebalancing.
