@@ -169,6 +169,13 @@ if either n1 or n2 are not already present in the graph, they should be added.
 
 - **_traversal_start** - Return the node in trie corresponding to the input string if exists. Runs in O(n)
 
+##Insertion Sort
+
+-**Module:** insertion.py
+-**Tests:** test_insertion.py
+
+-**insertion_sort** - takes an input list and returns the sorted version of the list.  Runs in O(n^2).
+
 
 #Testing Coverage:
 
