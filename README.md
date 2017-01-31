@@ -181,6 +181,14 @@ if either n1 or n2 are not already present in the graph, they should be added.
         - For python 3 because no type forcing, cannot compare across types
             - Raises type error
         
+##Merge Sort
+
+- **Module:** merge_sort.py
+- **Tests:** test_merge_sort.py
+
+- **Merge Sort** - Takes an iterable and returns the sorted list using the merge sort algorithm.
+- **Merge** - Helper function to merge two lists together
+
 
 #Testing Coverage:
 
@@ -188,7 +196,7 @@ Commented out tests for BST because broken after rebalancing.
 
 
 ```
----------- coverage: platform linux2, python 2.7.12-final-0 ----------
+---- coverage: platform linux2, python 2.7.12-final-0 ----------
 Name                         Stmts   Miss  Cover   Missing
 ----------------------------------------------------------
 src/bst.py                     264    264     0%   4-381
@@ -196,9 +204,11 @@ src/deque.py                    30      0   100%
 src/dll.py                      77      2    97%   16-17
 src/hash_table.py               32      0   100%
 src/heap.py                     25      2    92%   15-16
+src/insertion.py                24     13    46%   14-15, 21-43
 src/linked_list.py              58      3    95%   16, 26, 34
+src/merge_sort.py               26      6    77%   34-42
 src/queue_.py                   19      0   100%
-src/shortest_path_graph.py     133     17    87%   102-108, 112-121, 179
+src/shortest_path_graph.py     133     18    86%   102-108, 112-121, 135, 179
 src/simple_graph.py             71     11    85%   136-149
 src/stack.py                    13      0   100%
 src/test_bst.py                  0      0   100%
@@ -206,7 +216,9 @@ src/test_deque.py               82      0   100%
 src/test_dll.py                 82      0   100%
 src/test_hash.py               112      0   100%
 src/test_heap.py                37      0   100%
+src/test_insertion.py           15      2    87%   48-49
 src/test_linked_list.py         74      0   100%
+src/test_merge_sort.py          15      2    87%   48-49
 src/test_queue.py               60      0   100%
 src/test_shortest_path.py      189      0   100%
 src/test_simple_graph.py       147      0   100%
@@ -217,10 +229,10 @@ src/trie.py                     73      0   100%
 src/warshall.py                 24     24     0%   1-40
 src/weighted_graph.py           73     27    63%   117-123, 127-136, 140-153
 ----------------------------------------------------------
-TOTAL                         2023    353    83%
+TOTAL                         2103    377    82%
 
 
-========================== 274 passed in 1.69 seconds
+=========================== 300 passed in 2.05 seconds
 
 ----------- coverage: platform linux, python 3.5.2-final-0 -----------
 Name                         Stmts   Miss  Cover   Missing
@@ -230,7 +242,9 @@ src/deque.py                    30      0   100%
 src/dll.py                      77      2    97%   16-17
 src/hash_table.py               32      0   100%
 src/heap.py                     25      2    92%   15-16
+src/insertion.py                24     11    54%   21-43
 src/linked_list.py              58      3    95%   16, 26, 34
+src/merge_sort.py               26      6    77%   34-42
 src/queue_.py                   19      0   100%
 src/shortest_path_graph.py     133     17    87%   102-108, 112-121, 179
 src/simple_graph.py             71     11    85%   136-149
@@ -240,7 +254,9 @@ src/test_deque.py               82      0   100%
 src/test_dll.py                 82      0   100%
 src/test_hash.py               112      1    99%   15
 src/test_heap.py                37      0   100%
+src/test_insertion.py           15      1    93%   46
 src/test_linked_list.py         74      0   100%
+src/test_merge_sort.py          15      1    93%   46
 src/test_queue.py               60      0   100%
 src/test_shortest_path.py      189      0   100%
 src/test_simple_graph.py       147      0   100%
@@ -251,8 +267,8 @@ src/trie.py                     73      0   100%
 src/warshall.py                 24     24     0%   1-40
 src/weighted_graph.py           73     27    63%   117-123, 127-136, 140-153
 ----------------------------------------------------------
-TOTAL                         2023    354    83%
+TOTAL                         2103    373    82%
 
 
-========================== 274 passed in 1.51 seconds
+====================== 300 passed in 2.08 seconds
 ```

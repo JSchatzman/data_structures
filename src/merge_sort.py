@@ -30,5 +30,16 @@ def merge_sort(input_list):
         return _merge(list1, list2)
 
 
-
-
+if __name__ == '__main__':
+    import timeit
+    from random import randint
+    merge_list_string = [chr(randint(97, 123)) for i in range(100)]
+    merge_list_num = [randint(0, 101) for i in range(100)]
+    print('Sort Time for 1000 merge_sort calls on 100 randomly generated string characters:',
+          timeit.timeit(stmt="merge_sort(merge_list_string)",
+                        setup='from __main__ import merge_sort, merge_list_string',
+                        number=1000))
+    print('Sort Time for 1000 merge_sort calls on 100 randomly generated integers:',
+          timeit.timeit(stmt="merge_sort(merge_list_num)",
+                        setup='from __main__ import merge_sort, merge_list_num',
+                        number=1000))
