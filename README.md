@@ -189,6 +189,13 @@ if either n1 or n2 are not already present in the graph, they should be added.
 - **Merge Sort** - Takes an iterable and returns the sorted list using the merge sort algorithm.
 - **Merge** - Helper function to merge two lists together
 
+##Quick Sort
+
+- **Module:** quicksort.py
+- **Tests:** test_quicksort.py
+
+- **quicksort** - Takes an iterable and returns the sorted list using the quick sort algorithm.
+
 
 #Testing Coverage:
 
