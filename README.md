@@ -196,6 +196,13 @@ if either n1 or n2 are not already present in the graph, they should be added.
 
 - **quicksort** - Takes an iterable and returns the sorted list using the quick sort algorithm.
 
+##Radix Sort
+
+- **Module:** radix.py
+- **Tests:** test_radix.py
+
+- **radix_sort** - Takes an iterable of integers and returns a sorted list using the Radix Sort algorithm
+
 
 #Testing Coverage:
 
@@ -203,7 +210,7 @@ Commented out tests for BST because broken after rebalancing.
 
 
 ```
----- coverage: platform linux2, python 2.7.12-final-0 ----------
+---------- coverage: platform linux2, python 2.7.12-final-0 ----------
 Name                         Stmts   Miss  Cover   Missing
 ----------------------------------------------------------
 src/bst.py                     264    264     0%   4-381
@@ -215,7 +222,9 @@ src/insertion.py                24     13    46%   14-15, 21-43
 src/linked_list.py              58      3    95%   16, 26, 34
 src/merge_sort.py               26      6    77%   34-42
 src/queue_.py                   19      0   100%
-src/shortest_path_graph.py     133     18    86%   102-108, 112-121, 135, 179
+src/quicksort.py                25      7    72%   5, 25-33
+src/radix.py                    17      4    76%   20-23
+src/shortest_path_graph.py     133     17    87%   102-108, 112-121, 179
 src/simple_graph.py             71     11    85%   136-149
 src/stack.py                    13      0   100%
 src/test_bst.py                  0      0   100%
@@ -227,6 +236,8 @@ src/test_insertion.py           15      2    87%   48-49
 src/test_linked_list.py         74      0   100%
 src/test_merge_sort.py          15      2    87%   48-49
 src/test_queue.py               60      0   100%
+src/test_quicksort.py           15      2    87%   48-49
+src/test_radix.py                5      0   100%
 src/test_shortest_path.py      189      0   100%
 src/test_simple_graph.py       147      0   100%
 src/test_stack.py               48      3    94%   88-90
@@ -236,10 +247,10 @@ src/trie.py                     73      0   100%
 src/warshall.py                 24     24     0%   1-40
 src/weighted_graph.py           73     27    63%   117-123, 127-136, 140-153
 ----------------------------------------------------------
-TOTAL                         2103    377    82%
+TOTAL                         2165    389    82%
 
 
-=========================== 300 passed in 2.05 seconds
+==================================== 317 passed in 1.17 seconds
 
 ----------- coverage: platform linux, python 3.5.2-final-0 -----------
 Name                         Stmts   Miss  Cover   Missing
@@ -253,7 +264,9 @@ src/insertion.py                24     11    54%   21-43
 src/linked_list.py              58      3    95%   16, 26, 34
 src/merge_sort.py               26      6    77%   34-42
 src/queue_.py                   19      0   100%
-src/shortest_path_graph.py     133     17    87%   102-108, 112-121, 179
+src/quicksort.py                25      7    72%   5, 25-33
+src/radix.py                    17      4    76%   20-23
+src/shortest_path_graph.py     133     18    86%   102-108, 112-121, 135, 179
 src/simple_graph.py             71     11    85%   136-149
 src/stack.py                    13      0   100%
 src/test_bst.py                  0      0   100%
@@ -265,6 +278,8 @@ src/test_insertion.py           15      1    93%   46
 src/test_linked_list.py         74      0   100%
 src/test_merge_sort.py          15      1    93%   46
 src/test_queue.py               60      0   100%
+src/test_quicksort.py           15      1    93%   46
+src/test_radix.py                5      0   100%
 src/test_shortest_path.py      189      0   100%
 src/test_simple_graph.py       147      0   100%
 src/test_stack.py               48      3    94%   88-90
@@ -274,8 +289,8 @@ src/trie.py                     73      0   100%
 src/warshall.py                 24     24     0%   1-40
 src/weighted_graph.py           73     27    63%   117-123, 127-136, 140-153
 ----------------------------------------------------------
-TOTAL                         2103    373    82%
+TOTAL                         2165    386    82%
 
 
-====================== 300 passed in 2.08 seconds
+===================================== 317 passed in 1.30 seconds
 ```
