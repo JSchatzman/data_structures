@@ -1,30 +1,16 @@
-def rad_sort(ins_list):
-    if not hasattr(ins_list, "__iter__"):
-        raise TypeError("Please insert an iterable")
-    bucket_count = 10
-    maxlength = False
-    temp = -1
-    placement = 1
+from math import log10
 
-    while not maxlength:
-        maxlength = True
-        buckets = [[] for _ in range(bucket_count)]
 
-        for num in ins_list:
-            temp = 1 // placement
-            buckets[temp % bucket_count].append(num)
-            if maxlength and temp > 0:
-                maxlength = False
-
-        val = 0
-        for num2 in range(bucket_count):
-            bucket = buckets[num2]
-            for item in bucket:
-                ins_list[val] = item
-                val += 1
-
-        placement *= bucket_count
+def radixSort(ins_list):
+    n = 10
+    maxlen = int(log10(max(ins_list))) + 1
+    for x in range(maxlen):
+        bins = [[] for i in range(n)]
+        for y in ins_list:
+            bins[(y // 10**x) % n].append(y)
+        ins_list = []
+        for section in bins:
+            ins_list.extend(section)
     return ins_list
 
-
-print(rad_sort([1,2,4,33,11,6,4,2,8,53,2]))
+print (radixSort([1,2,3,5,6,3,2,33,22,5,77, 111111]))
