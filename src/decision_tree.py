@@ -52,11 +52,13 @@ def calc_entropy(rows):
     def log2(x):
         return log(x) / log(2)
     results = uniquecount(rows)
+    if 0 in results.values():
+        return 0
     entropy = float(0)
     for flower_type in results.keys():
-        p = float(results[flower_type]) / len(rows)
+        num = float(results[flower_type]) / len(rows)
         import pdb; pdb.set_trace()
-        entropy = entropy - p * log2(p)
+        entropy = entropy - num * log2(num)
     return entropy
 
 
