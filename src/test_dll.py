@@ -75,7 +75,7 @@ def test_dll_shift():
     from dll import DoublyLinkedList
     one_dll, empty_dll, new_dll = sample_dll()
     assert new_dll.shift() == 1
-    with pytest.raises(ValueError):
+    with pytest.raises(IndexError):
         assert empty_dll.shift()
     assert one_dll.shift() == 1
     assert one_dll.length == 0
